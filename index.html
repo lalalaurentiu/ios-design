@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <div id="header">
+            <div>
+                <div id="time"></div>
+                <div id="location">
+                </div>
+            </div>
+            <div id="right-header">
+                <div id="signal" >
+                    <div class="signal-line"></div>
+                    <div class="signal-line"></div>
+                    <div class="signal-line"></div>
+                    <div class="signal-line"></div>
+                </div>
+                <div id="wifi">
+                    <div class="wifi-line"></div>
+                    <div class="wifi-line"></div>
+                    <div class="wifi-line"></div>
+                </div>
+                <div id="battery">
+                    <div id="battery-cell"></div>
+                    <div id="battery-plus"></div>
+                </div>
+            </div>
+        </div>
+        <style>
+                
+            #left-side{
+                position: absolute;
+                min-height: 100vh;
+                max-width: 390px;
+                transform: translateX(-390px);
+                z-index: 4;
+                transition: all 0.5s;
+            }
+        </style>
+        <div id="left-side">
+            <div style="width:370px ;height:50vh; background-color:black;">
+
+            </div>
+        </div>
+        <div id="screen">
+            
+            <div id="menuicons">
+               
+            </div>
+        </div>
+        <div id="loading">
+            <div class="loading-elements">
+                    Wait
+                <div class="bar">
+                    <div id="progresBar">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+    <script>
+        let leftSide = document.getElementById("left-side")
+        let screen = document.getElementById("screen")
+        function scrollSidesMenus(screen, element){
+            let screenPosition = 0
+            let elementPosition = 0
+            screen.addEventListener("touchmove", pos => {
+                screenPosition = pos.touches[0].clientX;
+                element.style.transform = `translateX(${screenPosition - 390}px)`
+                if (screenPosition > 190){
+                    element.style.transform = "translateX(0)"
+                    screen.style.filter = "blur(10px)"
+                }
+            })
+
+            screen.addEventListener("touchend", () => {
+                console.log(screenPosition < 190)
+                if (screenPosition < 190){
+                    element.style.transform = "translateX(0)"
+                }
+            })
+
+            element.addEventListener("touchmove", pos => {
+                elementPosition = pos.touches[0].clientX;
+                element.style.transform = `translateX(${elementPosition - 390}px)`
+                if (elementPosition < 190){
+                    element.style.transform = "translateX(-390px)"
+                    screen.style.filter = "blur(0)"
+                }
+            })
+
+            element.addEventListener("touchend", () => {
+                console.log(screenPosition < 190)
+                if (elementPosition > 190){
+                    element.style.transform = "translateX(0)"
+                }
+            })
+        }
+        scrollSidesMenus(screen, leftSide)
+    </script>
+</body>
+</html>

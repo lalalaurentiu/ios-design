@@ -1,0 +1,161 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.main{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    overflow: hidden;
+}
+#header{
+    position: absolute;
+    width: 360px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+}
+
+    #time{
+        display: inline;
+        color:white;
+        height: 24px;
+    }
+    #location{
+        display: inline;
+        fill: white;
+        position: relative;
+        top: 5px;
+    }
+    #right-header{
+        display: flex;
+        height: 15px;
+    }
+    #signal {
+        display: inline-block;
+        height: 15px;
+        width: 30px;
+    }
+        .signal-line{
+            width: 10%;
+            display: inline-block;
+            border-radius: 25%;
+            background: rgba(177, 177, 177, 0.3);
+        }
+    
+    #wifi{
+        position: relative;
+        height: 15px;
+        width: 35px;
+        text-align: center;
+    }
+        .wifi-line{
+            display: inline-block;
+            border: 5px solid transparent;
+            border-top-color: rgba(177, 177, 177, 0.3);
+            border-radius: 50%;
+            padding-top:10px;
+        }
+    #battery{
+        display: flex;
+        align-items: center;
+        border: 1px solid rgba(194, 193, 193, 0.3);
+        background-color: transparent;
+        padding: 1px;
+        height: 15px;
+        width: 30px;
+        border-radius: 3px;
+    }
+        #battery-cell{
+            display: inline-block;
+            background-color: white;
+            height: 100%;
+            width: 100%;
+            border-radius: 3px;
+        }
+        #battery-plus{
+            position: absolute;
+            transform: translateX(30px);
+            width: 3px;
+            height: 5px;
+            border-right: 1px solid rgba(138, 138, 138, 0.3);
+            border-radius: 50%;
+
+    }
+#screen{
+    flex:1;
+    min-height: 100vh;
+    max-width: 390px;
+    
+    background-image: url('wallpapers/ios.webp');
+    background-size: cover;
+    display:none;
+    transition: all 0.5s;
+}
+
+    #menuicons{
+        position: absolute;
+        display: flex;
+        bottom: 0;
+        width: 370px;
+        height: 100px;
+        margin: 10px;
+        background-color: rgba(138, 138, 138, 0.5);
+        border-radius: 30px;
+        justify-content: space-between;
+        
+    }
+        #message{
+            display: inline-block;
+            margin: 10px;
+            width: 92px;
+            height: 80px;
+            background-image: url("icons/ios-message.svg");
+            background-repeat: no-repeat;
+        }
+        /* for open ap js */
+        #message:hover{
+            position: absolute;
+            width: 390px;
+            height: 100vh;
+            left: -20px;
+            transform: translateY(calc(-100vh + 100px));
+            background-color: black;
+            transition: all 1s;
+        }
+#loading{
+    background-color: black;
+    color:white;
+    flex:1;
+    min-height: 100vh;
+    max-width: 390px;
+    text-align: center;
+    display: block;
+    z-index: 5;
+}
+    .loading-elements{
+        flex:1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+    }
+    .bar{
+        position: relative;
+        width: 200px;
+        height: 10px;
+        background-color: white;
+        border-radius: 50px;
+    }
+    #progresBar{
+        background-color: gray;
+        width: 1%;
+        height: 100%;
+        border-radius: 50px;
+    }
+    

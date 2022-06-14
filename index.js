@@ -168,7 +168,7 @@ loading()
                 height: ${screenHeight}px;
                 left: -10px;
                 top:0;
-                transform: translateY(calc(${screenHeight}px + 110px));
+                transform: translateY(calc(-${screenHeight}px + 110px));
                 background-color: black;
                 transition: all 1s;
                 `

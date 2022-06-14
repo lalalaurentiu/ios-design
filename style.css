@@ -88,7 +88,6 @@
     }
 #screen{
     flex:1;
-    min-height: 100vh;
     max-width: 390px;
     
     background-image: url('wallpapers/ios.webp');
@@ -131,7 +130,6 @@
     background-color: black;
     color:white;
     flex:1;
-    min-height: 100vh;
     max-width: 390px;
     text-align: center;
     display: block;

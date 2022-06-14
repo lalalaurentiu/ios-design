@@ -4,6 +4,10 @@ let progresBarElement = document.getElementById('progresBar')
 let loadingElements = document.getElementById('loading')
 let loadingScreen = document.getElementById('screen')
 
+let screenHeight = window.innerHeight
+loadingScreen.style.height = `${screenHeight}px`
+loadingElements.style.height = `${screenHeight}px`
+
 function loading (){
     if (startLoading == 0) {
         startLoading = 1;
@@ -161,7 +165,7 @@ loading()
                 `
                 position: absolute;
                 width: 390px;
-                height: 100vh;
+                height: ${screenHeight}px;
                 left: -10px;
                 top:0;
                 transform: translateY(calc(-100vh + 110px));
@@ -214,7 +218,7 @@ loading()
             })
             element.addEventListener("touchend", () =>{
                 if (position > 700){
-                    this.app.style.height = "100vh"
+                    this.app.style.height = `${screenHeight}px`
                     this.app.style.transition = "all 0.5s"
                 }
                 

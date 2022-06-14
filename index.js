@@ -4,7 +4,7 @@ let progresBarElement = document.getElementById('progresBar')
 let loadingElements = document.getElementById('loading')
 let loadingScreen = document.getElementById('screen')
 
-let screenHeight = 844
+let screenHeight = window.innerHeight
 loadingScreen.style.height = `${screenHeight}px`
 loadingElements.style.height = `${screenHeight}px`
 
@@ -130,10 +130,10 @@ loading()
 
     // menu icons
     let parrent = document.getElementById("menuicons")
+    let openedApplication = 0
 
     class Aplication {
         app = document.createElement("div")
-        
         constructor(element, name, cls, img){
             this.element = element
             this.name = name
@@ -173,6 +173,7 @@ loading()
                 transition: all 1s;
                 `
             )
+            openedApplication += 1
             })
         }
         closeButtonSelf(){
@@ -197,9 +198,10 @@ loading()
         }
 
         scrollCloseSelf(element){
-            let position = 0
+            // let position = 0
             element.addEventListener("touchmove",pos => {
-                position = pos.touches[0].clientY;
+                
+                let position = pos.touches[0].clientY;
                 this.app.style.height = `${position}px`
                 if (position < 700) {
                     this.app.removeAttribute("style")
@@ -214,12 +216,16 @@ loading()
                     `
                 )
                     element.remove()
+                    openedApplication = 0
                 } 
+                
             })
-            element.addEventListener("touchend", () =>{
+            element.addEventListener("touchend", pos =>{
+                let position = pos.changedTouches[0].clientY;
                 if (position > 700){
                     this.app.style.height = `${screenHeight}px`
                     this.app.style.transition = "all 0.5s"
+                    openedApplication = 1
                 }
                 
             })
@@ -238,3 +244,48 @@ loading()
 
     contacts.containerSelf()
     contacts.oppenappSelf()
+
+    
+    // left-side
+    let leftSide = document.getElementById("left-side")
+    leftSide.style.height = `${screenHeight}px`
+    function scrollSidesMenus(screen, element){
+        screen.addEventListener("touchmove", pos => {
+            console.log(openedApplication)
+            let opened = openedApplication
+                let screenPosition = pos.touches[0].clientX;
+            console.log(screenPosition > 190 && opened == 0)
+                element.style.transform = `translateX(${screenPosition - 390}px)`
+                if (screenPosition > 190 && opened == 0){
+                    element.style.transform = "translateX(0)"
+                    screen.style.filter = "blur(10px)"
+                }
+        })
+
+        screen.addEventListener("touchend", pos => {
+            let opened = openedApplication
+            let screenPosition = pos.changedTouches[0].clientX
+            if (screenPosition < 190 && opened == 0){
+                element.style.transform = "translateX(0)"
+            }
+        })
+
+        element.addEventListener("touchmove", pos => {
+            let opened = openedApplication
+            let elementPosition = pos.touches[0].clientX;
+            element.style.transform = `translateX(${elementPosition - 390}px)`
+            if (elementPosition < 190 && opened == 0){
+                element.style.transform = "translateX(-390px)"
+                screen.style.filter = "blur(0)"
+            }
+        })
+
+        element.addEventListener("touchend", pos => {
+            let opened = openedApplication
+            let elementPosition = pos.changedTouches[0].clientX
+            if (elementPosition > 190 && opened == 0){
+                element.style.transform = "translateX(0)"
+            }
+        })
+    }
+        scrollSidesMenus(loadingScreen, leftSide)

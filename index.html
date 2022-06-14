@@ -36,17 +36,10 @@
         </div>
         <style>
                 
-            #left-side{
-                position: absolute;
-                min-height: 100vh;
-                max-width: 390px;
-                transform: translateX(-390px);
-                z-index: 4;
-                transition: all 0.5s;
-            }
+            
         </style>
         <div id="left-side">
-            <div style="width:370px ;height:50vh; background-color:black;">
+            <div style="width:370px ;height:50vh; background-color:white;">
 
             </div>
         </div>
@@ -69,44 +62,7 @@
     </div>
     <script src="index.js"></script>
     <script>
-        let leftSide = document.getElementById("left-side")
-        let screen = document.getElementById("screen")
-        function scrollSidesMenus(screen, element){
-            let screenPosition = 0
-            let elementPosition = 0
-            screen.addEventListener("touchmove", pos => {
-                screenPosition = pos.touches[0].clientX;
-                element.style.transform = `translateX(${screenPosition - 390}px)`
-                if (screenPosition > 190){
-                    element.style.transform = "translateX(0)"
-                    screen.style.filter = "blur(10px)"
-                }
-            })
-
-            screen.addEventListener("touchend", () => {
-                console.log(screenPosition < 190)
-                if (screenPosition < 190){
-                    element.style.transform = "translateX(0)"
-                }
-            })
-
-            element.addEventListener("touchmove", pos => {
-                elementPosition = pos.touches[0].clientX;
-                element.style.transform = `translateX(${elementPosition - 390}px)`
-                if (elementPosition < 190){
-                    element.style.transform = "translateX(-390px)"
-                    screen.style.filter = "blur(0)"
-                }
-            })
-
-            element.addEventListener("touchend", () => {
-                console.log(screenPosition < 190)
-                if (elementPosition > 190){
-                    element.style.transform = "translateX(0)"
-                }
-            })
-        }
-        // scrollSidesMenus(screen, leftSide)
+        
     </script>
 </body>
 </html>

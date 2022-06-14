@@ -4,7 +4,7 @@ let progresBarElement = document.getElementById('progresBar')
 let loadingElements = document.getElementById('loading')
 let loadingScreen = document.getElementById('screen')
 
-let screenHeight = window.innerHeight
+let screenHeight = 844
 loadingScreen.style.height = `${screenHeight}px`
 loadingElements.style.height = `${screenHeight}px`
 

@@ -100,20 +100,22 @@
         position: absolute;
         display: flex;
         bottom: 0;
-        width: 370px;
-        height: 100px;
-        margin: 10px;
+        width: 350px;
+        margin: 20px;
         background-color: rgba(138, 138, 138, 0.5);
-        border-radius: 30px;
-        justify-content: space-between;
-        
+        border-radius: 20px;
+        justify-content:space-around;
+        align-items: center;
     }
         #left-side{
             position: absolute;
+            flex: 1;
             max-width: 390px;
-            transform: translateX(-390px);
+            transform: translateX(-350px);
             z-index: 4;
             transition: all 0.5s;
+
+            border: 1px solid;
         }
 #loading{
     background-color: black;

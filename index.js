@@ -88,7 +88,7 @@ loading()
             width -= 33
             element.style.width =`${width}%`
             element.style.borderRadius = `${borderRadius}%`
-            borderRadius -=10
+            borderRadius -= 10
             if (index === 1){
                 element.style.transform = `translateY(-${translate}%)`
                 translate += 90
@@ -130,6 +130,11 @@ loading()
 
     // menu icons
     let parrent = document.getElementById("menuicons")
+    let parrentHeight = (screenHeight / 100) * 10 
+    parrent.style.height = `${parrentHeight}px`
+
+    
+    
     let openedApplication = 0
 
     class Aplication {
@@ -145,9 +150,8 @@ loading()
             this.app.setAttribute("class", this.cls)
             this.app.setAttribute(
                 "style", `
-                    margin:10px;
-                    width:80px;
-                    height:80px;
+                    width:50px;
+                    height:50px;
                     background-image:url(${this.img});
                     background-repeat:no-repeat;
                 `
@@ -166,14 +170,14 @@ loading()
                 position: absolute;
                 width: 390px;
                 height: ${screenHeight}px;
-                left: -10px;
+                left: -20px;
                 top:0;
-                transform: translateY(calc(-${screenHeight}px + 110px));
+                transform: translateY(calc(-${screenHeight}px + ${parrentHeight}px + 20px));
                 background-color: black;
                 transition: all 1s;
                 `
             )
-            openedApplication += 1
+            openedApplication = 1
             })
         }
         closeButtonSelf(){
@@ -207,9 +211,8 @@ loading()
                     this.app.removeAttribute("style")
                     this.app.setAttribute(
                     "style", `
-                        margin:10px;
-                        width:80px;
-                        height:80px;
+                        width:50px;
+                        height:50px;
                         background-image:url(${this.img});
                         background-repeat:no-repeat;
                         transition: all 0.5s;
@@ -236,6 +239,8 @@ loading()
     const imessage = new Aplication(parrent,"iMessage", "aplication", "icons/ios-message.svg")
     const appstore = new Aplication(parrent, "appstore", "aplication", "icons/app-store.svg")
     const contacts = new Aplication(parrent, "contacts", "aplication", "icons/contacts.svg")
+    const setting = new Aplication(parrent, "settings", "aplication", "icons/settings.svg")
+
     imessage.containerSelf()
     imessage.oppenappSelf()
 
@@ -245,47 +250,30 @@ loading()
     contacts.containerSelf()
     contacts.oppenappSelf()
 
-    
+    setting.containerSelf()
+    setting.oppenappSelf()
+  
     // left-side
     let leftSide = document.getElementById("left-side")
     leftSide.style.height = `${screenHeight}px`
+
     function scrollSidesMenus(screen, element){
-        screen.addEventListener("touchmove", pos => {
-            console.log(openedApplication)
-            let opened = openedApplication
-                let screenPosition = pos.touches[0].clientX;
-            console.log(screenPosition > 190 && opened == 0)
-                element.style.transform = `translateX(${screenPosition - 390}px)`
-                if (screenPosition > 190 && opened == 0){
-                    element.style.transform = "translateX(0)"
-                    screen.style.filter = "blur(10px)"
-                }
-        })
-
-        screen.addEventListener("touchend", pos => {
-            let opened = openedApplication
-            let screenPosition = pos.changedTouches[0].clientX
-            if (screenPosition < 190 && opened == 0){
-                element.style.transform = "translateX(0)"
-            }
-        })
-
+        let opened = openedApplication
+        let show = false
         element.addEventListener("touchmove", pos => {
-            let opened = openedApplication
-            let elementPosition = pos.touches[0].clientX;
-            element.style.transform = `translateX(${elementPosition - 390}px)`
-            if (elementPosition < 190 && opened == 0){
-                element.style.transform = "translateX(-390px)"
-                screen.style.filter = "blur(0)"
-            }
-        })
-
-        element.addEventListener("touchend", pos => {
-            let opened = openedApplication
-            let elementPosition = pos.changedTouches[0].clientX
-            if (elementPosition > 190 && opened == 0){
+            let screenPosition = pos.touches[0].clientX;
+            if (screenPosition <= 30 && show == false && opened == 0){
+                console.log(openedApplication)
                 element.style.transform = "translateX(0)"
+                screen.style.filter = "blur(10px)"
+                show = true
+            } else if (screenPosition > 300 && show == true && opened == 0){
+                element.style.transform = "translateX(-350px)"
+                screen.style.filter = "blur(0)"
+                show = false
             }
+            console.log(show)
+            console.log(screenPosition)
         })
     }
         scrollSidesMenus(loadingScreen, leftSide)

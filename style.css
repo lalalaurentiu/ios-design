@@ -100,8 +100,8 @@
         position: absolute;
         display: flex;
         bottom: 0;
-        width: 350px;
-        margin: 20px;
+        width: 370px;
+        margin: 10px;
         background-color: rgba(138, 138, 138, 0.5);
         border-radius: 20px;
         justify-content:space-around;
@@ -109,13 +109,21 @@
     }
         #left-side{
             position: absolute;
-            flex: 1;
-            max-width: 390px;
+            width: 390px;
             transform: translateX(-350px);
             z-index: 4;
             transition: all 0.5s;
+            opacity: 0;
+            border: 1px solid white;
+        }
+        #up-side{
+            position: absolute;
+            width: 390px;
+            transition: all 0.5s;
+            z-index: 4;
+            opacity: 0;
 
-            border: 1px solid;
+            border: 1px solid white;
         }
 #loading{
     background-color: black;

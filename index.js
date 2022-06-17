@@ -1,3 +1,5 @@
+
+
 // Loading Bar
 let startLoading = 0
 let progresBarElement = document.getElementById('progresBar')
@@ -5,7 +7,18 @@ let loadingElements = document.getElementById('loading')
 let loadingScreen = document.getElementById('screen')
 
 let screenHeight = window.innerHeight
+let screenWidth = window.innerWidth
+
+window.addEventListener("resize", function (h) {
+    // this.location.reload(true)
+    if (this.window.innerHeight > screenHeight + 20){
+        this.location.reload(true)
+    }
+    console.log(this.window.innerHeight)
+})
+
 loadingScreen.style.height = `${screenHeight}px`
+loadingScreen.style.maxWidth = `${screenWidth}px`
 loadingElements.style.height = `${screenHeight}px`
 
 function loading (){
@@ -131,7 +144,10 @@ loading()
     // menu icons
     let parrent = document.getElementById("menuicons")
     let parrentHeight = (screenHeight / 100) * 10 
+    let parrentWidth = (screenWidth /100) * 90
+
     parrent.style.height = `${parrentHeight}px`
+    parrent.style.width = `${parrentWidth}px`
 
     
     
@@ -159,7 +175,7 @@ loading()
             
             this.element.append(this.app)
         }
-        oppenappSelf(){
+        oppenappSelf(translate){
 
             this.app.addEventListener("click", () => {
             this.closeButtonSelf()
@@ -168,12 +184,12 @@ loading()
                 "style",
                 `
                 position: absolute;
-                width: 390px;
+                width: ${screenWidth}px;
                 height: ${screenHeight}px;
-                left: -10px;
                 top:0;
-                transform: translateY(calc(-${screenHeight}px + ${parrentHeight}px + 10px));
+                transform: translateY(${translate});
                 background-color: black;
+                z-index:5;
                 transition: all 1s;
                 `
             )
@@ -242,20 +258,21 @@ loading()
     const setting = new Aplication(parrent, "settings", "aplication", "icons/settings.svg")
 
     imessage.containerSelf()
-    imessage.oppenappSelf()
+    imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 15px)`)
 
     appstore.containerSelf()
-    appstore.oppenappSelf()
+    appstore.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 15px)`)
 
     contacts.containerSelf()
-    contacts.oppenappSelf()
+    contacts.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 10px)`)
 
     setting.containerSelf()
-    setting.oppenappSelf()
+    setting.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 10px)`)
   
     // left-side
     let leftSide = document.getElementById("left-side")
     leftSide.style.height = `${screenHeight}px`
+    leftSide.style.width = `${screenWidth}px`
 
     function scrollLeftSidesMenus(screen, element){
         let opened = openedApplication
@@ -283,6 +300,7 @@ loading()
     // up side
     let upSide =  document.getElementById("up-side")
     upSide.style.height = `${screenHeight}px`
+    upSide.style.width = `${screenWidth}px`
     upSide.style.transform = `translateY(calc(-${screenHeight}px + 50px))`
     
     function scrollUpSideMenu(screen, element, screenHeight){
@@ -307,3 +325,34 @@ loading()
     }
 
     scrollUpSideMenu(loadingScreen, upSide, screenHeight)
+
+    // screen Aplications
+    class ScreenAplications extends Aplication{
+        containerSelf(){
+            let title = document.createElement("div")
+            title.innerHTML = this.app.title
+            this.app.append(title)
+            super.containerSelf()
+        }
+        
+    }
+    let aplications = document.getElementById("aplications")
+    aplications.style.height = `calc(${screenHeight}px - 15%)`
+    let aplicationWidh = (screenWidth / 100) * 90
+    aplications.style.width = `${aplicationWidh}px`
+    const safari = new ScreenAplications(aplications, "safari", "aplication", "icons/safari.svg")
+    const notes = new ScreenAplications(aplications, "notes", "aplication", "icons/notes.svg")
+    const files = new ScreenAplications(aplications, "files", "aplication", "icons/files.svg")
+    const clock = new ScreenAplications(aplications, "clock", "aplication", "icons/clock.svg")
+
+    safari.containerSelf()
+    safari.oppenappSelf("-40px")
+
+    notes.containerSelf()
+    notes.oppenappSelf("-40px")
+
+    files.containerSelf()
+    files.oppenappSelf("-40px")
+
+    clock.containerSelf()
+    clock.oppenappSelf("-40px")

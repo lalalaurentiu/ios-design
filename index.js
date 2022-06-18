@@ -275,6 +275,52 @@ loading()
     leftSide.style.width = `${screenWidth}px`
 
     function scrollLeftSidesMenus(screen, element){
+        let input = document.createElement("input")
+        input.setAttribute("placeholder","Search")
+        element.append(input)
+
+        let images = document.createElement("div")
+        images.setAttribute("id", "left-side-images")
+        element.append(images)
+
+        let position = document.createElement("div")
+        position.setAttribute("id","left-side-position")
+        let mapContainer = document.createElement("div")
+        mapContainer.setAttribute("id", "left-side-map")
+        position.append(mapContainer)
+        
+        element.append(position)
+        
+        let map
+        function initMap(){
+            const coords = { lat: 44.983, lng: 24.983 };
+            map = new google.maps.Map(document.getElementById("left-side-map"), {
+                center: coords,
+                zoom: 8,
+                type: "ROADMAP"
+              })
+        }
+        initMap()
+
+        let elements = document.createElement("div")
+        elements.setAttribute("id","left-side-elements")
+        let elementsMenu = document.createElement("div")
+        elementsMenu.setAttribute("id", "left-side-elementsMenu")
+        let phoneElement = document.createElement("div")
+        phoneElement.setAttribute("id","left-side-phoneElement")
+        phoneElement.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+            <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+            <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </svg>
+        `
+        let weatherElement = document.createElement("div")
+        weatherElement.setAttribute("id", "left-side-weatherElement")
+
+        elementsMenu.append(phoneElement)
+        elements.append(elementsMenu)
+        elements.append(weatherElement)
+        element.append(elements)
         let opened = openedApplication
         let show = false
         element.addEventListener("touchmove", pos => {
@@ -296,6 +342,8 @@ loading()
         })
     }
     scrollLeftSidesMenus(loadingScreen, leftSide)
+
+   
 
     // up side
     let upSide =  document.getElementById("up-side")

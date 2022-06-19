@@ -5,7 +5,6 @@
 
 .main{
     display: flex;
-    width: 100vw;
     justify-content: center;
     overflow: hidden;
 }
@@ -107,7 +106,7 @@
         #left-side{
             position: absolute;
             transform: translateX(-350px);
-            z-index: 4;
+            z-index: 6;
             transition: all 0.5s;
             opacity: 0;
         }
@@ -147,13 +146,69 @@
                     height: 100%;
                     border-radius: 30px;
                 }
+                #left-side-elements{
+                    height: 20%;
+                    width: 80%;
+                    border-radius: 30px;
+                    margin: 0 auto 40px auto;
+                    display: flex;
+                    justify-content: space-between;
+                    
+                }
+                    #left-side-elementsMenu{
+                        width: 45%;
+                        border-radius: 30px;
+                        background-color: rgb(57, 57, 57);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                        #left-side-phoneElement{
+                            width: 80%;
+                            height: 80%;
+                            border: 10px solid rgb(6, 199, 6);
+                            border-radius: 50%;
+                            color: white;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        #left-side-phoneElement > svg{
+                        width: 50%;
+                        height: 50%;
+                        }
+                    #left-side-weatherElement{
+                        padding: 10px 20px;
+                        width: 35%;
+                        border-radius: 30px;
+                        background-image: linear-gradient(rgb(1, 103, 171), rgb(136, 197, 246));
+                        color: white;
+                    }
         #up-side{
             position: absolute;
             width: 390px;
             transition: all 0.5s;
-            z-index: 4;
+            z-index: 6;
             opacity: 0;
+            color: white;
+            text-align: center;
         }
+            #up-side > svg {
+                width: 50px;
+                height: 50px;
+                margin-top: 10%;
+            }
+            #up-side-clock{
+                text-align: center;
+                font-size: 300%;
+            }
+            #up-side-date{
+                text-align: center;
+            }
+            #up-side-notification{
+                text-align: center;
+                margin-top: 50px;
+            }
     #aplications{
         position: relative;
         display: flex;
@@ -170,7 +225,7 @@
     max-width: 390px;
     text-align: center;
     display: block;
-    z-index: 5;
+    z-index: 6;
 }
     .loading-elements{
         flex:1;

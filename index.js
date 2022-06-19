@@ -44,7 +44,7 @@ loading()
 
 // header
     // hour and minutes
-    var time = document.getElementById("time")
+    let time = document.getElementById("time")
     function hour(){
         function addZero(time){
             if (time < 10){
@@ -283,6 +283,7 @@ loading()
         images.setAttribute("id", "left-side-images")
         element.append(images)
 
+        // location api
         let position = document.createElement("div")
         position.setAttribute("id","left-side-position")
         let mapContainer = document.createElement("div")
@@ -316,11 +317,34 @@ loading()
         `
         let weatherElement = document.createElement("div")
         weatherElement.setAttribute("id", "left-side-weatherElement")
+        // weather api
+        let city = document.createElement("div")
+        city.innerHTML = "Mioveni" // test data
+
+        let temperature = document.createElement("div")
+        temperature.style.height = "40%"
+        temperature.style.width = "100%"
+        temperature.style.fontSize = "250%"
+        temperature.innerHTML = "21&deg;" //test data
+
+        let weathericon = document.createElement("img")
+        weathericon.setAttribute("src", "https://openweathermap.org/img/wn/01d@2x.png")
+        weathericon.style.height = "20%"
+
+        let description = document.createElement("div")
+        description.innerHTML = "Clear Sky"
+
+        weatherElement.append(city)
+        weatherElement.append(temperature)
+        weatherElement.append(weathericon)
+        weatherElement.append(description)
 
         elementsMenu.append(phoneElement)
         elements.append(elementsMenu)
         elements.append(weatherElement)
         element.append(elements)
+
+        
         let opened = openedApplication
         let show = false
         element.addEventListener("touchmove", pos => {
@@ -350,8 +374,49 @@ loading()
     upSide.style.height = `${screenHeight}px`
     upSide.style.width = `${screenWidth}px`
     upSide.style.transform = `translateY(calc(-${screenHeight}px + 50px))`
+    const yearMounts = {
+        0:"January",
+        1:"February",
+        2:"March",
+        3:"April",
+        4:"May",
+        5:"June",
+        6:"July",
+        7:"August",
+        8:"september",
+        9:"October",
+        10:"November",
+        11:"December"
+    }
+
+    const weekDays = {
+        0:"Sunday",
+        1:"Monday",
+        2:"Tuesday",
+        3:"Wednesday",
+        4:"Thursday",
+        5:"Friday",
+        6:"Saturday",
+    }
     
     function scrollUpSideMenu(screen, element, screenHeight){
+        element.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+            <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+        </svg>
+        `
+        let clock = document.createElement("div")
+        clock.setAttribute("id", "up-side-clock")
+        clock.innerHTML = hour()
+        setInterval(() => {clock.innerHTML = hour()}, 60 * 1000)
+
+        let date = new Date()
+        let containerDate = document.createElement("div")
+        containerDate.innerHTML = `${weekDays[date.getDay()]}, ${date.getDate()} ${yearMounts[date.getMonth()]}`
+
+        console.log(date)
+        element.append(clock)
+        element.append(containerDate)
         let opened = openedApplication
         let show = false
 
@@ -362,11 +427,13 @@ loading()
                 element.style.transform = "translateY(0)"
                 element.style.opacity = "1"
                 screen.style.filter = "blur(10px)"
+                time.innerHTML = "Network.."
                 show = true
             } else if (screenPosition > screenHeight - 100 && show == true && opened == 0){
                 element.style.transform = `translateY(calc(-${screenHeight}px + 50px))`
                 element.style.opacity = "0"
                 screen.style.filter = "blur(0)"
+                time.innerHTML = hour()
                 show = false
             }
         })

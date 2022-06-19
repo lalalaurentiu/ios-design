@@ -5,10 +5,12 @@ let startLoading = 0
 let progresBarElement = document.getElementById('progresBar')
 let loadingElements = document.getElementById('loading')
 let loadingScreen = document.getElementById('screen')
+let header = document.getElementById("header")
 
 let screenHeight = window.innerHeight
 let screenWidth = window.innerWidth
 
+header.style.width = `calc(${screenWidth}px - 10px)`
 window.addEventListener("resize", function (h) {
     // this.location.reload(true)
     if (this.window.innerHeight > screenHeight + 20){
@@ -258,16 +260,16 @@ loading()
     const setting = new Aplication(parrent, "settings", "aplication", "icons/settings.svg")
 
     imessage.containerSelf()
-    imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 15px)`)
+    imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 25px)`)
 
     appstore.containerSelf()
-    appstore.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 15px)`)
+    appstore.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 25px)`)
 
     contacts.containerSelf()
-    contacts.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 10px)`)
+    contacts.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 25px)`)
 
     setting.containerSelf()
-    setting.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 10px)`)
+    setting.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 25px)`)
   
     // left-side
     let leftSide = document.getElementById("left-side")
@@ -445,7 +447,10 @@ loading()
     class ScreenAplications extends Aplication{
         containerSelf(){
             let title = document.createElement("div")
-            title.innerHTML = this.app.title
+            title.style.height = "70px"
+            title.style.color = "white"
+            title.style.display = "flex"
+            title.innerHTML = `<span style = "align-self: flex-end;width: 100%; text-align:center;">${this.name}</span>`
             this.app.append(title)
             super.containerSelf()
         }

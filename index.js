@@ -260,16 +260,16 @@ loading()
     const setting = new Aplication(parrent, "settings", "aplication", "icons/settings.svg")
 
     imessage.containerSelf()
-    imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 25px)`)
+    imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`)
 
     appstore.containerSelf()
-    appstore.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 25px)`)
+    appstore.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`)
 
     contacts.containerSelf()
-    contacts.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 25px)`)
+    contacts.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`)
 
     setting.containerSelf()
-    setting.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + 25px)`)
+    setting.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`)
   
     // left-side
     let leftSide = document.getElementById("left-side")
@@ -445,16 +445,32 @@ loading()
 
     // screen Aplications
     class ScreenAplications extends Aplication{
+        title = document.createElement("div")
         containerSelf(){
-            let title = document.createElement("div")
-            title.style.height = "70px"
-            title.style.color = "white"
-            title.style.display = "flex"
-            title.innerHTML = `<span style = "align-self: flex-end;width: 100%; text-align:center;">${this.name}</span>`
-            this.app.append(title)
+            
+            this.title.style.height = "70px"
+            this.title.style.color = "white"
+            this.title.style.display = "flex"
+            this.title.innerHTML = `<span style = "align-self: flex-end;width: 100%; text-align:center;">${this.name}</span>`
+            this.app.append(this.title)
             super.containerSelf()
         }
-        
+        oppenappSelf(translate){
+            this.app.addEventListener("click", () => {
+                this.app.removeChild(this.title)
+            })
+            
+            super.oppenappSelf(translate)
+        }
+        scrollCloseSelf(element){
+            element.addEventListener("touchmove",pos => {
+                let position = pos.touches[0].clientY;
+                if (position < 700) {
+                    this.app.append(this.title)
+                }
+            })
+            super.scrollCloseSelf(element)
+        } 
     }
     let aplications = document.getElementById("aplications")
     aplications.style.height = `calc(${screenHeight}px - 15%)`

@@ -178,27 +178,28 @@ loading()
             this.element.append(this.app)
         }
         oppenappSelf(translate, appfunction){
-            
-            this.app.addEventListener("click", () => {
-            appfunction(this.app)
-            this.closeButtonSelf()
-            this.app.removeAttribute("style")
-            this.app.setAttribute(
-                "style",
-                `
-                position: absolute;
-                width: ${screenWidth}px;
-                height: ${screenHeight}px;
-                top:0;
-                transform: translateY(${translate});
-                background-color: black;
-                z-index:5;
-                transition: all 0.5s;
-                color:white;
-                `
-            )
-            openedApplication = 1
-            })
+            this.openapp = () =>{
+                appfunction(this.app)
+                this.closeButtonSelf()
+                this.app.removeAttribute("style")
+                this.app.setAttribute(
+                    "style",
+                    `
+                    position: absolute;
+                    width: ${screenWidth}px;
+                    height: ${screenHeight}px;
+                    top:0;
+                    transform: translateY(${translate});
+                    background-color: black;
+                    z-index:5;
+                    transition: all 0.5s;
+                    color:white;
+                    `
+                )
+                openedApplication = 1
+                this.app.removeEventListener("click", this.openapp)
+            }
+            this.app.addEventListener("click", this.openapp)
             
         }
         closeButtonSelf(){
@@ -243,6 +244,7 @@ loading()
                     element.remove()
                     this.app.innerHTML = ""
                     openedApplication = 0
+                    this.app.addEventListener("click", this.openapp)
                 } 
                 
             })

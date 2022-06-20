@@ -177,9 +177,10 @@ loading()
             
             this.element.append(this.app)
         }
-        oppenappSelf(translate){
-
+        oppenappSelf(translate, appfunction){
+            
             this.app.addEventListener("click", () => {
+            appfunction(this.app)
             this.closeButtonSelf()
             this.app.removeAttribute("style")
             this.app.setAttribute(
@@ -192,11 +193,13 @@ loading()
                 transform: translateY(${translate});
                 background-color: black;
                 z-index:5;
-                transition: all 1s;
+                transition: all 0.5s;
+                color:white;
                 `
             )
             openedApplication = 1
             })
+            
         }
         closeButtonSelf(){
             let closeButton = document.createElement("div")
@@ -212,6 +215,7 @@ loading()
                 left: 125px;
                 margin-bottom: 5px;
                 border-radius: 5px;
+                z-index:6;
             `
         )
         this.app.append(closeButton)
@@ -237,6 +241,7 @@ loading()
                     `
                 )
                     element.remove()
+                    this.app.innerHTML = ""
                     openedApplication = 0
                 } 
                 
@@ -259,17 +264,29 @@ loading()
     const contacts = new Aplication(parrent, "contacts", "aplication", "icons/contacts.svg")
     const setting = new Aplication(parrent, "settings", "aplication", "icons/settings.svg")
 
+    function notworking(parent){
+        let messagecontainer = document.createElement("div")
+        messagecontainer.innerHTML = "The application is not currently working"
+        messagecontainer.setAttribute("style", `
+            position:absolute;
+            width:100%;
+            top:50%;
+            text-align:center;
+        `)
+        parent.append(messagecontainer)
+     }
+
     imessage.containerSelf()
-    imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`)
+    imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`,notworking)
 
     appstore.containerSelf()
-    appstore.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`)
+    appstore.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`,notworking)
 
     contacts.containerSelf()
-    contacts.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`)
+    contacts.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`,notworking)
 
     setting.containerSelf()
-    setting.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`)
+    setting.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`,notworking)
   
     // left-side
     let leftSide = document.getElementById("left-side")
@@ -446,8 +463,8 @@ loading()
     // screen Aplications
     class ScreenAplications extends Aplication{
         title = document.createElement("div")
+        
         containerSelf(){
-            
             this.title.style.height = "70px"
             this.title.style.color = "white"
             this.title.style.display = "flex"
@@ -455,21 +472,24 @@ loading()
             this.app.append(this.title)
             super.containerSelf()
         }
-        oppenappSelf(translate){
+        oppenappSelf(translate, appfunction){
             this.app.addEventListener("click", () => {
                 this.app.removeChild(this.title)
             })
             
-            super.oppenappSelf(translate)
+            super.oppenappSelf(translate,appfunction)
         }
         scrollCloseSelf(element){
+            super.scrollCloseSelf(element)
             element.addEventListener("touchmove",pos => {
                 let position = pos.touches[0].clientY;
+                console.log(position)
                 if (position < 700) {
                     this.app.append(this.title)
+                    console.log(this.title)
                 }
             })
-            super.scrollCloseSelf(element)
+            
         } 
     }
     let aplications = document.getElementById("aplications")
@@ -481,14 +501,188 @@ loading()
     const files = new ScreenAplications(aplications, "files", "aplication", "icons/files.svg")
     const clock = new ScreenAplications(aplications, "clock", "aplication", "icons/clock.svg")
 
+    function safariapp(parent){
+        parent.innerHTML =""
+        
+        let safariTitle = document.createElement("div")
+        safariTitle.setAttribute("id", "safariTitle")
+        safariTitle.setAttribute("style",`
+        position: relative;
+            font-size: 200%;
+            top: 60px;
+            margin: 10px;
+        `)
+        safariTitle.innerHTML = "Favourites"
+
+        let safariSites = document.createElement("div")
+        safariSites.setAttribute("style",`
+            position:relative;
+            top:60px;
+            display:flex;
+            margin-left:10px;
+            
+        `)
+        let youtube = document.createElement("a")
+        youtube.setAttribute("id", "youtube")
+
+        youtube.setAttribute("style",`
+            height:80px;
+            text-align:center;
+            margin-right:10px;
+        `)
+        let youtubeicon = document.createElement("div")
+        youtubeicon.setAttribute("style", `
+            width:50px;
+            height:50px;
+            background-image:url("icons/youtube.svg");
+            background-size:50px 50px;
+            background-position: center;
+            background-color: #929191;
+            background-repeat:no-repeat;
+            padding: 5px;
+            border-radius:10px;
+        `)
+        let youtubetitle = document.createElement("div")
+        youtubetitle.setAttribute("style", "margin-top:5px;")
+        youtubetitle.innerHTML = "YouTube"
+
+        youtube.append(youtubeicon)
+        youtube.append(youtubetitle)
+
+        let googleweb = document.createElement("a")
+        googleweb.setAttribute("id","google")
+        googleweb.setAttribute("style",`
+            height:80px;
+            text-align:center;
+            margin-right:10px;
+        `)
+
+        let googlewebicon = document.createElement("div")
+        googlewebicon.setAttribute("style", `
+            width:50px;
+            height:50px;
+            background-image:url("icons/google.svg");
+            background-size:50px 50px;
+            background-position: center;
+            background-color: white;
+            background-repeat:no-repeat;
+            padding: 5px;
+            border-radius:10px;
+            display:flex;
+        `)
+        let googlewebtitle = document.createElement("div")
+        googlewebtitle.setAttribute("style", "margin-top:5px;")
+        googlewebtitle.innerHTML = "Google"
+
+        googleweb.append(googlewebicon)
+        googleweb.append(googlewebtitle)
+
+        safariSites.append(youtube)
+        safariSites.append(googleweb)
+
+        let safariprivacy = document.createElement("div")
+        safariprivacy.innerHTML = "Privacy Report"
+        safariprivacy.setAttribute("style", `
+            position: relative;
+            font-size: 200%;
+            top: 60px;
+            margin:20px 10px;
+        `)
+
+        let safariprivacyreport = document.createElement("div")
+        safariprivacyreport.setAttribute("style", `
+            position:relative;
+            display:flex;
+            height:15%;
+            width:95%;
+            top: 60px;
+            margin-left:10px;
+            background-color:#929191;
+            border-radius:10px;
+            color: white;
+        `)
+        let safariprivacyreporticon = document.createElement("div")
+        safariprivacyreporticon.setAttribute("style",`
+            width:30px;
+            height:30px;
+            background-image:url("icons/shield.svg");
+            background-size:30px 30px;
+            align-self: center;
+            margin-left:10px;
+        `)
+
+        let safariprivacyreportnumber = document.createElement("div")
+        safariprivacyreportnumber.innerHTML = "102"
+        safariprivacyreportnumber.setAttribute("style",`
+            font-size:30px;
+            align-self: center;
+        `)
+
+        let safariprivacyreportinfo = document.createElement("div")
+        safariprivacyreportinfo.innerHTML = "In the last seven days, Safari has prevent 102 trackers from profiling you and hidden your IP address from known trackers."
+        safariprivacyreportinfo.setAttribute("style", `
+            width:70%;
+            align-self: center;
+            margin-left:10px;
+        `)
+
+        safariprivacyreport.append(safariprivacyreporticon)
+        safariprivacyreport.append(safariprivacyreportnumber)
+        safariprivacyreport.append(safariprivacyreportinfo)
+
+        let safarisearch = document.createElement("div")
+        safarisearch.setAttribute("style",`
+            position:absolute;
+            display:flex;
+            width:100%;
+            height:10%;
+            background-color: #929191;
+            bottom: 0;
+            justify-content:center;
+        `)
+        let safariserchinput = document.createElement("input")
+        safariserchinput.setAttribute("type","text")
+        safariserchinput.setAttribute("placeholder","Search or enter website")
+        safariserchinput.setAttribute("style",`
+            margin:0;
+            height:40px;
+            align-self: center;
+            background-color: #b7b7b7;
+        `)
+
+        
+        safarisearch.append(safariserchinput)
+
+        let opensites = [youtube, googleweb]
+
+        opensites.forEach(element =>{
+            element.addEventListener("click", () =>{
+                let url = `https://${element.getAttribute("id")}.com`
+                window.location = url
+            })
+        })
+
+        safariserchinput.addEventListener("keypress", e =>{
+            if (e.key == "Enter"){
+                let url = `https://www.google.com/search?q=${safariserchinput.value}`
+                window.location = url
+            }
+        })
+
+        parent.append(safariTitle)
+        parent.append(safariSites)
+        parent.append(safariprivacy)
+        parent.append(safariprivacyreport)
+        parent.append(safarisearch)
+    }
     safari.containerSelf()
-    safari.oppenappSelf("-40px")
+    safari.oppenappSelf("-40px", safariapp)
 
     notes.containerSelf()
-    notes.oppenappSelf("-40px")
+    notes.oppenappSelf("-40px",notworking)
 
     files.containerSelf()
-    files.oppenappSelf("-40px")
+    files.oppenappSelf("-40px",notworking)
 
     clock.containerSelf()
-    clock.oppenappSelf("-40px")
+    clock.oppenappSelf("-40px",notworking)

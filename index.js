@@ -29,6 +29,9 @@ if(window.innerWidth > 1024){
         align-items:center;
     `)
     let gearContainer = document.createElement("div")
+    gearContainer.setAttribute("style",`
+        text-align:center;
+    `)
     desktop.append(gearContainer)
 
     let gear = document.createElement("img")
@@ -50,7 +53,7 @@ if(window.innerWidth > 1024){
     gearContainer.append(gear2)
 
     let message = document.createElement("div")
-    message.innerHTML = "Desktop version under construction"
+    message.innerHTML = "Desktop version under construction <br> Use desktop phone emulator"
     message.setAttribute("style", `
         position:relative;
         top:50px;

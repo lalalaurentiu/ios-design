@@ -95,7 +95,10 @@
 }
 
     #menuicons{
-        position: relative;
+        position: absolute;
+        bottom: 10px;
+        left:50%;
+        transform: translateX(-50%);
         display: flex;
         margin: auto;
         background-color: rgba(138, 138, 138, 0.5);
@@ -222,7 +225,7 @@
     background-color: black;
     color:white;
     flex:1;
-    max-width: 390px;
+    width: 100%;
     text-align: center;
     display: block;
     z-index: 6;
@@ -249,3 +252,25 @@
         border-radius: 50px;
     }
     
+/* desktop animationanimation */
+#gear{
+    position: relative;
+    animation: spin 5s linear infinite;
+}
+
+#gear2{
+    position: relative;
+    animation: reversespin 5s linear infinite;
+    top:50px;
+    right:40px
+}
+
+@keyframes spin{
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+@keyframes reversespin{
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(-360deg);}
+}

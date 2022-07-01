@@ -2,21 +2,75 @@
 
 // Loading Bar
 let startLoading = 0
+let main = document.getElementById("main")
 let progresBarElement = document.getElementById('progresBar')
 let loadingElements = document.getElementById('loading')
 let loadingScreen = document.getElementById('screen')
 let header = document.getElementById("header")
 
+
 let screenHeight = window.innerHeight
 let screenWidth = window.innerWidth
 
+
+console.log(main)
+if(window.innerWidth > 1024){
+    screenHeight = 0
+    screenWidth = 0
+    let desktop = document.createElement("div")
+    desktop.setAttribute("style", `
+        width:100%;
+        height:100%;
+        position:absolute;
+        background-color:white;
+        z-index:7;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    `)
+    let gearContainer = document.createElement("div")
+    desktop.append(gearContainer)
+
+    let gear = document.createElement("img")
+    gear.setAttribute("id", "gear")
+    gear.setAttribute("src", "icons/gear.svg")
+    gear.setAttribute("style", `
+        width:300px;
+        height:300px;
+    `)
+    gearContainer.append(gear)
+
+    let gear2 = document.createElement("img")
+    gear2.setAttribute("id", "gear2")
+    gear2.setAttribute("src", "icons/gear.svg")
+    gear2.setAttribute("style", `
+        width:300px;
+        height:300px;
+    `)
+    gearContainer.append(gear2)
+
+    let message = document.createElement("div")
+    message.innerHTML = "Desktop version under construction"
+    message.setAttribute("style", `
+        position:relative;
+        top:50px;
+        align-self:center;
+        font-size:50px
+        `)
+
+    gearContainer.append(message)
+    main.prepend(desktop)
+}
+
+
 header.style.width = `calc(${screenWidth}px - 10px)`
-window.addEventListener("resize", function (h) {
-    // this.location.reload(true)
+window.addEventListener("resize", function () {
     if (this.window.innerHeight > screenHeight + 20){
         this.location.reload(true)
+    } else if (this.window.innerWidth > screenWidth + 20 || this.window.innerWidth < screenWidth - 20 ){
+        this.location.reload(true)
+        
     }
-    console.log(this.window.innerHeight)
 })
 
 loadingScreen.style.height = `${screenHeight}px`
@@ -1494,15 +1548,17 @@ loading()
                             }
                         }
                     }
-
-                    let items = element.items
-                    let checked = []
-                        
-
-                    items.splice = function (){
-                        Array.prototype.splice.apply(this, arguments);
-                        generate()
-                    }
+                   
+                        let items = element.items
+                        let checked = []
+                            
+                    try {
+                        items.splice = function (){
+                            Array.prototype.splice.apply(this, arguments);
+                            generate()
+                        }
+                    } catch{}
+                    
                     let deleteContainer = document.createElement("div")
                     deleteContainer.setAttribute("style", `
                         position:absolute;
@@ -1542,6 +1598,7 @@ loading()
                     deleteButton.setAttribute("style", "margin-right:10px;")
                     deleteContainer.append(deleteButton)
                     deleteButton.addEventListener("click", () =>{
+                        // not delete all files
                             checked.forEach(number =>{
                                 items.splice(number,1)
                                 
@@ -1566,8 +1623,8 @@ loading()
 
                     function generate(){
                         
-                        if (items.length > 0){
-
+                        if (items){
+                            console.log(items.length )
                             body.innerHTML = ""
                         
                             items.forEach(elem => {

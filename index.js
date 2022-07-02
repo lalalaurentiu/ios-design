@@ -13,7 +13,6 @@ let screenHeight = window.innerHeight
 let screenWidth = window.innerWidth
 
 
-console.log(main)
 if(window.innerWidth > 1024){
     screenHeight = 0
     screenWidth = 0
@@ -187,10 +186,10 @@ loading()
     setInterval(() =>{WifiBlinkLine(wifiLine)}, 60 * 1000)
 
     // battery
-    
+    let batteryWidh = 99
     function batteryDischarger(){
         let discharger = document.getElementById("battery-cell")
-        let batteryWidh = 99
+        
         setInterval(() =>{
             discharger.style.width = `${batteryWidh}%`;
             batteryWidh -= 1;
@@ -288,6 +287,7 @@ loading()
                 
                 let position = pos.touches[0].clientY;
                 this.app.style.height = `${position}px`
+                
                 if (position < 700) {
                     this.app.removeAttribute("style")
                     this.app.setAttribute(
@@ -388,12 +388,29 @@ loading()
         elementsMenu.setAttribute("id", "left-side-elementsMenu")
         let phoneElement = document.createElement("div")
         phoneElement.setAttribute("id","left-side-phoneElement")
-        phoneElement.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
-            <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
-            <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-            </svg>
+        let phoneImg = document.createElement("div")
+        phoneImg.setAttribute("style" ,`
+        position:absolute;
+            width:40px;
+            height:40px;
+            margin-top:20px;
+            margin-left:20px;
+        `)
+        phoneImg.innerHTML = `
+        <svg viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="iphoneIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="white" color="#000000"> <title id="iphoneIconTitle">iPhone</title> <path d="M18,3 L18,21 C18,21.5522847 17.5522847,22 17,22 L7,22 C6.44771525,22 6,21.5522847 6,21 L6,3 C6,2.44771525 6.44771525,2 7,2 L17,2 C17.5522847,2 18,2.44771525 18,3 Z"/> <polygon points="14 2 14 3 10 3 10 2"/> </svg>
         `
+        elementsMenu.append(phoneImg)
+        let batteryPorcent = document.createElement("div")
+        batteryPorcent.innerHTML = `${batteryWidh}%`
+        batteryPorcent.setAttribute("style", `
+            margin-left:10px;
+            font-size:40px;
+            color:rgb(6, 199, 6);
+        `)
+        setInterval(() =>{batteryPorcent.innerHTML = `${batteryWidh}%`}, 100*100)
+        // phoneElement.innerHTML = `
+        // <svg width="24px" height="24px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="iphoneIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="white" color="#000000"> <title id="iphoneIconTitle">iPhone</title> <path d="M18,3 L18,21 C18,21.5522847 17.5522847,22 17,22 L7,22 C6.44771525,22 6,21.5522847 6,21 L6,3 C6,2.44771525 6.44771525,2 7,2 L17,2 C17.5522847,2 18,2.44771525 18,3 Z"/> <polygon points="14 2 14 3 10 3 10 2"/> </svg>
+        // `
         let weatherElement = document.createElement("div")
         weatherElement.setAttribute("id", "left-side-weatherElement")
         // weather api
@@ -419,6 +436,7 @@ loading()
         weatherElement.append(description)
 
         elementsMenu.append(phoneElement)
+        elementsMenu.append(batteryPorcent)
         elements.append(elementsMenu)
         elements.append(weatherElement)
         element.append(elements)
@@ -699,18 +717,19 @@ loading()
             background-color: #929191;
             bottom: 0;
             justify-content:center;
+            
         `)
         let safariserchinput = document.createElement("input")
         safariserchinput.setAttribute("type","text")
         safariserchinput.setAttribute("placeholder","Search or enter website")
         safariserchinput.setAttribute("style",`
+            position:relative;
+            top:5px;
             margin:0;
             height:40px;
-            align-self: center;
             background-color: #b7b7b7;
         `)
 
-        
         safarisearch.append(safariserchinput)
 
         let opensites = [youtube, googleweb]
@@ -1210,6 +1229,7 @@ loading()
             transform:translateX(100%);
             opacity:0;
             transition: all 0.5s;
+            display:none;
         `)
 
         parent.append(app)
@@ -1328,6 +1348,7 @@ loading()
                 bodyButton.addEventListener("click", () =>{
                     app.style.transform = "translateX(0)"
                     app.style.opacity = "1"
+                    app.style.display = "initial"
                     let header = document.createElement("div")
                     header.setAttribute("style", `
                         position:sticky;
@@ -1374,9 +1395,12 @@ loading()
                     Browse
                     `
                     backButton.addEventListener("click", () =>{
-                        app.style.transform = "translateX(100%)"
-                        app.style.opacity = "0"
-                        app.innerHTML = ""
+                        setTimeout(() => {
+                            app.style.transform = "translateX(100%)"
+                            app.style.opacity = "0"
+                            app.innerHTML = ""
+                            app.style.display = "none"
+                        })
                     })
                     appHeader.append(backButton)
 
@@ -1621,6 +1645,7 @@ loading()
                         transform:translateX(100%);
                         transition: all 0.5s;
                         z-index:5;
+                        display:none;
                     `)
                     parent.append(folderContainer)
 
@@ -1654,6 +1679,7 @@ loading()
                                 elementTitle.addEventListener("click", EditFunction.edit)
 
                                 elementIcon.addEventListener("click", () => {
+                                    folderContainer.style.display = "initial"
                                     folderContainer.style.transform = "translateX(0)"
                                     let header = document.createElement("div")
                                     header.setAttribute("style", `
@@ -1681,7 +1707,9 @@ loading()
                                         header.append(backButton)
                                         backButton.addEventListener("click", () =>{
                                             folderContainer.style.transform = "translateX(100%)"
-                                            setTimeout(() =>{folderContainer.innerHTML = ""}, 500)
+                                            setTimeout(() =>{folderContainer.innerHTML = "";
+                                            folderContainer.style.display = "none"
+                                        }, 500)
                                         })
                                         let Title = document.createElement("div")
                                         Title.innerHTML = elementTitle.innerHTML
@@ -1710,6 +1738,7 @@ loading()
                                 elementTitle.addEventListener("click", EditFunction.edit)
 
                                 elementIcon.addEventListener("click", () => {
+                                    folderContainer.style.display = "initial"
                                     folderContainer.style.transform = "translateX(0)"
                                     let header = document.createElement("div")
                                     header.setAttribute("style", `
@@ -1737,7 +1766,10 @@ loading()
                                         header.append(backButton)
                                         backButton.addEventListener("click", () =>{
                                             folderContainer.style.transform = "translateX(100%)"
-                                            setTimeout(() =>{folderContainer.innerHTML = ""}, 500)
+                                            setTimeout(() =>{
+                                                folderContainer.innerHTML = "";
+                                                folderContainer.style.display = "none"
+                                            }, 500)
                                         })
                                         let Title = document.createElement("div")
                                         Title.innerHTML = elementTitle.innerHTML

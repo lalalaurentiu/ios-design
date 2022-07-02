@@ -162,23 +162,32 @@
                         width: 45%;
                         border-radius: 30px;
                         background-color: rgb(57, 57, 57);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        /* align-items: center; */
+                        /* justify-content: center; */
                     }
                         #left-side-phoneElement{
-                            width: 80%;
-                            height: 80%;
-                            border: 10px solid rgb(6, 199, 6);
+                            width: 50px;
+                            height: 50px;
+                            border: 5px solid rgb(6, 199, 6);
+                            line-height: 50%;
                             border-radius: 50%;
-                            color: white;
                             display: flex;
                             justify-content: center;
                             align-items: center;
+                            margin:10px;
+                            animation: prixClipFix 1000s infinite linear;
                         }
-                        #left-side-phoneElement > svg{
-                        width: 50%;
-                        height: 50%;
+                        
+                        /* #left-side-phoneElement > svg{
+                        width: 80%;
+                        height: 80%;
+                        } */
+                        @keyframes prixClipFix {
+                            100%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+                            75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+                            50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+                            25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+                            0% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
                         }
                     #left-side-weatherElement{
                         padding: 10px 20px;

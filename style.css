@@ -1,13 +1,13 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: sans-serif;
 }
 
 .main{
     display: flex;
     justify-content: center;
     overflow: hidden;
-    font-family: sans-serif;
 }
 #header{
     position: absolute;
@@ -162,8 +162,6 @@
                         width: 45%;
                         border-radius: 30px;
                         background-color: rgb(57, 57, 57);
-                        /* align-items: center; */
-                        /* justify-content: center; */
                     }
                         #left-side-phoneElement{
                             width: 50px;
@@ -177,11 +175,7 @@
                             margin:10px;
                             animation: prixClipFix 1000s infinite linear;
                         }
-                        
-                        /* #left-side-phoneElement > svg{
-                        width: 80%;
-                        height: 80%;
-                        } */
+
                         @keyframes prixClipFix {
                             100%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
                             75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}

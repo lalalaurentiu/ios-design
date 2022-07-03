@@ -244,4 +244,5 @@ let countries = [
     {name: 'Zimbabwe', code: 'ZW'} 
   ]
 
-export {countries}
+export default {countries}
+// module.exports = countries

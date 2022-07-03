@@ -215,13 +215,14 @@
                 text-align: center;
                 margin-top: 50px;
             }
-    #aplications{
+    #aplications, #aplications2{
         position: relative;
         display: flex;
         top: 40px;
         padding-top: 5%;
         justify-content:space-around;
         margin: 0 auto;
+        height: 70px;
     }
 
 #loading{

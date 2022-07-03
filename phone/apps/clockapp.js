@@ -3,17 +3,6 @@ import { hour } from "../utils/hour.js"
 
 function clockApp(parent){
     parent.style.fontFamily = "san-serif"
-    // footer
-    let footerContainer = document.createElement("div")
-    footerContainer.setAttribute("style", `
-        position:absolute;
-        display:flex;
-        bottom:0;
-        width:100%;
-        height:10%;
-    `)
-    parent.append(footerContainer)
-
     // window for all sectiion
     let externalwindow = document.createElement("div")
     externalwindow.setAttribute("style", `
@@ -244,6 +233,7 @@ function clockApp(parent){
                     externalwindow.style.display = "none"
                 }, 500)
                 externalwindow.style.transform = ("translateY(100%)")
+                
             })
         })
     })

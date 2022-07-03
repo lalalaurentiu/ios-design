@@ -104,7 +104,7 @@ loading()
     let time = document.getElementById("time")
     
     import {hour} from "./phone/utils/hour.js"
-
+    
     time.innerHTML = hour()
     setInterval(() => {time.innerHTML = hour()}, 60 * 1000)
 
@@ -525,7 +525,7 @@ loading()
             this.title.style.height = "70px"
             this.title.style.color = "white"
             this.title.style.display = "flex"
-            this.title.innerHTML = `<span style = "align-self: flex-end;width: 100%; text-align:center;">${this.name}</span>`
+            this.title.innerHTML = `<span style = "align-self: flex-end;width: 100%; text-align:center;font-size:10px;">${this.name}</span>`
             this.app.append(this.title)
             super.containerSelf()
         }
@@ -552,9 +552,10 @@ loading()
         } 
     }
     let aplications = document.getElementById("aplications")
-    aplications.style.height = `calc(${screenHeight}px - 15%)`
+    // aplications.style.height = `calc(${screenHeight}px - 15%)`
     let aplicationWidh = (screenWidth / 100) * 90
     aplications.style.width = `${aplicationWidh}px`
+
     const safari = new ScreenAplications(aplications, "Safari", "aplication", "icons/safari.svg")
     const notes = new ScreenAplications(aplications, "Notes", "aplication", "icons/notes.svg")
     const files = new ScreenAplications(aplications, "Files", "aplication", "icons/files.svg")
@@ -579,3 +580,25 @@ loading()
 
     clock.containerSelf()
     clock.oppenappSelf("-40px",clockApp)
+
+    let aplications2 = document.getElementById("aplications2")
+    // aplications2.style.height = `calc(${screenHeight}px - 15%)`
+    let aplication2Widh = (screenWidth / 100) * 90
+    aplications2.style.width = `${aplication2Widh}px`
+
+    const phone = new ScreenAplications(aplications2, "Photo", "aplication", "icons/apple-photos.svg")
+    const camera = new ScreenAplications(aplications2, "Camera", "aplication", "icons/camera.svg")
+    const mail = new ScreenAplications(aplications2, "Mail", "aplication", "icons/mail.svg")
+    const calculator = new ScreenAplications(aplications2, "Calculator", "aplication", "icons/calculator.svg")
+
+    phone.containerSelf()
+    phone.oppenappSelf("-129px", notworking)
+
+    camera.containerSelf()
+    camera.oppenappSelf("-129px", notworking)
+
+    mail.containerSelf()
+    mail.oppenappSelf("-129px", notworking)
+
+    calculator.containerSelf()
+    calculator.oppenappSelf("-129px", notworking)

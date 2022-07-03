@@ -104,7 +104,7 @@ loading()
     let time = document.getElementById("time")
     
     import {hour} from "./phone/utils/hour.js"
-    
+
     time.innerHTML = hour()
     setInterval(() => {time.innerHTML = hour()}, 60 * 1000)
 
@@ -574,7 +574,7 @@ loading()
 
     files.containerSelf()
     files.oppenappSelf("-40px",filesApp)
-    // import countries from "./countries.js"
+
     import {clockApp} from "./phone/apps/clockapp.js"
 
     clock.containerSelf()

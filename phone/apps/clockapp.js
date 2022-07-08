@@ -391,6 +391,8 @@ function clockApp(parent){
             objectsSections.push({container:worldClockContainer, image:image})
         },
         alarm:function () {
+            let alarms =[]
+
             let alarmcontainer = document.createElement("div")
             alarmcontainer.setAttribute("style", `
                 width:100%;
@@ -474,6 +476,67 @@ function clockApp(parent){
 
             body.append(title)
             body.append(container)
+
+            // demo alarm
+            let ContainersElements = document.createElement("div")
+            ContainersElements.setAttribute("style", `
+                position:absolute;
+                width:100%;
+                height:70px;
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                background:black;
+            `)
+            let sectionleft = document.createElement("div")
+            sectionleft.setAttribute("style", `
+                padding-left:20px;
+            `)
+            let hour = document.createElement("div")
+            hour.innerHTML = "06:00"
+            hour.setAttribute("style", `
+                font-size:30px;
+            `)
+            sectionleft.append(hour)
+            ContainersElements.append(sectionleft)
+
+            let info = document.createElement("div")
+            info.innerHTML = `Alarm, every day`
+            info.setAttribute("style", `
+                color:#6d6d6d;
+            `)
+            
+            sectionleft.append(info)
+            container.append(ContainersElements)
+
+            let activateButton = document.createElement("a")
+            activateButton.setAttribute("style",`
+                display:flex;
+                height:20px;
+                border:1px solid white;
+                border-radius:10px;
+                width:40px;
+                margin-right:20px;
+                justify-conten:start;
+            `)
+            let activateButtonTrigger = document.createElement("div")
+            activateButtonTrigger.setAttribute("style", `
+                hight:100%;
+                width:20px;
+                background:white;
+                border-radius:10px;
+            `)
+            activateButton.append(activateButtonTrigger)
+            ContainersElements.append(activateButton)
+            activateButton.addEventListener("click", () =>{
+                if (activateButton.style.justifyContent == "start"){
+                    activateButton.style.justifyContent = "end"
+                    activateButton.style.background = "#13dc13"
+                } else {
+                    activateButton.style.justifyContent = "start"
+                    activateButton.style.background = "initial"
+                }
+            })
 
             let image = document.createElement("a")
             image.innerHTML = `

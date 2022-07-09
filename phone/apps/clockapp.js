@@ -392,6 +392,21 @@ function clockApp(parent){
         },
         alarm:function () {
             let alarms =[]
+            alarms.push =  function (){
+                Array.prototype.push.apply(this, arguments)
+                let windowWidth = window.innerWidth
+                alarms.forEach(element =>{
+                    element.firstChild.addEventListener("touchmove", pos => {
+                        let position = pos.touches[0].clientX
+                        element.firstChild.style.transition = `all 0.5s`
+                        if ((windowWidth / position) > 3){
+                            element.firstChild.style.transform = ("translateX(-30%)")
+                        }else if ((windowWidth / position) < 2){
+                            element.firstChild.style.transform = ("translateX(0)")
+                        }
+                    })
+                })
+            }
 
             let alarmcontainer = document.createElement("div")
             alarmcontainer.setAttribute("style", `
@@ -517,7 +532,6 @@ function clockApp(parent){
                 border-radius:10px;
                 width:40px;
                 margin-right:20px;
-                justify-conten:start;
             `)
             let activateButtonTrigger = document.createElement("div")
             activateButtonTrigger.setAttribute("style", `
@@ -526,6 +540,7 @@ function clockApp(parent){
                 background:white;
                 border-radius:10px;
             `)
+            activateButton.style.justifyContent = "start"
             activateButton.append(activateButtonTrigger)
             ContainersElements.append(activateButton)
             activateButton.addEventListener("click", () =>{
@@ -537,7 +552,78 @@ function clockApp(parent){
                     activateButton.style.background = "initial"
                 }
             })
+            let deleteButton = document.createElement("a")
+            deleteButton.innerHTML = "Delete"
+            deleteButton.setAttribute("style",`
+                display:flex;
+                padding:0 20px;
+                align-items:center;
+                background:red;
+                height:70px;
+            `)
+            container.append(deleteButton)
+            deleteButton.addEventListener("click", () =>{
+                container.remove()
+            })
+            alarms.push(container)
+            // -- --
+            addButton.addEventListener("click", () =>{
+                externalwindow.innerHTML = ""
+                externalwindow.style.display = "initial"
+                setTimeout(() => {
+                    externalwindow.style.transform = ("translateY(0)")
+                }, 10); 
+                let header = document.createElement("div")
+                header.setAttribute("style", `
+                    display:flex;
+                    align-items:center;
+                    justify-content:space-between;
+                    padding:20px 10px 0 10px;
+                `)
+                externalwindow.append(header)
 
+                let cancelButton = document.createElement("a")
+                cancelButton.innerHTML = "Cancel"
+                cancelButton.setAttribute("style", `
+                    color:#ffac00;
+                `)
+                header.prepend(cancelButton)
+                cancelButton.addEventListener("click", () => {
+                    externalwindow.style.transform = ("translateY(100%)")
+                    setTimeout(() => {
+                        externalwindow.style.display = "none"
+                    }, 500)
+                })
+
+                let title = document.createElement("div")
+                title.innerHTML = "Add Alarm"
+                header.append(title)
+
+                let savebutton = document.createElement("a")
+                savebutton.innerHTML = "Save"
+                savebutton.setAttribute("style", `
+                    color:#ffac00;
+                `)
+                header.append(savebutton)
+
+                let time = document.createElement("input")
+                time.setAttribute("type", "time")
+                time.setAttribute("value", "00:00")
+                time.setAttribute("style", `
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                `)
+                externalwindow.append(time)
+                let optionsContainer = document.createElement("div")
+                optionsContainer.setAttribute("style", `
+                    width:100%;
+                    background:#8a8a8ab3;
+                `)
+                externalwindow.append(optionsContainer)
+
+                let repeatContainer = document.createElement("div")
+            })
             let image = document.createElement("a")
             image.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" id="Layer_1" x="0" y="0" version="1.1" viewBox="0 0 29 29" xml:space="preserve"><path d="M22.598 22.684A10.46 10.46 0 0 0 25 16c0-5.799-4.701-10.5-10.5-10.5S4 10.201 4 16c0 2.539.902 4.868 2.402 6.684l-2.109 2.109a.999.999 0 1 0 1.414 1.414l2.109-2.109c1.816 1.5 4.144 2.402 6.684 2.402s4.868-.902 6.684-2.402l2.109 2.109a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414l-2.109-2.109zM14.5 25.5C9.253 25.5 5 21.247 5 16s4.253-9.5 9.5-9.5S24 10.753 24 16s-4.253 9.5-9.5 9.5z"/><path d="M14.5 26.5C8.71 26.5 4 21.79 4 16S8.71 5.5 14.5 5.5 25 10.21 25 16s-4.71 10.5-10.5 10.5zm0-19C9.813 7.5 6 11.313 6 16s3.813 8.5 8.5 8.5S23 20.687 23 16s-3.813-8.5-8.5-8.5z"/><path d="M2.685 11.953a12.38 12.38 0 01.898-2.026A3.474 3.474 0 013 8c0-1.93 1.57-3.5 3.5-3.5.712 0 1.374.216 1.927.583a12.38 12.38 0 012.026-.898A5.48 5.48 0 006.5 2.5 5.507 5.507 0 001 8a5.48 5.48 0 001.685 3.953zM15.5 17H10v-2h3.5V9.5h2zM20.573 5.083A3.474 3.474 0 0122.5 4.5C24.43 4.5 26 6.07 26 8c0 .712-.216 1.374-.583 1.927.359.642.656 1.321.898 2.026A5.48 5.48 0 0028 8c0-3.032-2.468-5.5-5.5-5.5a5.48 5.48 0 00-3.953 1.685c.705.243 1.384.54 2.026.898z"/></svg><br>

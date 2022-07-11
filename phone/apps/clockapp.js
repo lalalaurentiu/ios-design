@@ -52,7 +52,6 @@ function clockApp(parent){
                 Array.prototype.push.apply(this, arguments);
                 countriesObjects.forEach(element => {
                     let windowWidth = window.innerWidth
-                    console.log(element.firstChild)
                     element.firstChild.addEventListener("touchmove", pos => {
                         let position = pos.touches[0].clientX
                         element.firstChild.style.transition = `all 0.5s`
@@ -408,6 +407,16 @@ function clockApp(parent){
                 })
             }
 
+            let days = {
+                0:{day:"Monday", short:"Mon", check:false},
+                1:{day:"Tuesday", short:"Tue", check:false},
+                2:{day:"Wednesday", short:"Wed", check:false},
+                3:{day:"Thursday", short:"Thu", check:false},
+                4:{day:"Friday", short:"Fri", check:false},
+                5:{day:"Saturday", short:"Sat", check:false},
+                6:{day:"Sunday", short:"Sun", check:false},
+            }
+
             let alarmcontainer = document.createElement("div")
             alarmcontainer.setAttribute("style", `
                 width:100%;
@@ -622,7 +631,211 @@ function clockApp(parent){
                 `)
                 externalwindow.append(optionsContainer)
 
-                let repeatContainer = document.createElement("div")
+                let alarmUtilsContainer = document.createElement("div")
+                alarmUtilsContainer.setAttribute("style", `
+                    width:95%;
+                    margin:10px;
+                    background:#8a8a8ab3;
+                    border-radius:10px;
+                    padding-bottom:10px;
+                `)
+                externalwindow.append(alarmUtilsContainer)
+                // utilscontainer
+                let utilsElementContainer = document.createElement("div")
+                utilsElementContainer.setAttribute("style", `
+                    position:absolute;
+                    width:100%;
+                    height:100%;
+                    bottom:0;
+                    background-color:#6d6d6d;
+                    border-top-left-radius:10px;
+                    border-top-right-radius:10px;
+                    transform:translateX(100%);
+                    transition: all 0.5s;
+                    display:none;
+                `)
+                externalwindow.append(utilsElementContainer)
+                // elements
+                
+
+                function createAlarmsElements(rightTitle, leftValue, func){
+                    let element = document.createElement("div")
+                    element.setAttribute("style", `
+                        display:flex;
+                        padding:10px 0 10px 10px;
+                        border-bottom: 1px solid #b7b6b6b3;
+                        margin-left:10px;
+                        justify-content:space-between;
+                    `)
+                    alarmUtilsContainer.append(element)
+                    let title = document.createElement("div")
+                    title.innerHTML = `${rightTitle}`
+                    element.append(title)
+
+                    let rightSide = document.createElement("div")
+                    rightSide.setAttribute("style", `
+                        margin-right:10px;
+                        display:flex;
+                        align-items:center;
+                    `)
+                    element.append(rightSide)
+
+                    let elementValue = document.createElement("div")
+                    elementValue.innerHTML = `${leftValue}`
+                    rightSide.append(elementValue)
+
+                    let elementButton = document.createElement("div")
+                    elementButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#b7b6b6b3" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    `
+                    elementButton.setAttribute("style", `
+                        margin-left:10px;
+                    `)
+                    elementButton.addEventListener("click", () =>{
+                        utilsElementContainer.style.display = "initial"
+                        setTimeout(() =>{
+                            utilsElementContainer.style.transform = "translateX(0)"
+                        },100)
+                        func()
+                    })
+                    rightSide.append(elementButton)
+                }
+                function repeat (){
+                    utilsElementContainer.innerHTML = ""
+                    let header = document.createElement("div")
+                    header.setAttribute("style", `
+                        width:50%;
+                        display:flex;
+                        align-items:center;
+                    `)
+                    let rightHeader = document.createElement("div")
+                    rightHeader.setAttribute("style", `
+                        color:#ffac00;
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        margin:10px;
+                    `)
+                    rightHeader.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    Back
+                    `
+                    header.append(rightHeader)
+                    
+                    let leftHeader = document.createElement("div")
+                    leftHeader.innerHTML = "Repeat"
+                    leftHeader.setAttribute("style",`
+                        position:relative;
+                        left:50%;
+                        transform:translateX(40%);
+                    `)
+                    header.append(leftHeader)
+                    utilsElementContainer.append(header)
+
+                    let container = document.createElement("div")
+                    container.setAttribute("style", `
+                        width:95%;
+                        margin:30px 10px 10px 10px;
+                        background:#8a8a8ab3;
+                        border-radius:10px;
+                        padding-bottom:10px;
+                    `)
+                    utilsElementContainer.append(container)
+
+                    Object.entries(days).forEach(item =>{
+                        let element = document.createElement("div")
+                        element.setAttribute("style", `
+                            display:flex;
+                            padding:10px 0 10px 10px;
+                            border-bottom: 1px solid #b7b6b6b3;
+                            margin-left:10px;
+                            justify-content:space-between;
+                        `)
+                        let left = document.createElement("div")
+                        left.innerHTML = `Every ${item[1].day}`
+                        element.append(left)
+
+                        container.append(element)
+
+                        let right = document.createElement("div")
+                        right.setAttribute("style" , `
+                                color:#ffac00;
+                                margin-right:10px;
+                            `)
+                        element.append(right)
+
+                        element.addEventListener("click", () =>{
+                            if (item[1].check == false){
+                                right.innerHTML = `
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                </svg>
+                            `
+                                item[1].check = true
+                            } else {
+                                right.innerHTML = ""
+                                item[1].check = false
+                            }
+                        })
+                    })   
+                    
+                    rightHeader.addEventListener("click", () =>{
+                        utilsElementContainer.style.transform = "translateX(100%)"
+                        setTimeout(() =>{
+                            utilsElementContainer.style.display = "none"
+                        }, 500)
+                        console.log(days)
+                    })
+                }
+
+                createAlarmsElements("Repeat", "Never", repeat)
+                createAlarmsElements("Label", "Alarm")
+                createAlarmsElements("Sound", "Radar")
+
+                let element = document.createElement("div")
+                    element.setAttribute("style", `
+                        display:flex;
+                        padding:10px 0 10px 10px;
+                        border-bottom: 1px solid #b7b6b6b3;
+                        margin-left:10px;
+                        justify-content:space-between;
+                    `)
+                    alarmUtilsContainer.append(element)
+                    let elementitle = document.createElement("div")
+                    elementitle.innerHTML = `Snooze`
+                    element.append(elementitle)
+                    let activateButton = document.createElement("a")
+                    activateButton.setAttribute("style",`
+                        display:flex;
+                        height:20px;
+                        border:1px solid white;
+                        border-radius:10px;
+                        width:40px;
+                        margin-right:20px;
+                    `)
+                    let activateButtonTrigger = document.createElement("div")
+                    activateButtonTrigger.setAttribute("style", `
+                        hight:100%;
+                        width:20px;
+                        background:white;
+                        border-radius:10px;
+                    `)
+                    activateButton.style.justifyContent = "start"
+                    activateButton.append(activateButtonTrigger)
+                    element.append(activateButton)
+                    activateButton.addEventListener("click", () =>{
+                        if (activateButton.style.justifyContent == "start"){
+                            activateButton.style.justifyContent = "end"
+                            activateButton.style.background = "#13dc13"
+                        } else {
+                            activateButton.style.justifyContent = "start"
+                            activateButton.style.background = "initial"
+                        }
+                    })
             })
             let image = document.createElement("a")
             image.innerHTML = `

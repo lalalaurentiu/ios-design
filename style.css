@@ -255,26 +255,45 @@
         height: 100%;
         border-radius: 50px;
     }
-    
-/* desktop animationanimation */
-#gear{
-    position: relative;
-    animation: spin 5s linear infinite;
-}
 
-#gear2{
-    position: relative;
-    animation: reversespin 5s linear infinite;
-    top:50px;
-    right:40px
-}
+/* desktop */
+    /* desktop animationanimation */
+        #gear{
+            position: relative;
+            animation: spin 5s linear infinite;
+        }
 
-@keyframes spin{
-    0% {transform: rotate(0deg);}
-    100% {transform: rotate(360deg);}
-}
+        #gear2{
+            position: relative;
+            animation: reversespin 5s linear infinite;
+            top:50px;
+            right:40px
+        }
 
-@keyframes reversespin{
-    0% {transform: rotate(0deg);}
-    100% {transform: rotate(-360deg);}
-}
+        @keyframes spin{
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+
+        @keyframes reversespin{
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(-360deg);}
+        }
+    @media only screen and (min-width: 1024px) {
+        #screen{
+            flex:1;
+            background-image: url('wallpapers/macbook.webp');
+            background-size: cover;
+            background-position: center center;
+            display:none;
+            transition: all 0.5s;
+        }
+        #header{
+            position: absolute;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 6;
+        }
+    }

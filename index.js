@@ -1,3 +1,11 @@
+import {hour} from "./phone/utils/hour.js"
+import {safariapp} from "./phone/apps/safariapp.js"
+import {notesapp} from "./phone/apps/notesapp.js"
+import {filesApp} from "./phone/apps/filesapp.js"
+import {clockApp} from "./phone/apps/clockapp.js"
+import {notworking} from "./phone/apps/notworkingapp.js"
+import {loading} from "./phone/utils/loading.js"
+
 
 // Loading Bar
 let startLoading = 0
@@ -11,99 +19,101 @@ let header = document.getElementById("header")
 let screenHeight = window.innerHeight
 let screenWidth = window.innerWidth
 
-
 if(window.innerWidth > 1024){
-    screenHeight = 0
-    screenWidth = 0
-    let desktop = document.createElement("div")
-    desktop.setAttribute("style", `
-        width:100%;
-        height:100%;
-        position:absolute;
-        background-color:white;
-        z-index:7;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-    `)
-    let gearContainer = document.createElement("div")
-    gearContainer.setAttribute("style",`
-        text-align:center;
-    `)
-    desktop.append(gearContainer)
+    // screenHeight = 0
+    // screenWidth = 0
+    // let desktop = document.createElement("div")
+    // desktop.setAttribute("style", `
+    //     width:100%;
+    //     height:100%;
+    //     position:absolute;
+    //     background-color:white;
+    //     z-index:7;
+    //     display:flex;
+    //     justify-content:center;
+    //     align-items:center;
+    // `)
+    // let gearContainer = document.createElement("div")
+    // gearContainer.setAttribute("style",`
+    //     text-align:center;
+    // `)
+    // desktop.append(gearContainer)
 
-    let gear = document.createElement("img")
-    gear.setAttribute("id", "gear")
-    gear.setAttribute("src", "icons/gear.svg")
-    gear.setAttribute("style", `
-        width:300px;
-        height:300px;
-    `)
-    gearContainer.append(gear)
+    // let gear = document.createElement("img")
+    // gear.setAttribute("id", "gear")
+    // gear.setAttribute("src", "icons/gear.svg")
+    // gear.setAttribute("style", `
+    //     width:300px;
+    //     height:300px;
+    // `)
+    // gearContainer.append(gear)
 
-    let gear2 = document.createElement("img")
-    gear2.setAttribute("id", "gear2")
-    gear2.setAttribute("src", "icons/gear.svg")
-    gear2.setAttribute("style", `
-        width:300px;
-        height:300px;
-    `)
-    gearContainer.append(gear2)
+    // let gear2 = document.createElement("img")
+    // gear2.setAttribute("id", "gear2")
+    // gear2.setAttribute("src", "icons/gear.svg")
+    // gear2.setAttribute("style", `
+    //     width:300px;
+    //     height:300px;
+    // `)
+    // gearContainer.append(gear2)
 
-    let message = document.createElement("div")
-    message.innerHTML = "Desktop version under construction <br> Use desktop phone emulator"
-    message.setAttribute("style", `
-        position:relative;
-        top:50px;
-        align-self:center;
-        font-size:50px
-        `)
+    // let message = document.createElement("div")
+    // message.innerHTML = "Desktop version under construction <br> Use desktop phone emulator"
+    // message.setAttribute("style", `
+    //     position:relative;
+    //     top:50px;
+    //     align-self:center;
+    //     font-size:50px
+    //     `)
 
-    gearContainer.append(message)
-    main.prepend(desktop)
-}
+    // gearContainer.append(message)
+    // main.prepend(desktop)
 
-
-header.style.width = `calc(${screenWidth}px - 10px)`
-window.addEventListener("resize", function () {
-    if (this.window.innerHeight > screenHeight + 20){
-        this.location.reload(true)
-    } else if (this.window.innerWidth > screenWidth + 20 || this.window.innerWidth < screenWidth - 20 ){
-        this.location.reload(true)
-        
-    }
-})
-
-loadingScreen.style.height = `${screenHeight}px`
-loadingScreen.style.maxWidth = `${screenWidth}px`
-loadingElements.style.height = `${screenHeight}px`
-
-function loading (){
-    if (startLoading == 0) {
-        startLoading = 1;
-        let width = 1
-        let time = setInterval(move, 10)
-        function move(){
-            if (width >= 100 ){
-                clearInterval(time)
-                startLoading = 0
-                loadingElements.style.display = "none"
-                loadingScreen.style.display = "block"
-            } else {
-                width++
-                progresBarElement.style.width = width +"%"
-            }
+    window.addEventListener("resize", function () {
+        if (this.window.innerHeight > screenHeight + 1){
+            this.location.reload(true)
+        } else if (this.window.innerWidth > screenWidth + 1 || this.window.innerWidth < screenWidth - 1 ){
+            this.location.reload(true)
         }
+    })
+    
+    loadingScreen.style.height = `${screenHeight}px`
+    loadingScreen.style.maxWidth = `${screenWidth}px`
+    loadingElements.style.height = `${screenHeight}px`
+
+    // header desktop
+    header.style.width = `calc(${screenWidth}px - 2px)`
+    header.innerHTML = ""
+
+    let leftheaderapp = document.createElement("div")
+    header.append(leftheaderapp)
+
+
+    loading(startLoading,screenWidth, loadingElements, loadingScreen, progresBarElement, header)
+
+    class HeaderApp{
+        app = document.createElement("div")
     }
-}
+}else {
+    loading(startLoading,screenWidth, loadingElements, loadingScreen, progresBarElement)
 
-loading()
-
+    window.addEventListener("resize", function () {
+        if (this.window.innerHeight > screenHeight + 20){
+            this.location.reload(true)
+        } else if (this.window.innerWidth > screenWidth + 20 || this.window.innerWidth < screenWidth - 20 ){
+            this.location.reload(true)
+        }
+    })
+    
+    loadingScreen.style.height = `${screenHeight}px`
+    loadingScreen.style.maxWidth = `${screenWidth}px`
+    loadingElements.style.height = `${screenHeight}px`
+    header.style.width = `calc(${screenWidth}px - 10px)`
 // header
     // hour and minutes
     let time = document.getElementById("time")
     
-    import {hour} from "./phone/utils/hour.js"
+    
     
     time.innerHTML = hour()
     setInterval(() => {time.innerHTML = hour()}, 60 * 1000)
@@ -313,7 +323,7 @@ loading()
     const contacts = new Aplication(parrent, "contacts", "aplication", "icons/contacts.svg")
     const setting = new Aplication(parrent, "settings", "aplication", "icons/settings.svg")
 
-    import {notworking} from "./phone/apps/notworkingapp.js"
+    
 
     imessage.containerSelf()
     imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`,notworking)
@@ -561,22 +571,22 @@ loading()
     const files = new ScreenAplications(aplications, "Files", "aplication", "icons/files.svg")
     const clock = new ScreenAplications(aplications, "Clock", "aplication", "icons/clock.svg")
 
-    import {safariapp} from "./phone/apps/safariapp.js"
+    
 
     safari.containerSelf()
     safari.oppenappSelf("-40px", safariapp)
 
-   import {notesapp} from "./phone/apps/notesapp.js"
+   
 
     notes.containerSelf()
     notes.oppenappSelf("-40px",notesapp)
 
-    import {filesApp} from "./phone/apps/filesapp.js"
+    
 
     files.containerSelf()
     files.oppenappSelf("-40px",filesApp)
 
-    import {clockApp} from "./phone/apps/clockapp.js"
+    
 
     clock.containerSelf()
     clock.oppenappSelf("-40px",clockApp)
@@ -602,3 +612,6 @@ loading()
 
     calculator.containerSelf()
     calculator.oppenappSelf("-129px", notworking)
+}
+
+

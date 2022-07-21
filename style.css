@@ -299,4 +299,8 @@
             align-items: center;
             color: white;
         }
+        .headerapp:hover{
+            background-color: #0095ff;
+            /* border-radius: 10px; */
+        }
     }

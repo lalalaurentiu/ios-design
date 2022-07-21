@@ -101,9 +101,6 @@ if(window.innerWidth > 1024){
             this.title = title
         }
         containerSelf(elements){
-            // this.app.setAttribute("style", `
-                
-            // `)
             this.app.innerHTML = this.title
             this.app.setAttribute("style", `
                 display:flex;
@@ -116,73 +113,100 @@ if(window.innerWidth > 1024){
             appelements.setAttribute("style", `
                     width:20%;
                     position:absolute;
-                    transform:translateY(70%);
+                    transform:translateY(60%);
                     background:rgba(0, 49, 95, 0.5);
                     padding:10px;
                     display:none;
+                    border-radius:10px;
                 `)
             elements.forEach(element => {
-                let elementcontainer = document.createElement("div")
-                elementcontainer.innerHTML = element
+                let elementcontainer = document.createElement("a")
+                elementcontainer.setAttribute("class", "headerapp")
+                elementcontainer.innerHTML = `${element[0]} ${element[1]}`
                 elementcontainer.setAttribute("style", `
                     padding:5px;
                     border-bottom:1px solid white;
+                    width:95%;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
                 `)
                 appelements.append(elementcontainer)
             })
             this.app.append(appelements)
             this.app.addEventListener("click", () => {
                 appelements.style.display = "initial"
-                
+                // this function remove listener from document and remove header app window
+                function closeapp(){
+                    appelements.style.display = "none"
+                    document.removeEventListener("click", closeapp, false)
+                    console.log("in funtion")
+                }
+
+                setTimeout(() => {
+                    document.addEventListener("click", closeapp, false)
+                }, 10 )
+                console.log(appelements.style.display)
             })
         }
     }
 
-    // desktop header apps
-    // function headerappelements(){
-    //     let elements = document.createElement("div")
-    //     elements.setAttribute("style", `
-
-    //     `)
-    //     let about = document.createElement("div")
-    //     elements.append()
-    //     return elements
-    // }
-
     let headerapps = [
         {
             name:`<svg xmlns="http://www.w3.org/2000/svg" whidth=20 height=20 fill="white" data-name="Layer 1" viewBox="0 0 24 24"><path d="M14.94,5.19A4.38,4.38,0,0,0,16,2,4.44,4.44,0,0,0,13,3.52,4.17,4.17,0,0,0,12,6.61,3.69,3.69,0,0,0,14.94,5.19Zm2.52,7.44a4.51,4.51,0,0,1,2.16-3.81,4.66,4.66,0,0,0-3.66-2c-1.56-.16-3,.91-3.83.91s-2-.89-3.3-.87A4.92,4.92,0,0,0,4.69,9.39C2.93,12.45,4.24,17,6,19.47,6.8,20.68,7.8,22.05,9.12,22s1.75-.82,3.28-.82,2,.82,3.3.79,2.22-1.24,3.06-2.45a11,11,0,0,0,1.38-2.85A4.41,4.41,0,0,1,17.46,12.63Z"/></svg>`,
-            elements:["About this Mac", "test"]
+            elements:[["<span>About This Mac</span>", "<span></span>"], 
+                        ["<span>System Preferences...</span>", "<span></span>"],
+                        ["<span>App Store...</span>", "<span style='padding:2px 5px 2px 5px;background:rgba(2, 80, 153, 0.5);border-radius:10px;'>5 updates</span>"],
+                        ["<span>Recent Items</span>", `<span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </span>`],
+                        ["<span>Force Quit...</span>",`<span style="color:white;">
+                            <img width=20 height=20 src="./mac-icons/mac-option-command.svg">
+                            <img width=20 height=20 src="./mac-icons/mac-command.svg">
+                        </span>`],
+                        ["<span>Sleep</span>", "<span></span>"],
+                        ["<span>Restart...</span>", "<span></span>"],
+                        ["<span>Shut Down</span>", "<span></span>"],
+                        ["<span>Lock Screen</span>",`<span style="color:white;">
+                            <img width=20 height=20 src="./mac-icons/mac-control-command.svg">
+                            <img width=20 height=20 src="./mac-icons/mac-command.svg">
+                            <span style="display:inline-block;transform:translateY(-5px)">Q</span>
+                        </span>`],
+                        ["<span>Log Out</span>",`<span style="color:white;">
+                            <img width=20 height=20 src="./mac-icons/mac-shift-command.svg">
+                            <img width=20 height=20 src="./mac-icons/mac-command.svg">
+                            <span style="display:inline-block;transform:translateY(-5px)">Q</span>
+                        </span>`],
+                    ]
         },
         {
             name:"Finder",
-            elements:[]
+            elements:[["<span>In progress...</span>", "<span></span>"], ]
         },
         {
             name:"File",
-            elements:[]
+            elements:[["<span>In progress...</span>", "<span></span>"],]
         },  
         {
             name:"View",
-            elements:[]
+            elements:[["<span>In progress...</span>", "<span></span>"],]
         },    
         {
             name:"Go",
-            elements:[]
+            elements:[["<span>In progress...</span>", "<span></span>"],]
         },
         {
             name:"Window",
-            elements:[]
+            elements:[["<span>In progress...</span>", "<span></span>"],]
         },
         {
             name:"Help",
-            elements:[]
+            elements:[["<span>In progress...</span>", "<span></span>"],]
         },
     ]
-    // const mac = new HeaderApp(leftheaderapp,
-    //                             `<svg xmlns="http://www.w3.org/2000/svg" fill="white" data-name="Layer 1" viewBox="0 0 24 24"><path d="M14.94,5.19A4.38,4.38,0,0,0,16,2,4.44,4.44,0,0,0,13,3.52,4.17,4.17,0,0,0,12,6.61,3.69,3.69,0,0,0,14.94,5.19Zm2.52,7.44a4.51,4.51,0,0,1,2.16-3.81,4.66,4.66,0,0,0-3.66-2c-1.56-.16-3,.91-3.83.91s-2-.89-3.3-.87A4.92,4.92,0,0,0,4.69,9.39C2.93,12.45,4.24,17,6,19.47,6.8,20.68,7.8,22.05,9.12,22s1.75-.82,3.28-.82,2,.82,3.3.79,2.22-1.24,3.06-2.45a11,11,0,0,0,1.38-2.85A4.41,4.41,0,0,1,17.46,12.63Z"/></svg>`)
-                               
-    // mac.containerSelf(headerappelements)
+
     headerapps.forEach(element => {
         const app = new HeaderApp(leftheaderapp, element.name)
         app.containerSelf(element.elements)

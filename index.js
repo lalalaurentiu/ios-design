@@ -709,11 +709,62 @@ if(window.innerWidth > 1024){
         },
         {
             name:"Window",
-            elements:[["<span>In progress...</span>", "<span></span>"],]
+            elements:[
+                ["<span>Minimise</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">M</span>
+                </span>`],
+                ["<span>Zoom</span>",`<span></span>`],
+                ["<span>Move Window to Left Side of Screen</span>",`<span></span>`],
+                ["<span>Move Window to Right Side of Screen</span>",`<span></span>`],
+                ["<span>Cycle Throught Windows</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">\´</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Show Previous Tab</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-control-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-shift-command.svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                </span>`],
+                ["<span>Show Next Tab</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-control-command.svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                </span>`],
+                ["<span>Move Tab to New Window</span>",`<span></span>`],
+                ["<span>Merge All Windows</span>",`<span></span>`,"border-bottom:1px solid white;"],
+                ["<span>Bring All to Front</span>",`<span></span>`,"border-bottom:1px solid white;"],
+                [`<span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" fill="currentColor" class="bi bi-suit-diamond" viewBox="0 0 16 16">
+                        <path d="M8.384 1.226a.463.463 0 0 0-.768 0l-4.56 6.468a.537.537 0 0 0 0 .612l4.56 6.469a.463.463 0 0 0 .768 0l4.56-6.469a.537.537 0 0 0 0-.612l-4.56-6.468zM6.848.613a1.39 1.39 0 0 1 2.304 0l4.56 6.468a1.61 1.61 0 0 1 0 1.838l-4.56 6.468a1.39 1.39 0 0 1-2.304 0L2.288 8.92a1.61 1.61 0 0 1 0-1.838L6.848.613z"/>
+                    </svg>
+                    Downloads
+                </span>`,
+                `<span></span>`]
+            ]
         },
         {
             name:"Help",
-            elements:[["<span>In progress...</span>", "<span></span>"],]
+            elements:[
+                [`<input type="text" placeholder="Search" style="padding-left:5px;margin:0;height:30px;width:100%;text-align:start;">`, "<span></span>"],
+                ["<span>macOS Help</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">?</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>See What´s New in macOS</span>",`<span></span>`],
+                ["<span>New to Mac? Tour the Basics</span>",`<span></span>`],
+                ["<span>Get to know your Mac</span>",`<span></span>`],
+            ]
         },
     ]
 

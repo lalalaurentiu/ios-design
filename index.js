@@ -334,6 +334,52 @@ if(window.innerWidth > 1024){
                     <span style="display:inline-block;transform:translateY(-2px)">F</span>
                 </span>`],
             ]
+        }, 
+        {
+            name:"Edit",
+            elements:[
+                ["<span>Undo Rename</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">Z</span>
+                </span>`],
+                ["<span>Redo</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-shift-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">F</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Cut</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">X</span>
+                </span>`],
+                ["<span>Copy</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">C</span>
+                </span>`],
+                ["<span>Paste</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">V</span>
+                </span>`],
+                ["<span>Select All</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">A</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Show Clipboard</span>",`<span></span>`,"border-bottom:1px solid white;"],
+                ["<span>Start Dictation...</span>",`<span></span>`],
+                ["<span>Emoji & Symbols</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-shift-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">Space</span>
+                </span>`],
+            ]
         },  
         {
             name:"View",

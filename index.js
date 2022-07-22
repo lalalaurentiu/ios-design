@@ -19,6 +19,8 @@ let header = document.getElementById("header")
 let screenHeight = window.innerHeight
 let screenWidth = window.innerWidth
 
+let parrent = document.getElementById("menuicons")
+
 if(window.innerWidth > 1024){
     // screenHeight = 0
     // screenWidth = 0
@@ -112,18 +114,17 @@ if(window.innerWidth > 1024){
             appelements.setAttribute("style", `
                     width:20%;
                     position:absolute;
-                    transform:translateY(60%);
+                    top:30px;
                     background:rgba(0, 49, 95, 0.5);
                     padding:10px;
                     display:none;
                     border-radius:10px;
+                    font-size:13px;
                 `)
             elements.forEach(element => {
                 let elementcontainer = document.createElement("a")
                 elementcontainer.setAttribute("class", "headerapp")
                 elementcontainer.innerHTML = `${element[0]} ${element[1]}`
-
-                
 
                 elementcontainer.setAttribute("style", `
                     padding:5px;
@@ -159,28 +160,28 @@ if(window.innerWidth > 1024){
                         ["<span>System Preferences...</span>", "<span></span>"],
                         ["<span>App Store...</span>", "<span style='padding:2px 5px 2px 5px;background:rgba(2, 80, 153, 0.5);border-radius:10px;'>5 updates</span>", "border-bottom:1px solid white;"],
                         ["<span>Recent Items</span>", `<span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                             </svg>
                         </span>`,
                         "border-bottom:1px solid white;"],
                         ["<span>Force Quit...</span>",`<span style="color:white;">
-                            <img width=20 height=20 src="./mac-icons/mac-option-command.svg">
-                            <img width=20 height=20 src="./mac-icons/mac-command.svg">
+                            <img width=13 height=13 src="./mac-icons/mac-option-command.svg">
+                            <img width=13 height=13 src="./mac-icons/mac-command.svg">
                         </span>`,
                         "border-bottom:1px solid white;"],
                         ["<span>Sleep</span>", "<span></span>"],
                         ["<span>Restart...</span>", "<span></span>"],
                         ["<span>Shut Down</span>", "<span></span>", "border-bottom:1px solid white;"],
                         ["<span>Lock Screen</span>",`<span style="color:white;">
-                            <img width=20 height=20 src="./mac-icons/mac-control-command.svg">
-                            <img width=20 height=20 src="./mac-icons/mac-command.svg">
-                            <span style="display:inline-block;transform:translateY(-5px)">Q</span>
+                            <img width=13 height=13 src="./mac-icons/mac-control-command.svg">
+                            <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                            <span style="display:inline-block;transform:translateY(-2px)">Q</span>
                         </span>`],
                         ["<span>Log Out</span>",`<span style="color:white;">
-                            <img width=20 height=20 src="./mac-icons/mac-shift-command.svg">
-                            <img width=20 height=20 src="./mac-icons/mac-command.svg">
-                            <span style="display:inline-block;transform:translateY(-5px)">Q</span>
+                            <img width=13 height=13 src="./mac-icons/mac-shift-command.svg">
+                            <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                            <span style="display:inline-block;transform:translateY(-2px)">Q</span>
                         </span>`],
                     ]
         },
@@ -190,40 +191,149 @@ if(window.innerWidth > 1024){
                 ["<span>About Finder</span>", "<span></span>", "border-bottom:1px solid white;"], 
                 ["<span>Preferences...</span>", 
                 `<span>
-                    <img width=20 height=20 src="./mac-icons/mac-command.svg">
-                    <span style="display:inline-block;transform:translateY(-5px)">,</span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">,</span>
                 </span>`, 
                 "border-bottom:1px solid white;"],
                 ["<span>Empty Bin...</span>", 
                 `<span>
-                    <img width=20 height=20 src="./mac-icons/mac-shift-command.svg">
-                    <img width=20 height=20 src="./mac-icons/mac-command.svg">
-                    <img width=20 height=20 src="./mac-icons/mac-delete-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-shift-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-delete-command.svg">
                 </span>`, 
                 "border-bottom:1px solid white;"],
                 ["<span>Services</span>", `<span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </span>`,
                 "border-bottom:1px solid white;"],
                 ["<span>Hide Finders</span>", 
                 `<span>
-                    <img width=20 height=20 src="./mac-icons/mac-command.svg">
-                    <span style="display:inline-block;transform:translateY(-5px)">H</span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">H</span>
                 </span>`],
                 ["<span>Hide Others</span>", 
                 `<span>
-                    <img width=20 height=20 src="./mac-icons/mac-option-command.svg">
-                    <img width=20 height=20 src="./mac-icons/mac-command.svg">
-                    <span style="display:inline-block;transform:translateY(-5px)">H</span>
+                    <img width=13 height=13 src="./mac-icons/mac-option-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">H</span>
                 </span>`],
                 ["<span>Show All</span>", "<span></span>"]
             ]
         },
         {
             name:"File",
-            elements:[["<span>In progress...</span>", "<span></span>"],]
+            elements:[
+                ["<span>New Finder Window</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">N</span>
+                </span>`],
+                ["<span>New Folder</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-shift-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">N</span>
+                </span>`],
+                ["<span>New Folder whith Selection</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-control-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">N</span>
+                </span>`],
+                ["<span>New Smart Folder</span>", "<span></span>"],
+                ["<span>New Tab</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">T</span>
+                </span>`],
+                ["<span>Open</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">O</span>
+                </span>`],
+                ["<span>Open Whith</span>",
+                `<span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </span>`],
+                ["<span>Close Window</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">W</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Get Info</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">I</span>
+                </span>`],
+                ["<span>Rename</span>",`<span></span>`],
+                ["<span>Compress</span>",`<span></span>`],
+                ["<span>Duplicate</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">D</span>
+                </span>`],
+                ["<span>Make Alias</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-control-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">A</span>
+                </span>`],
+                ["<span>Quick Look</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">Y</span>
+                </span>`],
+                ["<span>Print</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">D</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Share</span>", "<span></span>","border-bottom:1px solid white;"],
+                ["<span>Show Original</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">R</span>
+                </span>`],
+                ["<span>Add to Sidebar</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-control-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">Y</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Move to Bin</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-delete-command.svg">
+                </span>`],
+                ["<span>Eject</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">E</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                [`<span>
+                    <div style="width:10px;height:10px;background:red;border-radius:50%;display:inline-block;margin-right:3px;"></div>
+                    <div style="width:10px;height:10px;background:orange;border-radius:50%;display:inline-block;margin-right:3px;"></div>
+                    <div style="width:10px;height:10px;background:yellow;border-radius:50%;display:inline-block;margin-right:3px;"></div>
+                    <div style="width:10px;height:10px;background:green;border-radius:50%;display:inline-block;margin-right:3px;"></div>
+                    <div style="width:10px;height:10px;background:blue;border-radius:50%;display:inline-block;margin-right:3px;"></div>
+                    <div style="width:10px;height:10px;background:rgb(255, 0, 222);border-radius:50%;display:inline-block;margin-right:3px;"></div>
+                    <div style="width:10px;height:10px;background:gray;border-radius:50%;display:inline-block;margin-right:3px;"></div>
+                </span>`, `<span></span>`],
+                ["<span>Tags...</span>", "<span></span>","border-bottom:1px solid white;"],
+                ["<span>Find</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">F</span>
+                </span>`],
+            ]
         },  
         {
             name:"View",
@@ -247,6 +357,67 @@ if(window.innerWidth > 1024){
         const app = new HeaderApp(leftheaderapp, element.name)
         app.containerSelf(element.elements)
     })
+
+    let aplications = [
+        {
+            name:"Finder",
+            image:"finder.svg"
+        },
+        {
+            name:"Safari",
+            image:"safari.svg"
+        },
+        {
+            name:"iMessage",
+            image:"ios-message.svg"
+        },
+        {
+            name:"Appstore",
+            image:"app-store.svg"
+        },
+        {
+            name:"Camera",
+            image:"camera.svg"
+        },
+        {
+            name:"Contacts",
+            image:"contacts.svg"
+        },
+        {
+            name:"Notes",
+            image:"notes.svg"
+        },
+        {
+            name:"Settings",
+            image:"settings.svg"
+        },
+        {
+            name:"Photos",
+            image:"apple-photos.svg"
+        },
+        {
+            name:"Mail",
+            image:"mail.svg"
+        },
+        {
+            name:"Recycle",
+            image:"Recycle-bin.png"
+        },
+    ]
+
+    aplications.forEach( element => {
+        let application = document.createElement("div")
+        application.setAttribute("style", `
+            width:50px;
+            height:50px;
+            background-image:url(./icons/${element.image});
+            background-repeat:no-repeat;
+            margin-right:10px;
+        `)
+        parrent.append(application)
+    })
+    
+
 }else {
     loading(startLoading,screenWidth, loadingElements, loadingScreen, progresBarElement)
 
@@ -352,7 +523,7 @@ if(window.innerWidth > 1024){
     batteryDischarger()
 
     // menu icons
-    let parrent = document.getElementById("menuicons")
+    
     let parrentHeight = (screenHeight / 100) * 10 
     let parrentWidth = (screenWidth /100) * 90
 
@@ -745,7 +916,6 @@ if(window.innerWidth > 1024){
     clock.oppenappSelf("-40px",clockApp)
 
     let aplications2 = document.getElementById("aplications2")
-    // aplications2.style.height = `calc(${screenHeight}px - 15%)`
     let aplication2Widh = (screenWidth / 100) * 90
     aplications2.style.width = `${aplication2Widh}px`
 

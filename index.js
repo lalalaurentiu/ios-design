@@ -383,7 +383,106 @@ if(window.innerWidth > 1024){
         },  
         {
             name:"View",
-            elements:[["<span>In progress...</span>", "<span></span>"],]
+            elements:[
+                ["<span>as Icons</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">1</span>
+                </span>`],
+                ["<span>as List</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">2</span>
+                </span>`],
+                ["<span>as Columns</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">3</span>
+                </span>`],
+                ["<span>as Gallery</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">4</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Use Stacks</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-control-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">0</span>
+                </span>`],
+                ["<span>Sort By</span>",
+                `<span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </span>`],
+                ["<span>Clean Up</span>",`<span></span>`],
+                ["<span>Clean Up By</span>",
+                `<span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Hide Sidebar</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-option-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">S</span>
+                </span>`],
+                ["<span>Hide Preview</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-shift-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">P</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Hide Toolbar</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-option-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">T</span>
+                </span>`],
+                ["<span>Show All Tabs</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-shift-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">\\</span>
+                </span>`],
+                ["<span>Hide Tab Bar</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-shift-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">T</span>
+                </span>`],
+                ["<span>Hide Path Bar</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-option-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">P</span>
+                </span>`],
+                ["<span>Hide Status Bar</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">/</span>
+                </span>`,
+                "border-bottom:1px solid white;"],
+                ["<span>Customise Toolbar...</span>",`<span></span>`],
+                ["<span>Customise Touch Bar...</span>",`<span></span>`,"border-bottom:1px solid white;"],
+                ["<span>Show View Options</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">J</span>
+                </span>`],
+                ["<span>Show Preview Options</span>",`<span></span>`,"border-bottom:1px solid white;"],
+                ["<span>Enter Full Screen</span>",
+                `<span>
+                    <img width=13 height=13 src="./mac-icons/mac-control-command.svg">
+                    <img width=13 height=13 src="./mac-icons/mac-command.svg">
+                    <span style="display:inline-block;transform:translateY(-2px)">P</span>
+                </span>`],
+            ]
         },    
         {
             name:"Go",

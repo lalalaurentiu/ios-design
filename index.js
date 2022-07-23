@@ -21,6 +21,53 @@ let screenWidth = window.innerWidth
 
 let parrent = document.getElementById("menuicons")
 
+// battery
+let batteryWidh = 99
+function batteryDischarger(){
+    let discharger = document.getElementById("battery-cell")
+    
+    setInterval(() =>{
+        discharger.style.width = `${batteryWidh}%`;
+        batteryWidh -= 1;
+        console.log(`"battery" : ${batteryWidh} porcent`)
+    }, 100 * 100)
+}
+
+// wifi functions 
+
+function styleWifiLine(classElement){
+    let width = 100
+    let translate = 90
+    let borderRadius = 50
+    classElement.forEach((element, index) => {
+        
+        width -= 33
+        element.style.width =`${width}%`
+        element.style.borderRadius = `${borderRadius}%`
+        borderRadius -= 10
+        if (index === 1){
+            element.style.transform = `translateY(-${translate}%)`
+            translate += 90
+        } else if (index === 2) {
+            element.style.transform = `translateY(-${translate}%)`
+        }
+        
+        }
+    )
+}
+
+function WifiBlinkLine(classElement,){
+    classElement.forEach(element => {
+        element.style.borderTopColor = "rgba(177, 177, 177, 0.3)"
+    })
+    let lines = Math.floor(Math.random() * classElement.length)
+    console.log(`"wifi" : ${classElement.length - lines} lines`)
+    for (let i = lines;i < classElement.length; i++){
+        classElement[i].style.borderTopColor = "white";
+    }
+}
+
+
 if(window.innerWidth > 1024){
     // screenHeight = 0
     // screenWidth = 0
@@ -832,7 +879,105 @@ if(window.innerWidth > 1024){
         parrent.append(application)
     })
     
+    let rightheaderapp = document.createElement("div")
+    rightheaderapp.setAttribute("style", `
+        display:flex;
+    `)
+    header.append(rightheaderapp)
 
+    // language flag
+    let flag = document.createElement("div")
+    flag.setAttribute("style", `
+        display:flex;
+        align-items:center;
+        margin-right:10px;
+    `)
+    flag.innerHTML = `
+        <svg width="30" height="20" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet"><path fill="#002B7F" d="M4 5a4 4 0 0 0-4 4v18a4 4 0 0 0 4 4h8V5H4z"></path><path fill="#FCD116" d="M12 5h12v26H12z"></path><path fill="#CE1126" d="M32 5h-8v26h8a4 4 0 0 0 4-4V9a4 4 0 0 0-4-4z"></path></svg>
+    `
+    rightheaderapp.append(flag)
+
+    // bluetooth icon
+    let bluetooth = document.createElement("div")
+    bluetooth.setAttribute("style", `
+        display:flex;
+        align-items:center;
+        margin-right:10px;
+    `)
+    bluetooth.innerHTML = `
+    <svg height="15" fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
+        <path d="M45.994,16.917L26.834,0v21.758l-8.586-8.586l-4.242,4.242L26.092,29.5L14.006,41.586l4.242,4.242l8.586-8.586V60
+        l19.16-19.083l-11.52-11.52L45.994,16.917z M32.834,46.327V36.242l4.84,4.841L32.834,46.327z M37.675,17.083l-4.84,5.244V12.242
+        L37.675,17.083z"/>
+    </svg>
+    `
+    rightheaderapp.append(bluetooth)
+
+    // battery
+
+    let battery = document.createElement("div")
+    battery.setAttribute("id","battery")
+    battery.setAttribute("style", `
+        height:15px;
+        margin-right:10px;
+    `)
+    let batterycell = document.createElement("div")
+    batterycell.setAttribute("id", "battery-cell")
+    battery.append(batterycell)
+
+    let batteryplus = document.createElement("div")
+    batteryplus.setAttribute("id", "battery-plus")
+    battery.append(batteryplus)
+
+    rightheaderapp.append(battery)
+    // wifi
+    let wifi = document.createElement("div")
+    wifi.setAttribute("id", "wifi")
+    wifi.setAttribute("style", `
+        width:30px;
+        height:20px;
+        margin-right:10px;
+    `)
+    for (let i = 0;i<3;i++){
+        let wifiline = document.createElement("div")
+        wifiline.setAttribute("class", "wifi-line")
+        wifi.append(wifiline)
+    }
+    rightheaderapp.append(wifi)
+    // search
+    let search = document.createElement("div")
+    search.setAttribute("style", `
+        margin-right:10px;
+    `)
+    search.innerHTML =`
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+    `
+    rightheaderapp.append(search)
+
+    // controll center
+    let controlcenter = document.createElement("div")
+    controlcenter.setAttribute("style", `
+    margin-right:10px;
+    `)
+    controlcenter.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-toggles" viewBox="0 0 16 16">
+            <path d="M4.5 9a3.5 3.5 0 1 0 0 7h7a3.5 3.5 0 1 0 0-7h-7zm7 6a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm-7-14a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm2.45 0A3.49 3.49 0 0 1 8 3.5 3.49 3.49 0 0 1 6.95 6h4.55a2.5 2.5 0 0 0 0-5H6.95zM4.5 0h7a3.5 3.5 0 1 1 0 7h-7a3.5 3.5 0 1 1 0-7z"/>
+        </svg>
+    `
+    rightheaderapp.append(controlcenter)
+
+    // siri
+    let siri = document.createElement("img")
+    siri.setAttribute("src", "./wallpapers/Siri_dark.webp")
+    siri.setAttribute("width","15")
+    siri.setAttribute("height","15")
+    siri.setAttribute("style", `
+        margin-right:10px;
+    `)
+    rightheaderapp.append(siri)
 }else {
     loading(startLoading,screenWidth, loadingElements, loadingScreen, progresBarElement)
 
@@ -884,58 +1029,6 @@ if(window.innerWidth > 1024){
     
     let blinkInterval = Math.floor(Math.random() * 50)+10
     setInterval(() =>{blinkLine(bateryLine)}, blinkInterval * 1000)
-
-    // wifi-signal
-    let wifiLine = [...document.getElementsByClassName("wifi-line")]
-
-    function styleWifiLine(classElement){
-        let width = 100
-        let translate = 90
-        let borderRadius = 50
-        classElement.forEach((element, index) => {
-            
-            width -= 33
-            element.style.width =`${width}%`
-            element.style.borderRadius = `${borderRadius}%`
-            borderRadius -= 10
-            if (index === 1){
-                element.style.transform = `translateY(-${translate}%)`
-                translate += 90
-            } else if (index === 2) {
-                element.style.transform = `translateY(-${translate}%)`
-            }
-            
-            }
-        )
-    }
-
-    function WifiBlinkLine(classElement,){
-        classElement.forEach(element => {
-            element.style.borderTopColor = "rgba(177, 177, 177, 0.3)"
-        })
-        let lines = Math.floor(Math.random() * classElement.length)
-        console.log(`"wifi" : ${classElement.length - lines} lines`)
-        for (let i = lines;i < classElement.length; i++){
-            classElement[i].style.borderTopColor = "white";
-        }
-    }
-    styleWifiLine(wifiLine)
-    WifiBlinkLine(wifiLine)
-    setInterval(() =>{WifiBlinkLine(wifiLine)}, 60 * 1000)
-
-    // battery
-    let batteryWidh = 99
-    function batteryDischarger(){
-        let discharger = document.getElementById("battery-cell")
-        
-        setInterval(() =>{
-            discharger.style.width = `${batteryWidh}%`;
-            batteryWidh -= 1;
-            console.log(`"battery" : ${batteryWidh} porcent`)
-        }, 100 * 100)
-    }
-
-    batteryDischarger()
 
     // menu icons
     
@@ -1128,6 +1221,7 @@ if(window.innerWidth > 1024){
         <svg viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="iphoneIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="white" color="#000000"> <title id="iphoneIconTitle">iPhone</title> <path d="M18,3 L18,21 C18,21.5522847 17.5522847,22 17,22 L7,22 C6.44771525,22 6,21.5522847 6,21 L6,3 C6,2.44771525 6.44771525,2 7,2 L17,2 C17.5522847,2 18,2.44771525 18,3 Z"/> <polygon points="14 2 14 3 10 3 10 2"/> </svg>
         `
         elementsMenu.append(phoneImg)
+
         let batteryPorcent = document.createElement("div")
         batteryPorcent.innerHTML = `${batteryWidh}%`
         batteryPorcent.setAttribute("style", `
@@ -1352,4 +1446,13 @@ if(window.innerWidth > 1024){
     calculator.oppenappSelf("-129px", notworking)
 }
 
+// battery
+batteryDischarger()
 
+// wifi-signal
+let wifiLine = [...document.getElementsByClassName("wifi-line")]
+
+
+styleWifiLine(wifiLine)
+WifiBlinkLine(wifiLine)
+setInterval(() =>{WifiBlinkLine(wifiLine)}, 60 * 1000)

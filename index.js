@@ -978,6 +978,55 @@ if(window.innerWidth > 1024){
         margin-right:10px;
     `)
     rightheaderapp.append(siri)
+
+    let abreviatemonths = {
+        0:"Jan",
+        1:"Feb",
+        2:"Mar",
+        3:"Apr",
+        4:"May",
+        5:"Jun",
+        6:"Jul",
+        7:"Aug",
+        8:"Sep",
+        9:"Oct",
+        10:"Nov",
+        11:"Dec"
+    }
+    let abreviatedays = {
+        0:"Sun",
+        1:"Mon",
+        2:"Tues",
+        3:"Wed",
+        4:"Thurs",
+        5:"Fri",
+        6:"Sat",
+    }
+    // date and time container
+    let timedatecontainer = document.createElement("div")
+    timedatecontainer.setAttribute("style", 
+    `
+        margin-right:10px;
+        display:flex;
+    `
+    )
+
+    let date = document.createElement("div")
+    date.setAttribute("style", `
+        margin-right:10px;
+    `)
+    let localdate = new Date()
+    date.innerHTML = `${abreviatedays[localdate.getDay()]} ${localdate.getDate()} ${abreviatemonths[localdate.getMonth()]}`
+    timedatecontainer.append(date)
+
+    let clock = document.createElement("div")
+    clock.innerHTML = hour()
+    timedatecontainer.append(clock)
+    setTimeout(() => {
+        clock.innerHTML = hour()
+    }, 60 * 1000)
+
+    rightheaderapp.append(timedatecontainer)
 }else {
     loading(startLoading,screenWidth, loadingElements, loadingScreen, progresBarElement)
 

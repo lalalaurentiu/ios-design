@@ -889,6 +889,7 @@ if(window.innerWidth > 1024){
     rightheaderapps.push = function (){
         Array.prototype.push.apply(this, arguments)
         let appelements = document.createElement("div")
+        
         appelements.setAttribute("style", `
                 width:20%;
                 position:absolute;
@@ -898,6 +899,7 @@ if(window.innerWidth > 1024){
                 display:none;
                 border-radius:10px;
                 font-size:13px;
+                ${arguments[0].position}
             `)
 
         arguments[0].elements.forEach(element => {
@@ -928,7 +930,6 @@ if(window.innerWidth > 1024){
                 document.addEventListener("click", closeapp, false)
             }, 10 )
         })
-        console.log(arguments.object)
     }
 
     // language flag
@@ -1067,6 +1068,7 @@ if(window.innerWidth > 1024){
             "<span></span>"]
     ]})
     // create function for activate bluetooth button
+    // ..................
 
     // battery
 
@@ -1085,6 +1087,50 @@ if(window.innerWidth > 1024){
     battery.append(batteryplus)
 
     rightheaderapp.append(battery)
+    rightheaderapps.push({object:battery, elements:[
+        [`
+            <span>
+                Battery
+            </span>
+        `,
+        `
+            <span>
+                ${batteryWidh}%
+            </span>
+        `],
+        [`
+            <span  style="font-size:10px;">
+                Power Source: Battery
+            </span>
+        `,
+        ` <span></span>`,
+        "border-bottom:1px solid white;"],
+        [`
+            <span  style="font-size:10px;">
+                Using Significant Energy
+            </span>
+        `,
+        ` <span></span>`],
+        [`
+            <span style="display:flex;align-items:center;">
+                <img src="./icons/safari.svg" width="20" height="20" style="margin-right:10px;">
+                Safari
+            </span>
+        `,
+        ` <span></span>`,
+        "border-bottom:1px solid white;"],
+        [`
+            <span>
+                Battery Preferences...
+            </span>
+        `,
+        ` <span></span>`]
+    ],position:"transform:translateX(calc(-100% + 30px));"})
+
+    setInterval(() => {
+        battery.getElementsByTagName("a")[0].children[1].innerHTML = `${batteryWidh}%`
+    }, 100 * 100)
+
     // wifi
     let wifi = document.createElement("div")
     wifi.setAttribute("id", "wifi")

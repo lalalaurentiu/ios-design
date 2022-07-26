@@ -74,6 +74,63 @@ function WifiBlinkLine(classElement,){
 
 
 if(window.innerWidth > 1024){
+    function desktopWindow(parrent){
+        // window
+        let win = document.createElement("div")
+        win.setAttribute("style", `
+            width:${(screenWidth / 100) * 50}px;
+            height:${(screenHeight / 100) * 50}px;
+            background:#00315f;
+            position:absolute;
+            left:50%;
+            transform:translateX(-50%);
+        `)
+        parrent.append(win)
+
+        // header
+        let windowHeight = (screenHeight / 100) * 50 // window height
+        let header = document.createElement("div")
+        header.setAttribute("style" , `
+            width:100%;
+            height:${(windowHeight / 100) * 10}px;
+            border-bottom:1px solid white;
+            display:flex;
+            align-items:center;
+        `)
+        win.append(header)
+
+        // actions buttons
+        let actionsButtons = document.createElement("div")
+        header.append(actionsButtons)
+
+        let leftSideHeaderButtons = [{
+            name:"close",
+            color:"#e23535"
+        },
+        {
+            name:"minimise",
+            color:"orange"
+        },
+        {
+            name:"restoration",
+            color:"gray"
+        }]
+
+        leftSideHeaderButtons.forEach(element => {
+            let button = document.createElement("button")
+            button.setAttribute("style", `
+                width:15px;
+                height:15px;
+                background:${element.color};
+                border-radius:10px;
+                margin-left:10px;
+                border:none;
+            `)
+            actionsButtons.append(button)
+        });
+    }
+    // desktopWindow(loadingScreen)
+    
     // screenHeight = 0
     // screenWidth = 0
     // let desktop = document.createElement("div")

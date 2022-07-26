@@ -261,14 +261,16 @@
     /* desktop animationanimation */
         #gear{
             position: relative;
+            left: 45px;
+            top:5px;
             animation: spin 5s linear infinite;
         }
 
         #gear2{
             position: relative;
             animation: reversespin 5s linear infinite;
-            top:50px;
-            right:40px
+            top:45px;
+            right:40px;
         }
 
         @keyframes spin{

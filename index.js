@@ -11,6 +11,7 @@ import {loading} from "./phone/utils/loading.js"
 import {headerapps} from "./desktop/hederapp/rightHeaderApps.js"
 import {HeaderApp} from "./desktop/utils/leftHeaderAppConstructor.js"
 import {rightheaderapps} from "./desktop/utils/rightHeaderAppConstructor.js"
+import {desktopWindow} from "./desktop/utils/window.js"
 
 // Loading Bar
 let startLoading = 0
@@ -21,8 +22,8 @@ let loadingScreen = document.getElementById('screen')
 let header = document.getElementById("header")
 
 
-let screenHeight = window.innerHeight
-let screenWidth = window.innerWidth
+export let screenHeight = window.innerHeight
+export let screenWidth = window.innerWidth
 
 let parrent = document.getElementById("menuicons")
 
@@ -74,111 +75,8 @@ function WifiBlinkLine(classElement,){
 
 
 if(window.innerWidth > 1024){
-    function desktopWindow(parrent){
-        // window
-        let win = document.createElement("div")
-        win.setAttribute("style", `
-            width:${(screenWidth / 100) * 50}px;
-            height:${(screenHeight / 100) * 50}px;
-            background:#00315f;
-            position:absolute;
-            left:50%;
-            transform:translateX(-50%);
-        `)
-        parrent.append(win)
-
-        // header
-        let windowHeight = (screenHeight / 100) * 50 // window height
-        let header = document.createElement("div")
-        header.setAttribute("style" , `
-            width:100%;
-            height:${(windowHeight / 100) * 10}px;
-            border-bottom:1px solid white;
-            display:flex;
-            align-items:center;
-        `)
-        win.append(header)
-
-        // actions buttons
-        let actionsButtons = document.createElement("div")
-        header.append(actionsButtons)
-
-        let leftSideHeaderButtons = [{
-            name:"close",
-            color:"#e23535"
-        },
-        {
-            name:"minimise",
-            color:"orange"
-        },
-        {
-            name:"restoration",
-            color:"gray"
-        }]
-
-        leftSideHeaderButtons.forEach(element => {
-            let button = document.createElement("button")
-            button.setAttribute("style", `
-                width:15px;
-                height:15px;
-                background:${element.color};
-                border-radius:10px;
-                margin-left:10px;
-                border:none;
-            `)
-            actionsButtons.append(button)
-        });
-    }
-    // desktopWindow(loadingScreen)
     
-    // screenHeight = 0
-    // screenWidth = 0
-    // let desktop = document.createElement("div")
-    // desktop.setAttribute("style", `
-    //     width:100%;
-    //     height:100%;
-    //     position:absolute;
-    //     background-color:white;
-    //     z-index:7;
-    //     display:flex;
-    //     justify-content:center;
-    //     align-items:center;
-    // `)
-    // let gearContainer = document.createElement("div")
-    // gearContainer.setAttribute("style",`
-    //     text-align:center;
-    // `)
-    // desktop.append(gearContainer)
-
-    // let gear = document.createElement("img")
-    // gear.setAttribute("id", "gear")
-    // gear.setAttribute("src", "icons/gear.svg")
-    // gear.setAttribute("style", `
-    //     width:300px;
-    //     height:300px;
-    // `)
-    // gearContainer.append(gear)
-
-    // let gear2 = document.createElement("img")
-    // gear2.setAttribute("id", "gear2")
-    // gear2.setAttribute("src", "icons/gear.svg")
-    // gear2.setAttribute("style", `
-    //     width:300px;
-    //     height:300px;
-    // `)
-    // gearContainer.append(gear2)
-
-    // let message = document.createElement("div")
-    // message.innerHTML = "Desktop version under construction <br> Use desktop phone emulator"
-    // message.setAttribute("style", `
-    //     position:relative;
-    //     top:50px;
-    //     align-self:center;
-    //     font-size:50px
-    //     `)
-
-    // gearContainer.append(message)
-    // main.prepend(desktop)
+    // desktopWindow(loadingScreen)
 
     window.addEventListener("resize", function () {
         if (this.window.innerHeight > screenHeight + 1){

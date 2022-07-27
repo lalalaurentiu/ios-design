@@ -1,3 +1,6 @@
+import {desktopWindow} from "./../utils/window.js"
+import {loadingScreen} from "./../../index.js"
+    
     // display maun for right header apps
     let rightheaderapps= []
     rightheaderapps.push = function (){
@@ -30,6 +33,10 @@
                 align-items:center;
             `)
             appelements.append(elementcontainer)
+
+            elementcontainer.addEventListener("click", () => {
+                desktopWindow(loadingScreen)
+            })
         })
         arguments[0].object.append(appelements) 
         arguments[0].object.addEventListener("click", () => {

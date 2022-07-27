@@ -18,7 +18,7 @@ let startLoading = 0
 let main = document.getElementById("main")
 let progresBarElement = document.getElementById('progresBar')
 let loadingElements = document.getElementById('loading')
-let loadingScreen = document.getElementById('screen')
+export let loadingScreen = document.getElementById('screen')
 let header = document.getElementById("header")
 
 
@@ -166,6 +166,9 @@ if(window.innerWidth > 1024){
             margin-right:10px;
         `)
         parrent.append(application)
+        application.addEventListener("click", () => {
+            desktopWindow(loadingScreen)
+        })
     })
     
     let rightheaderapp = document.createElement("div")

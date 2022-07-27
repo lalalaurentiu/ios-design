@@ -1,3 +1,5 @@
+import {desktopWindow} from "./../utils/window.js"
+import {loadingScreen} from "./../../index.js"
 class HeaderApp{
     app = document.createElement("div")
     constructor (headerContainer, title){
@@ -38,6 +40,10 @@ class HeaderApp{
                 align-items:center;
             `)
             appelements.append(elementcontainer)
+
+            elementcontainer.addEventListener("click", () => {
+                desktopWindow(loadingScreen)
+            })
         })
         this.app.append(appelements)
         this.app.addEventListener("click", () => {

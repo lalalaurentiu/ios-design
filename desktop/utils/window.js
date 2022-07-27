@@ -76,7 +76,7 @@ let minimise = 1
         gearContainer.append(gear2)
 
         let message = document.createElement("div")
-        message.innerHTML = "In Progres..."
+        message.innerHTML = "Under Construction..."
         message.setAttribute("style", `
             position:relative;
             top:50px;

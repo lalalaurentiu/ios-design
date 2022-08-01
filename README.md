@@ -23,9 +23,20 @@ The network and wifi signal changes once a minute.
 
 Battery percentage drops by 1% every 10 seconds
 ![Captură ecran (22)](https://user-images.githubusercontent.com/67306273/182245842-1af70e99-f8d5-4c8d-bff4-488dc31fc2e4.png)
-![Captură ecran (23)](https://user-images.githubusercontent.com/67306273/182245971-f5ba409f-13b3-4841-9372-aaceedef40c8.png)
+![Captură ecran (23)](https://user-images.githubusercontent.com/67306273/182245971-f5ba409f-13b3-4841-9372-aaceedef40c8.png)  </br>
+
+Swipe up to down
+https://user-images.githubusercontent.com/67306273/182248126-00587c82-3707-47b8-96e7-fc1b6f4ad577.mp4 </br>
+
+Swipe left to right
+https://user-images.githubusercontent.com/67306273/182248531-a1a6882d-8216-4be7-9c84-38191036e777.mp4 </br>
+
 
 </br>
+
+
+
+
 
 
 macOS: </br>

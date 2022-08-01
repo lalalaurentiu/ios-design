@@ -1,5 +1,3 @@
-export let batteryWidh = 99
-
 // phone
     import {hour} from "./phone/utils/hour.js"
     import {safariapp} from "./phone/apps/safariapp.js"
@@ -36,7 +34,7 @@ export let screenWidth = window.innerWidth
 let parrent = document.getElementById("menuicons")
 
 // battery
-
+let batteryWidh = 99
 function batteryDischarger(){
     let discharger = document.getElementById("battery-cell")
     
@@ -384,7 +382,7 @@ if(window.innerWidth > 1024){
                     top:0;
                     transform: translateY(${translate});
                     background-color: black;
-                    z-index:5;
+                    z-index:6;
                     transition: all 0.5s;
                     color:white;
                     `
@@ -410,7 +408,7 @@ if(window.innerWidth > 1024){
                 transform:translateX(-50%);
                 margin-bottom: 5px;
                 border-radius: 5px;
-                z-index:6;
+                z-index:7;
             `
         )
         this.app.append(closeButton)
@@ -420,11 +418,16 @@ if(window.innerWidth > 1024){
 
         scrollCloseSelf(element){
             // let position = 0
+            // for desktop
+            element.addEventListener("click", () => {
+                console.log("clicked")
+            })
+            // -- --
             element.addEventListener("touchmove",pos => {
                 
                 let position = pos.touches[0].clientY;
                 this.app.style.height = `${position}px`
-                
+                console.log(pos)
                 if (position < 700) {
                     this.app.removeAttribute("style")
                     this.app.setAttribute(
@@ -464,16 +467,16 @@ if(window.innerWidth > 1024){
     
 
     imessage.containerSelf()
-    imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`,notworking)
+    imessage.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px + 10px)`,notworking)
 
     appstore.containerSelf()
-    appstore.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`,notworking)
+    appstore.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px + 10px)`,notworking)
 
     contacts.containerSelf()
-    contacts.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`,notworking)
+    contacts.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px + 10px)`,notworking)
 
     setting.containerSelf()
-    setting.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px  + ${(screenHeight / 100) * 2}px)`,notworking)
+    setting.oppenappSelf(`calc(-${screenHeight}px + ${parrentHeight}px + 10px)`,notworking)
   
     // left-side
     let leftSide = document.getElementById("left-side")

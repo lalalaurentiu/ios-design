@@ -1,17 +1,25 @@
+export let batteryWidh = 99
+
 // phone
-import {hour} from "./phone/utils/hour.js"
-import {safariapp} from "./phone/apps/safariapp.js"
-import {notesapp} from "./phone/apps/notesapp.js"
-import {filesApp} from "./phone/apps/filesapp.js"
-import {clockApp} from "./phone/apps/clockapp.js"
-import {notworking} from "./phone/apps/notworkingapp.js"
-import {loading} from "./phone/utils/loading.js"
+    import {hour} from "./phone/utils/hour.js"
+    import {safariapp} from "./phone/apps/safariapp.js"
+    import {notesapp} from "./phone/apps/notesapp.js"
+    import {filesApp} from "./phone/apps/filesapp.js"
+    import {clockApp} from "./phone/apps/clockapp.js"
+    import {notworking} from "./phone/apps/notworkingapp.js"
+    import {loading} from "./phone/utils/loading.js"
 
 //desktop
-import {headerapps} from "./desktop/hederapp/rightHeaderApps.js"
-import {HeaderApp} from "./desktop/utils/leftHeaderAppConstructor.js"
-import {rightheaderapps} from "./desktop/utils/rightHeaderAppConstructor.js"
-import {desktopWindow} from "./desktop/utils/window.js"
+    import {headerapps} from "./desktop/hederapp/rightHeaderApps.js"
+        // left header apps
+        import {flag} from "./desktop/hederapp/flagapp.js"
+        import {bluetooth} from "./desktop/hederapp/bluetoothapp.js"
+        import {battery} from "./desktop/hederapp/batteryapp.js"
+        import { wifi } from "./desktop/hederapp/wifiapp.js"
+
+    import {HeaderApp} from "./desktop/utils/leftHeaderAppConstructor.js"
+    import {rightheaderapps} from "./desktop/utils/rightHeaderAppConstructor.js"
+    import {desktopWindow} from "./desktop/utils/window.js"
 
 // Loading Bar
 let startLoading = 0
@@ -28,7 +36,7 @@ export let screenWidth = window.innerWidth
 let parrent = document.getElementById("menuicons")
 
 // battery
-let batteryWidh = 99
+
 function batteryDischarger(){
     let discharger = document.getElementById("battery-cell")
     
@@ -178,271 +186,19 @@ if(window.innerWidth > 1024){
     header.append(rightheaderapp)
 
     // language flag
-    let flag = document.createElement("div")
-    flag.setAttribute("style", `
-        display:flex;
-        align-items:center;
-        margin-right:10px;
-    `)
-    flag.innerHTML = `
-        <svg width="30" height="20" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet"><path fill="#002B7F" d="M4 5a4 4 0 0 0-4 4v18a4 4 0 0 0 4 4h8V5H4z"></path><path fill="#FCD116" d="M12 5h12v26H12z"></path><path fill="#CE1126" d="M32 5h-8v26h8a4 4 0 0 0 4-4V9a4 4 0 0 0-4-4z"></path></svg>
-    `
     rightheaderapp.append(flag)
 
-    rightheaderapps.push({object:flag, elements:[
-        [`
-            <span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" style="display:inline-block;transform:translateY(2px)" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
-                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                </svg>
-                Romanian
-            </span>
-        `,
-        "<span></span>",
-        "border-bottom:1px solid white;"],
-        [`
-            <span>  
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" style="display:inline-block;transform:translateY(2px)" fill="currentColor" class="bi bi-window-dock" viewBox="0 0 16 16">
-                    <path d="M3.5 11a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm4.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Z"/>
-                    <path d="M14 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h12ZM2 14h12a1 1 0 0 0 1-1V5H1v8a1 1 0 0 0 1 1ZM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2Z"/>
-                </svg>
-                Show Emoji & Symbols
-            </span>
-        `,
-        "<span></span>"],
-        [`
-            <span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" style="display:inline-block;transform:translateY(2px)" fill="currentColor" class="bi bi-window-desktop" viewBox="0 0 16 16">
-                    <path d="M3.5 11a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-9Z"/>
-                    <path d="M2.375 1A2.366 2.366 0 0 0 0 3.357v9.286A2.366 2.366 0 0 0 2.375 15h11.25A2.366 2.366 0 0 0 16 12.643V3.357A2.366 2.366 0 0 0 13.625 1H2.375ZM1 3.357C1 2.612 1.611 2 2.375 2h11.25C14.389 2 15 2.612 15 3.357V4H1v-.643ZM1 5h14v7.643c0 .745-.611 1.357-1.375 1.357H2.375A1.366 1.366 0 0 1 1 12.643V5Z"/>
-                </svg>
-                Show Keyboard Viewer
-            </span>
-        `,
-        "<span></span>",
-        "border-bottom:1px solid white;"],
-        [`
-            <span>
-                Show Input Source Name
-            </span>
-        `,
-        "<span></span>"],
-        [
-            `
-            <span>
-                Open Keyboard Preferences...
-            </span>
-            `,
-            "<span></span>"]
-    ]})
     // bluetooth icon
-    let bluetooth = document.createElement("div")
-    bluetooth.setAttribute("style", `
-        display:flex;
-        align-items:center;
-        margin-right:10px;
-    `)
-    bluetooth.innerHTML = `
-    <svg height="15" fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-        viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
-        <path d="M45.994,16.917L26.834,0v21.758l-8.586-8.586l-4.242,4.242L26.092,29.5L14.006,41.586l4.242,4.242l8.586-8.586V60
-        l19.16-19.083l-11.52-11.52L45.994,16.917z M32.834,46.327V36.242l4.84,4.841L32.834,46.327z M37.675,17.083l-4.84,5.244V12.242
-        L37.675,17.083z"/>
-    </svg>
-    `
     rightheaderapp.append(bluetooth)
 
-    rightheaderapps.push({object:bluetooth, elements:[
-        [`
-        <span>
-            Bluetooth
-        </span>
-        `,
-        `
-            <div style="width:30px;height:15px;border:1px solid white;border-radius:10px;">
-                <div style="width:15px;height:100%;background:white;border-radius:50%;">
-                </div>
-            </div>
-        `,
-        "border-bottom:1px solid white;"],
-        [`<span style="font-size:10px;">
-            Devices
-        </span>`,
-        "<span></span>"],
-        [`
-            <span style="display:flex;align-items:center;">
-                <div style="width:30px;height:30px;background:#0376ff;display:inline-flex;align-items:center;justify-content:center;border-radius:15px;margin-right:10px;">
-                    <svg height="15" fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve">
-                        <path d="M45.994,16.917L26.834,0v21.758l-8.586-8.586l-4.242,4.242L26.092,29.5L14.006,41.586l4.242,4.242l8.586-8.586V60
-                        l19.16-19.083l-11.52-11.52L45.994,16.917z M32.834,46.327V36.242l4.84,4.841L32.834,46.327z M37.675,17.083l-4.84,5.244V12.242
-                        L37.675,17.083z"/>
-                    </svg>
-                </div>
-                Apple Bluetooth Mouse
-            </span>
-        `,
-        "<span></span>"],
-        [`
-            <span style="display:flex;align-items:center;">
-                <div style="width:30px;height:30px;background:gray;display:inline-flex;align-items:center;justify-content:center;border-radius:15px;margin-right:10px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill="white" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" 
-                            d="M5 .5C3.138.5 1.495 1.343.5 2.631V8.37C1.495 9.657 3.138 10.5 5 10.5c.901 0 1.749-.201 
-                            2.5-.55V21.5h3v-16c0-2.761-2.462-5-5.5-5zM6 8.5A1.5 1.5 0 017.5 10M9.5 23.5h-1a1 1 0 01-1-1v-1h3v1a1 
-                            1 0 01-1 1z"/>
-                        <path d="M3.25 4.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5z"/>
-                        <path fill="white" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" 
-                            d="M6.498 2.812c.779.343 1.4.945 1.733 1.687M19 .5c1.862 0 3.505.843 4.5 2.131V8.37c-.995 1.287-2.638 
-                            2.13-4.5 2.13a5.922 5.922 0 01-2.5-.55V21.5h-3v-16c0-2.761 2.462-5 5.5-5zM18 8.5a1.5 1.5 0 00-1.5 1.5M14.5 
-                            23.5h1a1 1 0 001-1v-1h-3v1a1 1 0 001 1zM17.502 2.812c-.779.343-1.4.945-1.733 1.687"/>
-                        <path d="M20.75 4.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5z"/><path fill="none" d="M0 0h24v24H0z"/>
-                    </svg>
-                </div>
-                Apple AirPods
-            </span>
-        `,
-        "<span></span>",
-        "border-bottom:1px solid white;"],
-        [
-            `
-            <span>
-                Bluetooth Preferences...
-            </span>
-            `,
-            "<span></span>"]
-    ]})
-    // create function for activate bluetooth button
-    // ..................
-
     // battery
-
-    let battery = document.createElement("div")
-    battery.setAttribute("id","battery")
-    battery.setAttribute("style", `
-        height:15px;
-        margin-right:10px;
-    `)
-    let batterycell = document.createElement("div")
-    batterycell.setAttribute("id", "battery-cell")
-    battery.append(batterycell)
-
-    let batteryplus = document.createElement("div")
-    batteryplus.setAttribute("id", "battery-plus")
-    battery.append(batteryplus)
-
     rightheaderapp.append(battery)
-    rightheaderapps.push({object:battery, elements:[
-        [`
-            <span>
-                Battery
-            </span>
-        `,
-        `
-            <span>
-                ${batteryWidh}%
-            </span>
-        `],
-        [`
-            <span  style="font-size:10px;">
-                Power Source: Battery
-            </span>
-        `,
-        ` <span></span>`,
-        "border-bottom:1px solid white;"],
-        [`
-            <span  style="font-size:10px;">
-                Using Significant Energy
-            </span>
-        `,
-        ` <span></span>`],
-        [`
-            <span style="display:flex;align-items:center;">
-                <img src="./icons/safari.svg" width="20" height="20" style="margin-right:10px;">
-                Safari
-            </span>
-        `,
-        ` <span></span>`,
-        "border-bottom:1px solid white;"],
-        [`
-            <span>
-                Battery Preferences...
-            </span>
-        `,
-        ` <span></span>`]
-    ]})
-
     setInterval(() => {
         battery.getElementsByTagName("a")[0].children[1].innerHTML = `${batteryWidh}%`
     }, 100 * 100)
 
     // wifi
-    let wifi = document.createElement("div")
-    wifi.setAttribute("id", "wifi")
-    wifi.setAttribute("style", `
-        width:30px;
-        height:20px;
-        margin-right:10px;
-    `)
-    for (let i = 0;i<3;i++){
-        let wifiline = document.createElement("div")
-        wifiline.setAttribute("class", "wifi-line")
-        wifi.append(wifiline)
-    }
     rightheaderapp.append(wifi)
-
-    rightheaderapps.push({object:wifi, elements:[
-        [`
-        <span>
-            Wi-Fi
-        </span>
-        `,
-        `
-            <div style="width:30px;height:15px;border:1px solid white;border-radius:10px;">
-                <div style="width:15px;height:100%;background:white;border-radius:50%;">
-                </div>
-            </div>
-        `,
-        "border-bottom:1px solid white;"],
-        [
-        `
-            <span style="display:flex;align-items:center;">
-                <div style="width:30px;height:30px;background:#0376ff;display:inline-flex;align-items:center;justify-content:center;border-radius:15px;margin-right:10px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-wifi-2" viewBox="0 0 16 16">
-                        <path d="M13.229 8.271c.216-.216.194-.578-.063-.745A9.456 9.456 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.577 1.336c.205.132.48.108.652-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.408.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.611-.091l.015-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .708 0l.707-.707z"/>
-                    </svg>
-                </div>
-                Network 5G
-            </span>
-        `,
-        `
-        <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
-                <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
-            </svg>
-        </span>
-        `,
-        "border-bottom:1px solid white;"],
-        [`
-        <span>
-            Other Networks
-        </span>
-        `,
-        `
-        <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-            </svg>
-        </span>
-        `,
-        "border-bottom:1px solid white;"],
-        [`
-        <span>
-            Network Preferences...
-        </span>
-        `,
-        `<span></span>`]
-    ]})
 
     // search
     let search = document.createElement("div")

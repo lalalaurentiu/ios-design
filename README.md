@@ -12,7 +12,24 @@ iOS: </br>
 Header </br>
 ![Captură ecran (14)](https://user-images.githubusercontent.com/67306273/182174659-81e2338a-f3bf-4d67-baa9-32f905404e19.png) </br>
 In Header we have the clock, network signal, wifi and battery </br>
-The clock changes in real time ![Captură ecran (15)](https://user-images.githubusercontent.com/67306273/182175953-d8096deb-c86a-42b0-9c4b-da902163e3d4.png) ![Captură ecran (16)](https://user-images.githubusercontent.com/67306273/182176139-3b48a681-9624-41d3-81a5-c6d559d3814c.png) </br>
+
+The clock changes in real time 
+![Captură ecran (15)](https://user-images.githubusercontent.com/67306273/182175953-d8096deb-c86a-42b0-9c4b-da902163e3d4.png) 
+![Captură ecran (16)](https://user-images.githubusercontent.com/67306273/182176139-3b48a681-9624-41d3-81a5-c6d559d3814c.png) </br>
+
+The network and wifi signal changes once a minute.
+![Captură ecran (20)](https://user-images.githubusercontent.com/67306273/182245349-daa06fd9-8f66-4e8f-a22b-14b6c8e20da3.png)
+![Captură ecran (21)](https://user-images.githubusercontent.com/67306273/182245522-4eb051a7-c922-46cc-9475-2f159556a37e.png)</br>
+
+Battery percentage drops by 1% every 10 seconds
+![Captură ecran (22)](https://user-images.githubusercontent.com/67306273/182245842-1af70e99-f8d5-4c8d-bff4-488dc31fc2e4.png)
+![Captură ecran (23)](https://user-images.githubusercontent.com/67306273/182245971-f5ba409f-13b3-4841-9372-aaceedef40c8.png)  </br>
+
+Swipe up to down
+<video src='https://user-images.githubusercontent.com/67306273/182248126-00587c82-3707-47b8-96e7-fc1b6f4ad577.mp4' width=180/></br>
+
+Swipe left to right
+<video src='https://user-images.githubusercontent.com/67306273/182248531-a1a6882d-8216-4be7-9c84-38191036e777.mp4' width=180/> </br>
 
 </br>
 

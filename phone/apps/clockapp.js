@@ -704,6 +704,8 @@ function clockApp(parent){
                     })
                     rightSide.append(elementButton)
                 }
+
+            // repeat function
                 function repeat (){
                     utilsElementContainer.innerHTML = ""
                     let header = document.createElement("div")
@@ -793,9 +795,61 @@ function clockApp(parent){
                         console.log(days)
                     })
                 }
+            // -- --
+
+            // label function
+                function label (){
+                    utilsElementContainer.innerHTML = ""
+                    let header = document.createElement("div")
+                    header.setAttribute("style",`
+                        padding:10px;
+                        width:60%;
+                        display:flex;
+                        justify-content:space-between;
+                    `)
+                    utilsElementContainer.append(header)
+
+                    let backButton = document.createElement("a")
+                    backButton.setAttribute("style", `
+                        display:flex;
+                        align-items:center;
+                        color:#ffac00;
+                    `)
+                    backButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        Back
+                    `
+                    backButton.addEventListener("click", () => {
+                        utilsElementContainer.style.transform = "translateX(100%)"
+                        setTimeout(() =>{
+                            utilsElementContainer.style.display = "none"
+                        }, 500)
+                    })
+                    header.append(backButton)
+
+                    let headerTitle = document.createElement("div")
+                    headerTitle.innerHTML = "Label"
+                    header.append(headerTitle)
+
+                    let alarmName = document.createElement("input")
+                    alarmName.setAttribute("style",`
+                        position:relative;
+                        top:40%;
+                        margin:auto;
+                    `)
+                    alarmName.value = "Alarm"
+                    utilsElementContainer.append(alarmName)
+                }
+            // -- --
+                
+                // function sound (){
+
+                // }
 
                 createAlarmsElements("Repeat", "Never", repeat)
-                createAlarmsElements("Label", "Alarm")
+                createAlarmsElements("Label", "Alarm", label)
                 createAlarmsElements("Sound", "Radar")
 
                 let element = document.createElement("div")

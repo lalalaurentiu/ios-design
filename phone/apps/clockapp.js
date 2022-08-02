@@ -844,13 +844,236 @@ function clockApp(parent){
                 }
             // -- --
                 
-                // function sound (){
+                function sound (){
+                    utilsElementContainer.innerHTML = ""
 
-                // }
+                    let header = document.createElement("div")
+                    header.setAttribute("style",`
+                        padding:10px;
+                        width:60%;
+                        display:flex;
+                        justify-content:space-between;
+                    `)
+                    utilsElementContainer.append(header)
+
+                    let backButton = document.createElement("a")
+                    backButton.setAttribute("style", `
+                        display:flex;
+                        align-items:center;
+                        color:#ffac00;
+                    `)
+                    backButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        Back
+                    `
+                    backButton.addEventListener("click", () => {
+                        utilsElementContainer.style.transform = "translateX(100%)"
+                        setTimeout(() =>{
+                            utilsElementContainer.style.display = "none"
+                        }, 500)
+                    })
+                    header.append(backButton)
+
+                    let headerTitle = document.createElement("div")
+                    headerTitle.innerHTML = "Sound"
+                    header.append(headerTitle)
+
+                // this window is for all elements in sound container
+                    let containerElements = document.createElement("div")
+                    containerElements.setAttribute("style", `
+                        position:absolute;
+                        width:100%;
+                        height:100%;
+                        background-color:rgb(109, 109, 109);
+                        top:0;
+                        transform:translateX(100%);
+                        transition:all 0.5s;
+                        border-top-left-radius:10px;
+                        border-top-right-radius:10px;
+                        display:none;
+                    `)
+                    utilsElementContainer.append(containerElements)
+                // -- --
+
+                let body = document.createElement("div")
+                utilsElementContainer.append(body)
+
+                let vibrationContainer = document.createElement("div")
+                vibrationContainer.setAttribute("style", `
+                    margin:10px;
+                    display:flex;
+                    padding:10px;
+                    background-color:#858585;
+                    border-radius:10px;
+                    justify-content:space-between;
+                `)
+                body.append(vibrationContainer)
+
+                let vibrationTitle = document.createElement("div")
+                vibrationTitle.innerHTML = "Vibration"
+                vibrationContainer.append(vibrationTitle)
+
+                let vibrationButton = document.createElement("a")
+                vibrationButton.setAttribute("style", `
+                    display:flex;
+                    align-items:center;
+                    color:#bcbcbc;
+                `)
+                vibrationButton.innerHTML = `
+                    Default
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                `
+
+                vibrationButton.addEventListener("click", () => {
+                    containerElements.innerHTML = ""
+                    containerElements.style.display = "initial"
+                    setTimeout(() =>{
+                        containerElements.style.transform = "translateX(0)"
+                    }, 10)
+
+                    let header = document.createElement("div")
+                    header.setAttribute("style",`
+                        padding:10px;
+                        width:60%;
+                        display:flex;
+                        justify-content:space-between;
+                    `)
+                    containerElements.append(header)
+
+                    let backButton = document.createElement("a")
+                    backButton.setAttribute("style", `
+                        display:flex;
+                        align-items:center;
+                        color:#ffac00;
+                    `)
+                    backButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        Sound
+                    `
+                    backButton.addEventListener("click", () => {
+                        containerElements.style.transform = "translateX(100%)"
+                        setTimeout(() =>{
+                            containerElements.style.display = "none"
+                        }, 500)
+                    })
+                    header.append(backButton)
+
+                    let headerTitle = document.createElement("div")
+                    headerTitle.innerHTML = "Vibration"
+                    header.append(headerTitle)
+
+                    let body = document.createElement("div")
+                    body.setAttribute("style", `
+                        height:90%;
+                        overflow-y:auto;
+                    `)
+                    containerElements.append(body)
+
+                    let synchronised = document.createElement("div")
+                    synchronised.setAttribute("style", `
+                        width:90%;
+                        margin:10px;
+                        padding:10px;
+                        background-color:#858585;
+                        border-radius:10px;
+                    `)
+                    synchronised.innerHTML = "Synchronised (Default)"
+                    body.append(synchronised)
+
+                    let standardVibrationContainer = document.createElement("div")
+                    standardVibrationContainer.setAttribute("style", `
+                        margin:30px 10px;
+                    `)
+                    body.append(standardVibrationContainer)
+
+                    let standardVibrationTitle = document.createElement("div")
+                    standardVibrationTitle.innerHTML = "STANDARD"
+                    standardVibrationTitle.setAttribute("style", `
+                        margin:0 0 10px 10px;
+                    `)
+                    standardVibrationContainer.append(standardVibrationTitle)
+
+                    let standardElementsContainer = document.createElement("div")
+                    standardElementsContainer.setAttribute("style", `
+                        background-color:#858585;
+                        padding:10px 0 10px 10px;
+                        border-radius:10px;
+                    `)
+                    standardVibrationContainer.append(standardElementsContainer)
+
+                    let standardElements ={
+                        0:"Accent",
+                        1:"Alert",
+                        2:"Heartbeat",
+                        3:"Quick",
+                        4:"Rapid",
+                        5:"S.O.S",
+                        6:"Staccato",
+                        7:"Symphony"
+                    }
+
+                    Object.entries(standardElements).forEach(item => {
+                        let element = document.createElement("div")
+                        element.setAttribute("style", `
+                            padding:10px 0 10px 0px;
+                            border-bottom:1px solid white;
+                        `)
+                        element.innerHTML = item[1]
+                        standardElementsContainer.append(element)
+                    })
+                    let customElementContainer = document.createElement("div")
+                    customElementContainer.setAttribute("style", `
+                        margin:30px 10px;
+                    `)
+                    body.append(customElementContainer)
+
+                    let customTitle = document.createElement("div")
+                    customTitle.setAttribute("style", `
+                        margin:0 0 10px 10px;
+                    `)
+                    customTitle.innerHTML = "CUSTOM"
+                    customElementContainer.append(customTitle)
+
+                    let customElemets = document.createElement("div")
+                    customElemets.setAttribute("style", `
+                        display:flex;
+                        align-items:center;
+                        justify-content:space-between;
+                        background-color:#858585;
+                        padding:10px;
+                        border-radius:10px;
+                    `)
+                    customElemets.innerHTML = `
+                        Create New Vibration
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    `
+                    customElementContainer.append(customElemets)
+
+                    let noneVibration = document.createElement("div")
+                    noneVibration.setAttribute("style", `
+                        background-color:#858585;
+                        padding:10px;
+                        border-radius:10px;
+                        margin:30px 10px;
+                    `)
+                    noneVibration.innerHTML = "None"
+                    body.append(noneVibration)
+                })
+
+                vibrationContainer.append(vibrationButton)
+                }
 
                 createAlarmsElements("Repeat", "Never", repeat)
                 createAlarmsElements("Label", "Alarm", label)
-                createAlarmsElements("Sound", "Radar")
+                createAlarmsElements("Sound", "Radar", sound)
 
                 let element = document.createElement("div")
                     element.setAttribute("style", `

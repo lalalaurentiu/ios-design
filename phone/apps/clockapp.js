@@ -975,6 +975,7 @@ function clockApp(parent){
                     `)
                     containerElements.append(body)
 
+                // vibration
                     let checked = []
                     checked.push = function (){
                         Array.prototype.push.apply(this, arguments)
@@ -989,7 +990,6 @@ function clockApp(parent){
                                     <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
                                 </svg>
                             `
-                            // console.log(checked[0])
                             
                             checked.forEach (elem => {
                                 
@@ -1015,6 +1015,17 @@ function clockApp(parent){
                         align-items:center;
                     `)
                     synchronised.innerHTML = "Synchronised (Default)"
+                    let check = document.createElement("div")
+                    check.setAttribute("style", `
+                        color:#ffac00;
+                        margin-right:10px;
+                    `)
+                    check.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                        </svg>
+                    `
+                    synchronised.append(check)
                     checked.push(synchronised)
                     body.append(synchronised)
 
@@ -1063,6 +1074,7 @@ function clockApp(parent){
                         checked.push(element)
                         standardElementsContainer.append(element)
                     })
+                    
                     let customElementContainer = document.createElement("div")
                     customElementContainer.setAttribute("style", `
                         margin:30px 10px;
@@ -1109,6 +1121,188 @@ function clockApp(parent){
                 })
 
                 vibrationContainer.append(vibrationButton)
+            // -- --
+
+            // store sounds
+                let storeSoundContainer = document.createElement("div")
+                body.append(storeSoundContainer)
+
+                let storeSoundTitle = document.createElement("div")
+                storeSoundTitle.setAttribute("style", `
+                    margin:30px 0 5px 20px;
+                `)
+                storeSoundTitle.innerHTML = "STORE"
+                storeSoundContainer.append(storeSoundTitle)
+
+                let firstElement = document.createElement("div")
+                firstElement.setAttribute("style", `
+                    background-color:#858585;
+                    padding:10px 0 10px 10px;
+                    border-radius:10px;
+                    margin:0 10px 0 10px;
+                    color:#ffac00;
+                `)
+                firstElement.innerHTML = "Tone Store"
+                storeSoundContainer.append(firstElement)
+            // --
+
+            // songs
+                let songsContainer = document.createElement("div")
+                body.append(songsContainer)
+
+                let songsTitle = document.createElement("div")
+                songsTitle.innerHTML = "SONGS"
+                songsTitle.setAttribute("style", `
+                    margin:30px 0 5px 20px;
+                `)
+                songsContainer.append(songsTitle)
+
+                let songsElements = document.createElement("div")
+                songsElements.setAttribute("style", `
+                    background-color:#858585;
+                    padding:10px;
+                    border-radius:10px;
+                    margin:0 10px 0 10px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:space-between;
+                `)
+                songsContainer.append(songsElements)
+
+                let songsElementTitle = document.createElement("div")
+                songsElementTitle.setAttribute("style", `
+                    margin-left:30px;
+                `)
+                songsElementTitle.innerHTML = "Pick a song"
+                songsElements.append(songsElementTitle)
+
+                let songsButton = document.createElement("a")
+                songsButton.setAttribute("style", `
+                    display:flex;
+                    align-items:center;
+                `)
+                songsButton.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#b7b6b6b3" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                    </path>
+                `
+                songsElements.append(songsButton)
+
+                let songsContainerElements = document.createElement("div")
+                songsContainerElements.setAttribute("style", `
+                    position:absolute;
+                    top:0;
+                    width:100%;
+                    height:100%;
+                    background-color:black;
+                    z-index:7;
+                    transform:translateY(100%);
+                    transition:all 0.5s;
+                    display:none;
+                `)
+                utilsElementContainer.append(songsContainerElements)
+                let songsContainerButton = document.createElement("a")
+                songsContainerButton.setAttribute("style", `
+                    position:relative;
+                    color:#ffac00;
+                    display:flex;
+                    justify-content:end;
+                    top:10px;
+                    right:10px;
+                `)
+                songsContainerButton.innerHTML = "Cancel"
+                songsContainerButton.addEventListener("click", () =>{
+                    songsContainerElements.style.transform = "translateY(100%)"
+                    setTimeout(() =>{
+                        songsContainerElements.style.display = "none"
+                    }, 500)
+                })
+                songsContainerElements.append(songsContainerButton)
+
+                let songsContainerHeader = document.createElement("div")
+                songsContainerHeader.setAttribute("style", `
+                    margin:20px 10px 0 10px;
+                `)
+                songsContainerElements.append(songsContainerHeader)
+
+                let songsContainerHeaderTitle = document.createElement("div")
+                songsContainerHeaderTitle.setAttribute("style", `
+                    font-size:30px;
+                `)
+                songsContainerHeaderTitle.innerHTML = "Library"
+                songsContainerHeader.append(songsContainerHeaderTitle)
+
+                let songsContainerHeaderSearch = document.createElement("input")
+                songsContainerHeaderSearch.setAttribute("placeholder", "Your Library")
+                songsContainerHeaderSearch.setAttribute("style", `
+                    margin:0;
+                    width:95%;
+                    height:40px;
+                    text-align:left;
+                    padding-left:10px;
+                `)
+                songsContainerHeader.append(songsContainerHeaderSearch)
+
+                let songsContainerBody = document.createElement("div")
+                songsContainerBody.setAttribute("style", `
+                    position:relative;
+                    top:20%;
+                    padding:0 30px 0 30px;
+                    text-align:center;
+                `)
+                songsContainerElements.append(songsContainerBody)
+
+                let songsContainerBodyFirstElement = document.createElement("div")
+                songsContainerBodyFirstElement.setAttribute("style", `
+                    width:100%;
+                    font-size:20px;
+                `)
+                songsContainerBodyFirstElement.innerHTML = "Download songs in the Apple Music app."
+                songsContainerBody.append(songsContainerBodyFirstElement)
+
+                let songsContainerBodySecondElement = document.createElement("div")
+                songsContainerBodySecondElement.setAttribute("style", `
+                    color:#858585;
+                `)
+                songsContainerBodySecondElement.innerHTML = "Only downloaded music can be used."
+                songsContainerBody.append(songsContainerBodySecondElement)
+
+                let songsContainerBodyButton = document.createElement("div")
+                songsContainerBodyButton.setAttribute("style", `
+                    position:relative;
+                    width:85%;
+                    height:50px;
+                    background-color:#ffac00;
+                    margin:10px 20px 0 20px;
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    border-radius:10px;
+                `)
+                songsContainerBodyButton.innerHTML = "Open Apple Music"
+                songsContainerBody.append(songsContainerBodyButton)
+
+                songsButton.addEventListener("click", () => {
+                    songsContainerElements.style.display = "initial"
+                    setTimeout(() => {
+                        songsContainerElements.style.transform = "translateY(0)"
+                    },10)
+                    
+                })
+            // -- --
+
+            // Ringtones   
+                let ringtonesContainer = document.createElement("div")
+                body.append(ringtonesContainer)
+
+                let ringtonesTitle = document.createElement("div")
+                ringtonesTitle.setAttribute("style", `
+                    margin:30px 0 5px 20px;
+                `)
+                ringtonesTitle.innerHTML = "RINGTONES"
+                ringtonesContainer.append(ringtonesTitle)
+
+            // -- --
                 }
 
                 createAlarmsElements("Repeat", "Never", repeat)

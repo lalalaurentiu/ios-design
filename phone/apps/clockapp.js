@@ -975,6 +975,34 @@ function clockApp(parent){
                     `)
                     containerElements.append(body)
 
+                    let checked = []
+                    checked.push = function (){
+                        Array.prototype.push.apply(this, arguments)
+                        arguments[0].addEventListener("click", () => {
+                            let check = document.createElement("div")
+                            check.setAttribute("style", `
+                                color:#ffac00;
+                                margin-right:10px;
+                            `)
+                            check.innerHTML = `
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                                </svg>
+                            `
+                            // console.log(checked[0])
+                            
+                            checked.forEach (elem => {
+                                
+                                let target = elem.childNodes[1]
+                                try {
+                                    target.remove()
+                                }catch{}
+                                
+                            })
+                            arguments[0].append(check)
+                        })
+                    }
+
                     let synchronised = document.createElement("div")
                     synchronised.setAttribute("style", `
                         width:90%;
@@ -982,8 +1010,12 @@ function clockApp(parent){
                         padding:10px;
                         background-color:#858585;
                         border-radius:10px;
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
                     `)
                     synchronised.innerHTML = "Synchronised (Default)"
+                    checked.push(synchronised)
                     body.append(synchronised)
 
                     let standardVibrationContainer = document.createElement("div")
@@ -1023,8 +1055,12 @@ function clockApp(parent){
                         element.setAttribute("style", `
                             padding:10px 0 10px 0px;
                             border-bottom:1px solid white;
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:center;
                         `)
                         element.innerHTML = item[1]
+                        checked.push(element)
                         standardElementsContainer.append(element)
                     })
                     let customElementContainer = document.createElement("div")
@@ -1063,8 +1099,12 @@ function clockApp(parent){
                         padding:10px;
                         border-radius:10px;
                         margin:30px 10px;
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
                     `)
                     noneVibration.innerHTML = "None"
+                    checked.push(noneVibration)
                     body.append(noneVibration)
                 })
 

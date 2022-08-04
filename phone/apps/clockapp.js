@@ -1339,6 +1339,7 @@ function clockApp(parent){
                         })
                         arguments[0].childNodes[0].innerHTML = checked
                         checkClassicringtones.innerHTML = ""
+                        noneCheck.innerHTML = ""
                     })
                 }
 
@@ -1348,7 +1349,6 @@ function clockApp(parent){
                     display:flex;
                     align-items:center;
                 `)
-                // ringtonesBody.append(ringtonesBodyElement)
 
                 let ringtonesBodyElementCheck = document.createElement("div")
                 ringtonesBodyElementCheck.setAttribute("style", `
@@ -1598,15 +1598,60 @@ function clockApp(parent){
                                 </path>
                             `
                             checkClassicringtones.innerHTML = check
-                            console.log(ringtoneElements)
                             ringtoneElements.forEach(elem => {
                                 elem.childNodes[0].innerHTML = ""
                             })
+                            noneCheck.innerHTML = ""
                         })
                     })
                 })
             // -- --
             // -- --
+
+                let noneSong = document.createElement("div")
+                noneSong.setAttribute("style", `
+                    margin: 20px 10px 10px 10px;
+                    background-color: #858585;
+                    border-radius: 10px;
+                `)
+                body.append(noneSong)
+
+                let noneContainer = document.createElement("div")
+                noneContainer.setAttribute("style", `
+                    padding-left:10px;
+                    display:flex;
+                    align-items:center;
+                `)
+                noneSong.append(noneContainer)
+
+                let noneCheck = document.createElement("div")
+                noneCheck.setAttribute("style", `
+                    color: #ffac00;
+                    width:50px;
+                    height:20px;
+                `)
+                noneContainer.append(noneCheck)
+                let noneName = document.createElement("div")
+                noneName.setAttribute("style", `
+                    padding:10px;
+                    width:100%;
+                `)
+                noneName.innerHTML = "None"
+                noneContainer.append(noneName)
+
+                noneContainer.addEventListener("click", () => {
+                    let check = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                        </svg>
+                        `
+                    noneCheck.innerHTML = check
+
+                    checkClassicringtones.innerHTML = ""
+                    ringtoneElements.forEach(elem => {
+                        elem.childNodes[0].innerHTML = ""
+                    })
+                })
                 }
 
                 createAlarmsElements("Repeat", "Never", repeat)

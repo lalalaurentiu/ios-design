@@ -655,6 +655,7 @@ function clockApp(parent){
                     transform:translateX(100%);
                     transition: all 0.5s;
                     display:none;
+                    overflow-y:auto;
                 `)
                 externalwindow.append(utilsElementContainer)
                 // elements
@@ -849,10 +850,14 @@ function clockApp(parent){
 
                     let header = document.createElement("div")
                     header.setAttribute("style",`
+                        position:sticky;
+                        top:0;
                         padding:10px;
-                        width:60%;
+                        width:calc(100% - 20px);
                         display:flex;
                         justify-content:space-between;
+                        background-color: rgba(109, 109, 109, 0.8);
+                        
                     `)
                     utilsElementContainer.append(header)
 
@@ -877,6 +882,10 @@ function clockApp(parent){
                     header.append(backButton)
 
                     let headerTitle = document.createElement("div")
+                    headerTitle.setAttribute("style", `
+                        position:relative;
+                        right:50%;
+                    `)
                     headerTitle.innerHTML = "Sound"
                     header.append(headerTitle)
 
@@ -893,6 +902,7 @@ function clockApp(parent){
                         border-top-left-radius:10px;
                         border-top-right-radius:10px;
                         display:none;
+                        z-index:8;
                     `)
                     utilsElementContainer.append(containerElements)
                 // -- --
@@ -929,6 +939,7 @@ function clockApp(parent){
                 `
 
                 vibrationButton.addEventListener("click", () => {
+                    utilsElementContainer.style.overflowY = "hidden"
                     containerElements.innerHTML = ""
                     containerElements.style.display = "initial"
                     setTimeout(() =>{
@@ -957,6 +968,7 @@ function clockApp(parent){
                         Sound
                     `
                     backButton.addEventListener("click", () => {
+                        utilsElementContainer.style.overflowY = "auto"
                         containerElements.style.transform = "translateX(100%)"
                         setTimeout(() =>{
                             containerElements.style.display = "none"
@@ -1212,6 +1224,7 @@ function clockApp(parent){
                 `)
                 songsContainerButton.innerHTML = "Cancel"
                 songsContainerButton.addEventListener("click", () =>{
+                    utilsElementContainer.style.overflowY = "auto"
                     songsContainerElements.style.transform = "translateY(100%)"
                     setTimeout(() =>{
                         songsContainerElements.style.display = "none"
@@ -1283,6 +1296,7 @@ function clockApp(parent){
                 songsContainerBody.append(songsContainerBodyButton)
 
                 songsButton.addEventListener("click", () => {
+                    utilsElementContainer.style.overflowY = "hidden"
                     songsContainerElements.style.display = "initial"
                     setTimeout(() => {
                         songsContainerElements.style.transform = "translateY(0)"
@@ -1302,6 +1316,296 @@ function clockApp(parent){
                 ringtonesTitle.innerHTML = "RINGTONES"
                 ringtonesContainer.append(ringtonesTitle)
 
+                let ringtonesBody = document.createElement("div")
+                ringtonesBody.setAttribute("style", `
+                    margin:0 10px 10px 10px;
+                    background-color:#858585;
+                    border-radius:10px;
+                `)
+                ringtonesContainer.append(ringtonesBody)
+
+                let ringtoneElements = []
+                ringtoneElements.push = function (){
+                    Array.prototype.push.apply(this, arguments)
+                    ringtonesBody.append(arguments[0])
+                    arguments[0].addEventListener("click", () =>{
+                        let checked = `
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                            </svg>
+                        `
+                        ringtoneElements.forEach( elem =>{
+                            elem.childNodes[0].innerHTML = ""
+                        })
+                        arguments[0].childNodes[0].innerHTML = checked
+                        checkClassicringtones.innerHTML = ""
+                    })
+                }
+
+                let ringtonesBodyElement = document.createElement("div")
+                ringtonesBodyElement.setAttribute("style", `
+                    padding-left:10px;
+                    display:flex;
+                    align-items:center;
+                `)
+                // ringtonesBody.append(ringtonesBodyElement)
+
+                let ringtonesBodyElementCheck = document.createElement("div")
+                ringtonesBodyElementCheck.setAttribute("style", `
+                    color: #ffac00;
+                    width:50px;
+                    height:20px;
+                `)
+                ringtonesBodyElementCheck.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                    </svg>
+                `
+                ringtonesBodyElement.append(ringtonesBodyElementCheck)
+
+                let ringtonesBodyElementName = document.createElement("div")
+                ringtonesBodyElementName.setAttribute("style", `
+                    padding:10px;
+                    border-bottom:1px solid white;
+                    width:100%;
+                `)
+                ringtonesBodyElementName.innerHTML = "Radar (Default)"
+                ringtonesBodyElement.append(ringtonesBodyElementName)
+
+                ringtoneElements.push(ringtonesBodyElement)
+
+                let ringtones = [
+                    "Apex",
+                    "Beacon",
+                    "Bulletin",
+                    "By The Seaside",
+                    "Chimes",
+                    "Circuit",
+                    "Constellation",
+                    "Cosmin",
+                    "Crystals",
+                    "Hillside",
+                    "Illuminate",
+                    "Night Owl",
+                    "Opening",
+                    "Playtime",
+                    "Presto",
+                    "Radiate",
+                    "Reflection",
+                    "Ripples",
+                    "Sencha",
+                    "Signal",
+                    "Silk",
+                    "Slow Rise",
+                    "Stargaze",
+                    "Summit",
+                    "Twinkle",
+                    "Uplift",
+                    "Waves"
+                ]
+
+                ringtones.forEach(elem => {
+                    let container = document.createElement("div")
+                    container.setAttribute("style", `
+                        padding-left:10px;
+                        display:flex;
+                        align-items:center;
+                    `)
+                    let check = document.createElement("div")
+                    check.setAttribute("style", `
+                        color: #ffac00;
+                        width:50px;
+                        height:20px;
+                    `)
+                    container.append(check)
+                    let name = document.createElement("div")
+                    name.setAttribute("style", `
+                        padding:10px;
+                        border-bottom:1px solid white;
+                        width:100%;
+                    `)
+                    name.innerHTML = elem
+                    container.append(name)
+                    ringtoneElements.push(container)
+                })
+            // classic ringtones
+                let classicringtones = document.createElement("div")
+                classicringtones.setAttribute("style", `
+                    padding-left:10px;
+                    display:flex;
+                    align-items:center;
+                `)
+                ringtonesBody.append(classicringtones)
+
+                let checkClassicringtones = document.createElement("div")
+                checkClassicringtones.setAttribute("style", `
+                    color: #ffac00;
+                    width:50px;
+                    height:20px;
+                `)
+                classicringtones.append(checkClassicringtones)
+
+                let classicringtoneselements = document.createElement("div")
+                classicringtoneselements.setAttribute("style", `
+                    padding:10px;
+                    width:100%;
+                    display:flex;
+                    align-items:center;
+                    justify-content:space-between;
+                `)
+                classicringtones.append(classicringtoneselements)
+
+                let classicringtoneselementsName = document.createElement("div")
+                classicringtoneselementsName.innerHTML = "Classic"
+                classicringtoneselements.append(classicringtoneselementsName)
+
+                let classicringtoneselementsButton = document.createElement("div")
+                classicringtoneselementsButton.setAttribute("style",`
+                    margin-right:10px;
+                    display:flex;
+                    align-items:center;
+                `)
+                classicringtoneselementsButton.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#b7b6b6b3" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                    </path>
+       
+                `
+                classicringtones.append(classicringtoneselementsButton)
+
+                classicringtoneselements.addEventListener("click", () => {
+                    utilsElementContainer.style.overflowY = "hidden"
+                    utilsElementContainer.scrollTo({top:0});
+                    containerElements.innerHTML = ""
+                    containerElements.style.display = "initial"
+                    setTimeout(() =>{
+                        containerElements.style.transform = "translateX(0)"
+                    }, 10)
+
+                    let header = document.createElement("div")
+                    header.setAttribute("style", `
+                        margin:10px;
+                        width:50%;
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                    `)
+                    containerElements.append(header)
+
+                    let headerButton = document.createElement("a")
+                    headerButton.setAttribute("style", `
+                        display:flex;
+                        align-items:center;
+                        color:#ffac00;
+                    `)
+                    headerButton.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                        </svg>
+                        Sound
+                    `
+                    headerButton.addEventListener("click", () =>{
+                        containerElements.style.transform = "translateX(100%)"
+                        setTimeout(() =>{
+                            utilsElementContainer.style.overflowY = "auto"
+                            containerElements.style.display = "none"
+                        }, 500)
+                    })
+                    header.append(headerButton)
+
+                    let headerTitle = document.createElement("div")
+                    headerTitle.innerHTML = "Classic"
+                    header.append(headerTitle)
+
+                    let body = document.createElement("div")
+                    body.setAttribute("style", `
+                        margin:0 10px 50px 10px;
+                        background-color:#858585;
+                        border-radius:10px;
+                        height:90%;
+                        overflow-y:auto;
+                    `)
+                    containerElements.append(body)
+
+                    let ringtone = [
+                        "Alarm",
+                        "Ascending",
+                        "Bark",
+                        "Bell Tower",
+                        "Blues",
+                        "Boing",
+                        "Crickets",
+                        "Digital",
+                        "Doorbell",
+                        "Duck",
+                        "Harp",
+                        "Marimba",
+                        "Motorcycle",
+                        "Old Car Horn",
+                        "Old Phone",
+                        "Piano Riff",
+                        "Pinball",
+                        "Robot",
+                        "Sci-Fi",
+                        "Sonar",
+                        "Strum",
+                        "Timba",
+                        "Time Passing",
+                        "Trill",
+                        "Xylophone"
+                    ]
+
+                    ringtone.forEach(elem => {
+                        let container = document.createElement("div")
+                        container.setAttribute("style", `
+                            padding-left:10px;
+                            display:flex;
+                            align-items:center;
+                        `)
+                        let check = document.createElement("div")
+                        check.setAttribute("style", `
+                            color: #ffac00;
+                            width:50px;
+                            height:20px;
+                        `)
+                        container.append(check)
+                        let name = document.createElement("div")
+                        name.setAttribute("style", `
+                            padding:10px;
+                            border-bottom:1px solid white;
+                            width:100%;
+                        `)
+                        name.innerHTML = elem
+                        container.append(name)
+                        body.append(container)
+                    })
+                    
+                    body.childNodes.forEach(elem => {
+                        let check = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"></path>
+                        </svg>
+                        `
+                        elem.addEventListener("click", () =>{
+                            body.childNodes.forEach(elem => {
+                                elem.childNodes[0].innerHTML = ""
+                            })
+                            elem.childNodes[0].innerHTML = check
+                            classicringtoneselementsButton.innerHTML = `
+                                ${elem.childNodes[1].innerHTML}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#b7b6b6b3" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                                </path>
+                            `
+                            checkClassicringtones.innerHTML = check
+                            console.log(ringtoneElements)
+                            ringtoneElements.forEach(elem => {
+                                elem.childNodes[0].innerHTML = ""
+                            })
+                        })
+                    })
+                })
+            // -- --
             // -- --
                 }
 

@@ -464,6 +464,48 @@ function clockApp(parent){
             `)
             header.append(editButton)
 
+            editButton.addEventListener("click", () =>{
+                if (editButton.innerHTML !== "Done") {
+                    editButton.innerHTML = "Done"
+                    alarms.forEach(element =>{
+                            let removeButtoncontainer = document.createElement("div")
+                            removeButtoncontainer.setAttribute("style", `
+                                display:flex;
+                                margin-left:50px;
+                                height:100%;
+                                justify-content: center;
+                                align-items:center;
+                            `)
+                            let removeButton= document.createElement("a")
+                            removeButton.innerHTML = "-"
+                            removeButton.setAttribute("style",`
+                                display:flex;
+                                justify-content: center;
+                                align-items:center;
+                                width:30px;
+                                height:30px;
+                                background:red;
+                                color:white;
+                                font-size:30px;
+                                border-radius:50%;
+                            `)
+                        removeButton.addEventListener("click", () => {
+                            element.remove()
+                        })
+                        removeButtoncontainer.append(removeButton)
+                        element.firstChild.prepend(removeButtoncontainer)
+                    })
+                    
+                } else {
+                    editButton.innerHTML = "Edit"
+                    alarms.forEach(element =>{
+                        console.log(element)
+                        element.firstChild.firstChild.remove()
+                    })
+                }
+                
+            })
+
             let addButton = document.createElement("a")
             addButton.innerHTML = "+"
             addButton.setAttribute("style", `
@@ -1782,8 +1824,6 @@ function clockApp(parent){
     
     sections.worldClock()
     sections.alarm()
-
-    
 
     // adding container objects in parrent
     objectsSections.forEach((element, index) => {

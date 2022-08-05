@@ -405,6 +405,7 @@ function clockApp(parent){
                         }
                     })
                 })
+                body.append(arguments[0])
             }
 
             let days = {
@@ -486,99 +487,115 @@ function clockApp(parent){
                 padding-bottom:10px;
             `)
 
-            let container = document.createElement("div")
-            container.setAttribute("style", `
-                margin:0 0 10px 10px;
-                border-bottom: 1px solid #6d6d6d;
-                padding-bottom:10px;
-                display:flex;
-                justify-content:end;
-                align-items:center;
-                height:50px;
-                
-            `)
-
             body.append(title)
-            body.append(container)
 
-            // demo alarm
-            let ContainersElements = document.createElement("div")
-            ContainersElements.setAttribute("style", `
-                position:absolute;
-                width:100%;
-                height:70px;
-                display:flex;
-                justify-content:space-between;
-                align-items:center;
-                background:black;
-            `)
-            let sectionleft = document.createElement("div")
-            sectionleft.setAttribute("style", `
-                padding-left:20px;
-            `)
-            let hour = document.createElement("div")
-            hour.innerHTML = "06:00"
-            hour.setAttribute("style", `
-                font-size:30px;
-            `)
-            sectionleft.append(hour)
-            ContainersElements.append(sectionleft)
+        // create alarm
+            function createAlarm(h,i, active){ //hour, info
+                let container = document.createElement("div")
+                container.setAttribute("style", `
+                    margin:0 0 10px 10px;
+                    border-bottom: 1px solid #6d6d6d;
+                    padding-bottom:10px;
+                    display:flex;
+                    justify-content:end;
+                    align-items:center;
+                    height:50px;
+                    
+                `)
 
-            let info = document.createElement("div")
-            info.innerHTML = `Alarm, every day`
-            info.setAttribute("style", `
-                color:#6d6d6d;
-            `)
-            
-            sectionleft.append(info)
-            container.append(ContainersElements)
+                let ContainersElements = document.createElement("div")
+                ContainersElements.setAttribute("style", `
+                    position:absolute;
+                    width:100%;
+                    height:70px;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    background:black;
+                `)
+                let sectionleft = document.createElement("div")
+                sectionleft.setAttribute("style", `
+                    padding-left:20px;
+                `)
+                let hour = document.createElement("div")
+                hour.innerHTML = `${h}` //"06:00"
+                hour.setAttribute("style", `
+                    font-size:30px;
+                `)
+                sectionleft.append(hour)
+                ContainersElements.append(sectionleft)
 
-            let activateButton = document.createElement("a")
-            activateButton.setAttribute("style",`
-                display:flex;
-                height:20px;
-                border:1px solid white;
-                border-radius:10px;
-                width:40px;
-                margin-right:20px;
-            `)
-            let activateButtonTrigger = document.createElement("div")
-            activateButtonTrigger.setAttribute("style", `
-                hight:100%;
-                width:20px;
-                background:white;
-                border-radius:10px;
-            `)
-            activateButton.style.justifyContent = "start"
-            activateButton.append(activateButtonTrigger)
-            ContainersElements.append(activateButton)
-            activateButton.addEventListener("click", () =>{
-                if (activateButton.style.justifyContent == "start"){
-                    activateButton.style.justifyContent = "end"
+                let info = document.createElement("div")
+                info.innerHTML = `${i}`//`Alarm, every day`
+                info.setAttribute("style", `
+                    color:#6d6d6d;
+                `)
+                
+                sectionleft.append(info)
+                container.append(ContainersElements)
+
+                let activateButton = document.createElement("a")
+                activateButton.setAttribute("style",`
+                    display:flex;
+                    height:20px;
+                    border:1px solid white;
+                    border-radius:10px;
+                    width:40px;
+                    margin-right:20px;
+                `)
+                let activateButtonTrigger = document.createElement("div")
+                activateButtonTrigger.setAttribute("style", `
+                    hight:100%;
+                    width:20px;
+                    background:white;
+                    border-radius:10px;
+                `)
+
+                activateButton.style.justifyContent = `${active}`
+
+                if (active == "end"){
                     activateButton.style.background = "#13dc13"
-                } else {
-                    activateButton.style.justifyContent = "start"
-                    activateButton.style.background = "initial"
                 }
-            })
-            let deleteButton = document.createElement("a")
-            deleteButton.innerHTML = "Delete"
-            deleteButton.setAttribute("style",`
-                display:flex;
-                padding:0 20px;
-                align-items:center;
-                background:red;
-                height:70px;
-            `)
-            container.append(deleteButton)
-            deleteButton.addEventListener("click", () =>{
-                container.remove()
-            })
-            alarms.push(container)
-            // -- --
 
-            // add new alarm
+                activateButton.append(activateButtonTrigger)
+                ContainersElements.append(activateButton)
+                activateButton.addEventListener("click", () =>{
+                    if (activateButton.style.justifyContent == "start"){
+                        activateButton.style.justifyContent = "end"
+                        activateButton.style.background = "#13dc13"
+                    } else {
+                        activateButton.style.justifyContent = "start"
+                        activateButton.style.background = "initial"
+                    }
+                })
+                let deleteButton = document.createElement("a")
+                deleteButton.innerHTML = "Delete"
+                deleteButton.setAttribute("style",`
+                    display:flex;
+                    padding:0 20px;
+                    align-items:center;
+                    background:red;
+                    height:70px;
+                `)
+                container.append(deleteButton)
+                deleteButton.addEventListener("click", () =>{
+                    container.remove()
+                })
+                alarms.push(container)
+            }
+        // -- --
+
+        // demo alarm
+            createAlarm("06:00", `Alarm, every day`, "start")
+        // -- --
             addButton.addEventListener("click", () =>{
+                // add new alarm
+                let values = {
+                    hour:"00:00",
+                    info:"Never",
+                    name:"Alarm",
+                    snooze:"start"
+                }
                 externalwindow.innerHTML = ""
                 externalwindow.style.display = "initial"
                 setTimeout(() => {
@@ -625,6 +642,10 @@ function clockApp(parent){
                     align-items:center;
                     justify-content:center;
                 `)
+
+                time.addEventListener("change", () =>{
+                    values.hour = time.value
+                })
                 externalwindow.append(time)
                 let optionsContainer = document.createElement("div")
                 optionsContainer.setAttribute("style", `
@@ -708,6 +729,10 @@ function clockApp(parent){
 
             // repeat function
                 function repeat (){
+
+                    let daysCount = 0
+                    let daysname = ""
+
                     utilsElementContainer.innerHTML = ""
                     let header = document.createElement("div")
                     header.setAttribute("style", `
@@ -793,7 +818,26 @@ function clockApp(parent){
                         setTimeout(() =>{
                             utilsElementContainer.style.display = "none"
                         }, 500)
-                        console.log(days)
+                        
+                        Object.entries(days).forEach(item =>{
+                            if (item[1].check == true){
+                                daysCount ++
+                                daysname = daysname + item[1].short + " "
+                            }
+                        })
+                        if (daysCount == 7){
+                            values.info = "Every day"
+                        } else if(daysCount == 1){
+                            values.info = `Every ${daysname}`
+                        }else if(daysCount == 0){
+                            values.info ="Never"
+                        }else {
+                            values.info = daysname
+                        }
+                        alarmUtilsContainer.childNodes[0].childNodes[1].childNodes[0].innerHTML = values.info
+                        Object.entries(days).forEach(item =>{
+                            item[1].check = false
+                        })
                     })
                 }
             // -- --
@@ -822,12 +866,7 @@ function clockApp(parent){
                         </svg>
                         Back
                     `
-                    backButton.addEventListener("click", () => {
-                        utilsElementContainer.style.transform = "translateX(100%)"
-                        setTimeout(() =>{
-                            utilsElementContainer.style.display = "none"
-                        }, 500)
-                    })
+                    
                     header.append(backButton)
 
                     let headerTitle = document.createElement("div")
@@ -842,6 +881,16 @@ function clockApp(parent){
                     `)
                     alarmName.value = "Alarm"
                     utilsElementContainer.append(alarmName)
+
+                    backButton.addEventListener("click", () => {
+                        utilsElementContainer.style.transform = "translateX(100%)"
+                        setTimeout(() =>{
+                            utilsElementContainer.style.display = "none"
+                        }, 500)
+                        
+                        alarmUtilsContainer.childNodes[1].childNodes[1].childNodes[0].innerHTML = alarmName.value
+                        values.name = alarmName.value
+                    })
                 }
             // -- --
                 
@@ -1693,11 +1742,21 @@ function clockApp(parent){
                         if (activateButton.style.justifyContent == "start"){
                             activateButton.style.justifyContent = "end"
                             activateButton.style.background = "#13dc13"
+                            values.snooze = "end"
                         } else {
                             activateButton.style.justifyContent = "start"
                             activateButton.style.background = "initial"
+                            values.snooze = "start"
                         }
                     })
+
+                savebutton.addEventListener("click", () =>{
+                    externalwindow.style.transform = ("translateY(100%)")
+                    setTimeout(() => {
+                        externalwindow.style.display = "none"
+                    }, 500); 
+                    createAlarm(values.hour, `${values.name}, ${values.info}`, values.snooze)
+                })
             })
             // -- --
             

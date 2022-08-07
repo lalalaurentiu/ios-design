@@ -1828,6 +1828,129 @@ function clockApp(parent){
                 display:none;
             `)
 
+        // timer
+            let timercontainer = document.createElement("div")
+            timercontainer.setAttribute("style", `
+                position:relative;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                top:30px;
+                width:100%;
+                height:40%;
+                font-size:5rem;
+            `)
+            stopwatchcontainer.append(timercontainer)
+
+            let minute = document.createElement("div")
+            minute.innerHTML = "00:"
+            let seconds = document.createElement("div")
+            seconds.innerHTML = "00,"
+            let miliseconds = document.createElement("div")
+            miliseconds.innerHTML = "00"
+
+            timercontainer.append(minute)
+            timercontainer.append(seconds)
+            timercontainer.append(miliseconds)
+        // -- --
+        
+        // buttons
+
+            let containerButtons = document.createElement("div")
+            containerButtons.setAttribute("style",`
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+                width:100%;
+                height:20%;
+                position:relative;
+                font-size:1rem;
+                border-bottom:1px solid rgba(109, 109, 109, 0.5); 
+            `)
+            stopwatchcontainer.append(containerButtons)
+
+            let lapButton = document.createElement("a")
+            lapButton.setAttribute("style", `
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                border-radius:50%;
+                width:75px;
+                height:75px;
+                border:1px solid rgba(109, 109, 109, 0.5); 
+                padding:2px;
+                margin-left:20px;
+            `)
+            containerButtons.append(lapButton)
+
+            let lapButtonName = document.createElement("span")
+            lapButtonName.setAttribute("style",`
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:100%;
+                height:100%;
+                background-color:rgba(109, 109, 109, 0.5);
+                border-radius:50%;
+                color:#cfcccc80;
+            `)
+            lapButtonName.innerHTML ="Lap"
+            lapButton.append(lapButtonName)
+
+            let anotherButtons = document.createElement("div")
+            anotherButtons.setAttribute("style", `
+                width:30px;
+                display:flex;
+                justify-content:space-between;
+            `)
+            anotherButtons.innerHTML = `
+                <div style="width:10px;height:10px;background-color:white;border-radius:50%;"></div>
+                <div style="width:10px;height:10px;background-color:rgba(109, 109, 109, 0.5);border-radius:50%;"></div>
+            `
+            containerButtons.append(anotherButtons)
+
+            let startButton = document.createElement("a")
+            startButton.setAttribute("style", `
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                border-radius:50%;
+                width:75px;
+                height:75px;
+                border:1px solid rgba(97, 138, 97, 0.5); 
+                padding:2px;
+                margin-right:20px;
+            `)
+            containerButtons.append(startButton)
+
+            let startButtonName = document.createElement("span")
+            startButtonName.setAttribute("style",`
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:100%;
+                height:100%;
+                background-color:rgba(97, 138, 97, 0.5);
+                border-radius:50%;
+                color:#8edfa180;
+            `)
+            startButtonName.innerHTML ="Start"
+            startButton.append(startButtonName)
+            
+        // -- --
+
+        // Lap container
+
+            let lapContainer = document.createElement("div")
+            lapContainer.setAttribute("style", `
+                width:95%;
+                height:28%;
+                overflow-y:auto;
+                padding:10px;
+            `)
+            stopwatchcontainer.append(lapContainer)
+
+        // -- --
             let image = document.createElement("a")
             image.innerHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
@@ -1842,8 +1965,9 @@ function clockApp(parent){
                 font-size:10px;
                 text-align:center;
             `)
-
+            console.log(stopwatchcontainer)
             objectsSections.push({container:stopwatchcontainer, image:image})
+            parent.append(stopwatchcontainer)
         }
     }
     

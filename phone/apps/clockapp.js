@@ -1843,14 +1843,20 @@ function clockApp(parent){
             stopwatchcontainer.append(timercontainer)
 
             let minute = document.createElement("div")
-            minute.innerHTML = "00:"
+            minute.innerHTML = "00"
+            let splitMinute = document.createElement("div")
+            splitMinute.innerHTML = ":"
             let seconds = document.createElement("div")
-            seconds.innerHTML = "00,"
+            seconds.innerHTML = "00"
+            let splitSeconds = document.createElement("div")
+            splitSeconds.innerHTML = ","
             let miliseconds = document.createElement("div")
             miliseconds.innerHTML = "00"
 
             timercontainer.append(minute)
+            timercontainer.append(splitMinute)
             timercontainer.append(seconds)
+            timercontainer.append(splitSeconds)
             timercontainer.append(miliseconds)
         // -- --
         
@@ -1909,6 +1915,28 @@ function clockApp(parent){
             `
             containerButtons.append(anotherButtons)
 
+            let startButtonStyle = `
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:100%;
+                height:100%;
+                background-color:rgba(97, 138, 97, 0.5);
+                border-radius:50%;
+                color:#8edfa180;
+            `
+
+            let stopButtonStyle = `
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:100%;
+                height:100%;
+                background-color: rgba(157, 67, 67, 0.5); 
+                border-radius:50%;
+                color:#d2754880;
+            `
+            
             let startButton = document.createElement("a")
             startButton.setAttribute("style", `
                 display:flex;
@@ -1924,16 +1952,7 @@ function clockApp(parent){
             containerButtons.append(startButton)
 
             let startButtonName = document.createElement("span")
-            startButtonName.setAttribute("style",`
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                width:100%;
-                height:100%;
-                background-color:rgba(97, 138, 97, 0.5);
-                border-radius:50%;
-                color:#8edfa180;
-            `)
+            startButtonName.setAttribute("style",startButtonStyle)
             startButtonName.innerHTML ="Start"
             startButton.append(startButtonName)
             
@@ -1949,6 +1968,178 @@ function clockApp(parent){
                 padding:10px;
             `)
             stopwatchcontainer.append(lapContainer)
+
+        // -- --
+
+        // buttons functions
+        let minutes = 0
+        let second = 0
+        let millisecond = 0
+
+        let cron
+
+        function start(m,s,ml,cm, cs, cml) {
+            pause();
+            cron = setInterval(() => { timer(m,s, ml,cm, cs, cml); }, 10);
+          }
+
+          function pause() {
+            clearInterval(cron);
+          }
+
+        function timer(m,s,ml, cm, cs, cml) {
+            if ((millisecond += 1) == 99) {
+              millisecond = 0;
+              second++;
+            }
+            if (second == 60) {
+              second = 0;
+              minutes++;
+            }
+            m.innerHTML = returnData(minutes)
+            s.innerHTML = returnData(second)
+            ml.innerHTML = returnData(millisecond)
+            cm.innerHTML = returnData(minutes)
+            cs.innerHTML = returnData(second)
+            cml.innerHTML = returnData(millisecond)
+        }
+
+        function returnData(input) {
+            return input >= 10 ? input : `0${input}`
+          }
+
+        let lapIndex = 0
+        let lapNameIndex = 1
+
+        let element = document.createElement("div")
+        element.setAttribute("style",`
+            width:100%;
+            display:flex;
+            justify-content:space-between;
+        `)
+        let lapName = document.createElement("div")
+        lapName.innerHTML = `Lap ${lapNameIndex}`
+
+        element.append(lapName)
+
+        let cronElement = document.createElement("div")
+        cronElement.setAttribute("style", `
+            display:flex;
+        `)
+
+        let cronminute = document.createElement("div")
+        cronminute.innerHTML = "00"
+        let cronsplitMinute = document.createElement("div")
+        cronsplitMinute.innerHTML = ":"
+        let cronseconds = document.createElement("div")
+        cronseconds.innerHTML = "00"
+        let cronsplitSeconds = document.createElement("div")
+        cronsplitSeconds.innerHTML = ","
+        let cronmiliseconds = document.createElement("div")
+        cronmiliseconds.innerHTML = "00"
+
+        startButton.addEventListener("click", () => {
+            let lastElements = lapContainer.childNodes
+            let copyElements = []
+            lastElements.forEach(elem  =>{
+                copyElements.push(elem)
+            })
+            lapContainer.innerHTML = ""
+            copyElements.forEach(elem => {
+                lapContainer.prepend(elem)
+            })
+
+            cronElement.append(cronminute)
+            cronElement.append(cronsplitMinute)
+            cronElement.append(cronseconds)
+            cronElement.append(cronsplitSeconds)
+            cronElement.append(cronmiliseconds)
+
+            element.append(cronElement)
+
+
+            if (startButtonName.innerHTML == "Start"){
+                startButtonName.innerHTML = "Stop"
+                startButtonName.setAttribute("style",stopButtonStyle)
+                startButton.style.border = "1px solid rgba(157, 67, 67, 0.5)"
+                
+                lapIndex++
+                if (lapIndex > 1){
+                    lapButtonName.innerHTML = "Lap"
+                }
+                lapContainer.prepend(element)
+                start(minute, seconds, miliseconds,cronminute, cronseconds, cronmiliseconds)
+
+
+            }else {
+                startButtonName.innerHTML = "Start"
+                startButtonName.setAttribute("style",startButtonStyle)
+                startButton.style.border = "1px solid rgba(97, 138, 97, 0.5)"
+                pause()
+                lapButtonName.innerHTML = "Reset"
+                lapContainer.prepend(element)
+                
+            }
+            
+        })
+
+        lapButton.addEventListener("click", () =>{
+            if(lapButtonName.innerHTML == "Reset"){
+                lapContainer.innerHTML = ""
+                minute.innerHTML = "00"
+                splitMinute.innerHTML = ":"
+                seconds.innerHTML = "00"
+                splitSeconds.innerHTML = ","
+                miliseconds.innerHTML = "00"
+
+                minutes = 0
+                second = 0
+                millisecond = 0
+
+                lapNameIndex = 1
+                lapName.innerHTML = `Lap ${lapNameIndex}`
+            }else {
+                
+                let element = document.createElement("div")
+                element.setAttribute("style",`
+                    width:100%;
+                    display:flex;
+                    justify-content:space-between;
+                `)
+                let newlapName = document.createElement("div")
+                newlapName.innerHTML = `Lap ${lapNameIndex}`
+
+                element.append(newlapName)
+
+                let cronElement = document.createElement("div")
+                cronElement.setAttribute("style", `
+                    display:flex;
+                `)
+                let cronminute = document.createElement("div")
+                cronminute.innerHTML = returnData(minutes)
+                let cronsplitMinute = document.createElement("div")
+                cronsplitMinute.innerHTML = ":"
+                let cronseconds = document.createElement("div")
+                cronseconds.innerHTML = returnData(second)
+                let cronsplitSeconds = document.createElement("div")
+                cronsplitSeconds.innerHTML = ","
+                let cronmiliseconds = document.createElement("div")
+                cronmiliseconds.innerHTML = returnData(millisecond)
+
+                cronElement.append(cronminute)
+                cronElement.append(cronsplitMinute)
+                cronElement.append(cronseconds)
+                cronElement.append(cronsplitSeconds)
+                cronElement.append(cronmiliseconds)
+
+                element.append(cronElement)
+                lapContainer.append(element)
+                lapNameIndex++
+                lapName.innerHTML = `Lap ${lapNameIndex}`
+                
+                
+            }
+        })
 
         // -- --
             let image = document.createElement("a")

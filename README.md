@@ -34,6 +34,13 @@ Swipe left to right
 Open and close apps
 <video src='https://user-images.githubusercontent.com/67306273/183520761-46ab5469-a29a-47db-979c-9b1b367bad56.mp4' width=180/> </br>
 
+Mobile Apps: </br>
+Safari </br>
+![Captură ecran (30)](https://user-images.githubusercontent.com/67306273/183522755-4cb2e682-48c3-46b2-a68a-82a1c1f51186.png)
+
+This application simulates a Safari page and includes 2 favorite pages, youtube and google, on which, if I click on them, a new window opens with the respective page. The search function, if we enter something, it will open a new page with our input.
+<video src='https://user-images.githubusercontent.com/67306273/183523026-5994270c-fd2b-491b-8840-671df8942713.mp4' width=180/> </br>
+
 </br>
 
 macOS: </br>

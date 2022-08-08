@@ -31,6 +31,9 @@ Swipe up to down
 Swipe left to right
 <video src='https://user-images.githubusercontent.com/67306273/182248531-a1a6882d-8216-4be7-9c84-38191036e777.mp4' width=180/> </br>
 
+Open and close apps
+<video src='https://user-images.githubusercontent.com/67306273/183520761-46ab5469-a29a-47db-979c-9b1b367bad56.mp4' width=180/> </br>
+
 </br>
 
 macOS: </br>

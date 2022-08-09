@@ -2156,9 +2156,95 @@ function clockApp(parent){
                 font-size:10px;
                 text-align:center;
             `)
-            console.log(stopwatchcontainer)
             objectsSections.push({container:stopwatchcontainer, image:image})
             parent.append(stopwatchcontainer)
+        },
+        timer:function(){
+            let timerContainer = document.createElement("div")
+            timerContainer.setAttribute("style", `
+                width:100%;
+                height:100%;
+                transform:translateX(100%);
+                display:none;
+            `)
+
+            let timer = document.createElement("div")
+            timer.setAttribute("style", `
+                position:relative;
+                top:30px;
+                width:100%;
+                height:40%;
+                display:flex;
+                align-items:center;
+                justify-content:space-between;
+            `)
+            timerContainer.append(timer)
+
+            function timerElements(parent, index,timeElement){
+                let container = document.createElement("div")
+                container.setAttribute("style", `
+                    margin:10px;
+                    display:flex;
+                    align-items:center;
+                `)
+                parent.append(container)
+
+                let select = document.createElement("select")
+                select.setAttribute("name",`${timeElement}`)
+                container.append(select)
+
+                let label = document.createElement("label")
+                label.innerHTML = `${timeElement}`
+                container.append(label)
+
+                for (let i = 0;i <= index; i++){
+                    let element = document.createElement("option")
+                    element.setAttribute("value",i)
+                    element.innerHTML = i
+                    select.append(element)
+                }
+            }
+
+            timerElements(timer, 24,"Hours")
+            timerElements(timer, 59,"Minutes")
+            timerElements(timer, 59,"Seconds")
+            
+
+            let image = document.createElement("a")
+            image.innerHTML = `
+                <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 199.328 199.328" style="enable-background:new 0 0 199.328 199.328;" xml:space="preserve">
+                    <g>
+                        <g>
+                            <g>
+                                <g>
+                                    <path style="fill:currentColor;" d="M99.664,0h-4.066v39.149h8.131V8.228c48.594,2.144,87.456,42.338,87.456,91.436
+                                        c0,50.473-41.053,91.533-91.522,91.533S8.142,150.136,8.142,99.664c0-20.657,6.707-40.144,19.412-56.363l-6.413-5.018
+                                        C7.308,55.952,0,77.178,0,99.664c0,54.957,44.714,99.664,99.664,99.664c54.957,0,99.664-44.703,99.664-99.664
+                                        C199.328,44.714,154.621,0,99.664,0z"/>
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path style="fill:currentColor;" d="M85.953,97.119c-0.497,1.657-0.748,3.135-0.748,4.542c0,8.808,7.183,15.98,15.99,15.98
+                                        c8.808,0,15.98-7.172,15.98-15.98s-7.172-15.99-15.98-15.99c-1.668,0-3.368,0.308-5.218,0.952l-0.816,0.286L55.823,59.255
+                                        l30.395,36.984L85.953,97.119z"/>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+                <br>
+                Timer
+            `
+            image.setAttribute("style", `
+                width:100px;
+                height:30px;
+                font-size:10px;
+                text-align:center;
+            `)
+            objectsSections.push({container:timerContainer, image:image})
+            parent.append(timerContainer)
         }
     }
     
@@ -2166,6 +2252,7 @@ function clockApp(parent){
     sections.worldClock()
     sections.alarm()
     sections.stopwatch()
+    sections.timer()
 
     // adding container objects in parrent
     objectsSections.forEach((element, index) => {

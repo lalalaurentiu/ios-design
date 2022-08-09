@@ -2160,6 +2160,7 @@ function clockApp(parent){
             parent.append(stopwatchcontainer)
         },
         timer:function(){
+        // timer
             let timerContainer = document.createElement("div")
             timerContainer.setAttribute("style", `
                 width:100%;
@@ -2190,6 +2191,12 @@ function clockApp(parent){
                 parent.append(container)
 
                 let select = document.createElement("select")
+                select.setAttribute("style",`
+                    background-color:rgba(109,109,109,0.2);
+                    color:white;
+                    border:none;
+                    border-radius:5px;
+                `)
                 select.setAttribute("name",`${timeElement}`)
                 container.append(select)
 
@@ -2208,8 +2215,124 @@ function clockApp(parent){
             timerElements(timer, 24,"Hours")
             timerElements(timer, 59,"Minutes")
             timerElements(timer, 59,"Seconds")
-            
+        // -- --
 
+        // buttons
+
+        let containerButtons = document.createElement("div")
+        containerButtons.setAttribute("style",`
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            width:100%;
+            height:20%;
+            position:relative;
+            font-size:1rem;
+        `)
+        timerContainer.append(containerButtons)
+
+        let cancelButton = document.createElement("a")
+        cancelButton.setAttribute("style", `
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:50%;
+            width:75px;
+            height:75px;
+            border:1px solid rgba(109, 109, 109, 0.5); 
+            padding:2px;
+            margin-left:20px;
+        `)
+        containerButtons.append(cancelButton)
+
+        let cancelButtonName = document.createElement("span")
+        cancelButtonName.setAttribute("style",`
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:100%;
+            height:100%;
+            background-color:rgba(109, 109, 109, 0.5);
+            border-radius:50%;
+            color:#cfcccc80;
+        `)
+        cancelButtonName.innerHTML ="Cancel"
+        cancelButton.append(cancelButtonName)
+
+        let startButtonStyle = `
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:100%;
+            height:100%;
+            background-color:rgba(97, 138, 97, 0.5);
+            border-radius:50%;
+            color:#8edfa180;
+        `
+
+        let stopButtonStyle = `
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:100%;
+            height:100%;
+            background-color: rgba(157, 67, 67, 0.5); 
+            border-radius:50%;
+            color:#d2754880;
+        `
+        
+        let startButton = document.createElement("a")
+        startButton.setAttribute("style", `
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:50%;
+            width:75px;
+            height:75px;
+            border:1px solid rgba(97, 138, 97, 0.5); 
+            padding:2px;
+            margin-right:20px;
+        `)
+        containerButtons.append(startButton)
+
+        let startButtonName = document.createElement("span")
+        startButtonName.setAttribute("style",startButtonStyle)
+        startButtonName.innerHTML ="Start"
+        startButton.append(startButtonName)
+        // -- --
+        
+        // end timer
+
+        let timerEndContainer = document.createElement("div")
+        timerEndContainer.setAttribute("style", `
+            margin:10px;
+            display:flex;
+            padding:10px;
+            background-color:#858585;
+            border-radius:10px;
+            justify-content:space-between;
+        `)
+        
+        timerContainer.append(timerEndContainer)
+
+        let timerEndContainerTitle = document.createElement("div")
+        timerEndContainerTitle.innerHTML = "When Timer Ends"
+        timerEndContainer.append(timerEndContainerTitle)
+
+        let timerEndContainerButton =  document.createElement("a")
+        timerEndContainerButton.setAttribute("style", `
+            display:flex;
+            align-items:center;
+            color:#bcbcbc;
+        `)
+        timerEndContainerButton.innerHTML = `
+            Radar (Default)
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+            </svg>
+        `
+        timerEndContainer.append(timerEndContainerButton)
+        // -- --
             let image = document.createElement("a")
             image.innerHTML = `
                 <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
